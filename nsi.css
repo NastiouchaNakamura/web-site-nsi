@@ -40,9 +40,7 @@ footer {
 \* * * * * * * * * * * * * * * * * * */
 header {
     position: relative;
-    background-color: #bf0303;
-    padding: 1rem;
-    height: 2rem;
+    background-color: #68b1ff;
     overflow: hidden;
     color: white;
     font-variant: small-caps;
@@ -50,15 +48,6 @@ header {
     flex-direction: row;
     align-items: center;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
-
-    img {
-        height: 2rem;
-        filter: drop-shadow(1px 1px 2px black);
-    }
-
-    >h1 {
-        text-shadow: 1px 1px 2px black;
-    }
 
     h1 {
         font-size: 1.5rem;
@@ -97,7 +86,6 @@ header {
             width: 2rem;
             background-color: #FFF;
             border-radius: 0.15rem;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
         }
 
         &:hover {
@@ -171,7 +159,7 @@ header {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background-color: #9e0707;
+                background-color: #0663c5;
 
                 p {
                     height: calc(1.25rem - 4px);
@@ -369,7 +357,7 @@ nav.small-nav {
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        background-color: #9e0707;
+        background-color: #3c9aff;
         z-index: 1;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
 
