@@ -1,0 +1,72 @@
+site_name: NSI — Lycée Blaise Pascal
+site_url: https://nsi.nastioucha.fr/
+
+
+docs_dir: docs
+use_directory_urls: true
+
+# Configuration
+theme:
+  favicon: /icons/key.svg
+  icon:
+    logo: material/abacus
+  name: material
+
+  font:
+    text: PT Sans
+    code: Roboto Mono
+  language: fr
+  palette:
+    - media : "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Thème nuit
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Thème jour
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.annotate
+
+markdown_extensions:
+  - abbr
+  - admonition                    # Blocs colorés  !!! info "ma remarque"
+  - attr_list                     # Un peu de CSS et des attributs HTML.
+  - def_list                      # Les listes de définition.
+  - footnotes                     # Notes[^1] de bas de page.  [^1]: ma note.
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details              #   qui peuvent se plier/déplier.
+  - pymdownx.caret                # Passage ^^souligné^^ ou en ^exposant^.
+  - pymdownx.mark                 # Passage ==surligné==.
+  - pymdownx.tilde                # Passage ~~barré~~ ou en ~indice~.
+  - pymdownx.highlight           # Coloration syntaxique du code
+  - pymdownx.inlinehilite         # pour  `#!python  <python en ligne>`
+  - pymdownx.snippets             # Inclusion de fichiers externe.
+  - pymdownx.keys:                # Touches du clavier.  ++ctrl+d++
+      separator: "\uff0b"
+  - pymdownx.tasklist:            # Cases à cocher  - [ ]  et - [x]
+      custom_checkbox:    true    #   avec cases d'origine
+      clickable_checkbox: true    #   et cliquables.
+  - pymdownx.tabbed:              # Volets glissants.  === "Mon volet"
+      alternate_style: true 
+  - toc:
+      permalink: ⚓︎
+      toc_depth: 3
+
+plugins:
+  - search
+  - awesome-pages:
+      collapse_single_pages: true
+
