@@ -54,16 +54,30 @@ jobs:
           path: ./site/
       - name: Quick check of artifact
         run: ls -l
+      # Ne fonctionne pas car l'action ne prend pas en charge SFTP en mode passif
+      # - name: Upload to FTP server
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.1.0 # https://github.com/marketplace/actions/ftp-deploy
+      #   with:
+      #     server: ${{ secrets.ftp_host }}
+      #     username: ${{ secrets.ftp_username }}
+      #     password: ${{ secrets.ftp_password }}
+      #     port: ${{ secrets.ftp_port }}
+      #     protocol: ${{ secrets.ftp_protocol }}
+      #     #local-dir: ./site/
+      #     server-dir: ${{ secrets.ftp_destination }}
+      #     #dangerous-clean-slate: true
+      #     log-level: verbose
       - name: Upload to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@v4.1.0 # https://github.com/marketplace/actions/ftp-deploy
+        uses: sand4rt/ftp-deployer@v1.8
         with:
-          server: ${{ secrets.ftp_host }}
+          sftp: true
+          host: ${{ secrets.ftp_host }}
+          port: ${{ secrets.ftp_port }}
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          port: ${{ secrets.ftp_port }}
-          protocol: ${{ secrets.ftp_protocol }}
-          #local-dir: ./site/
-          server-dir: ${{ secrets.ftp_destination }}
-          #dangerous-clean-slate: true
-          log-level: verbose
-          timeout: 120000 # 2 minutes
+          remote_folder: ${{ secrets.ftp_destination }}
+          local_folder: ./site/
+          cleanup: true
+          include: '[]'
+          exclude: '[]'
+          passive: true
