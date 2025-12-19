@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: mkdocs-site
-          path: .
+          path: ./site/
       - name: Quick check of artifact
         run: ls -l
       - name: Upload to FTP server
