@@ -39,32 +39,87 @@ theme:
     - content.code.annotate
 
 markdown_extensions:
-  - abbr
-  - admonition                    # Blocs colorés  !!! info "ma remarque"
-  - attr_list                     # Un peu de CSS et des attributs HTML.
-  - def_list                      # Les listes de définition.
-  - footnotes                     # Notes[^1] de bas de page.  [^1]: ma note.
-  - md_in_html
+  # -- Possibilité de nesting arbitraire des blocs de tous types --
+  - pymdownx.superfences
+
+  # -- Coloration syntaxique --
+  - pymdownx.highlight
+  - pymdownx.details      #   qui peuvent se plier/déplier.
+  - pymdownx.inlinehilite # coloration inline : `#!python  <python en ligne>`
+
+  # -- Latex --
+  # inline : $...$
+  # Bloc : $$...$$
+  - pymdownx.arithmatex
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.details              #   qui peuvent se plier/déplier.
-  - pymdownx.caret                # Passage ^^souligné^^ ou en ^exposant^.
-  - pymdownx.mark                 # Passage ==surligné==.
-  - pymdownx.tilde                # Passage ~~barré~~ ou en ~indice~.
-  - pymdownx.highlight           # Coloration syntaxique du code
-  - pymdownx.inlinehilite         # pour  `#!python  <python en ligne>`
-  - pymdownx.snippets             # Inclusion de fichiers externe.
-  - pymdownx.keys:                # Touches du clavier.  ++ctrl+d++
+
+  # -- Précisions en passant la souris --
+  # En bas de document : *[HTML]: Hyper Text Markup Language
+  - abbr
+
+  # -- Blocs de texte colorés --
+  # Bloc visible : !!! info
+  # Bloc déroulant : ??? danger
+  # Blocs possibles : note abstract info tip success question warning failure danger bug example quote
+  - admonition
+
+  #  -- Notes de bas de page --
+  # Dans le corps : Truc[^1]
+  # En bas de document : [^1]: ma note.
+  - footnotes
+
+  # -- Autres notations --
+  - pymdownx.caret # ^^souligné^^ / ^exposant^
+  - pymdownx.mark # ==surligné==
+  - pymdownx.tilde # ~~barré~~ / ~indice~
+
+  # -- Touches du clavier --
+  # inline : ++ctrl+d++
+  # https://facelessuser.github.io/pymdown-extensions/extensions/keys/#extendingmodifying-key-map-index
+  - pymdownx.keys:
       separator: "\uff0b"
-  - pymdownx.tasklist:            # Cases à cocher  - [ ]  et - [x]
-      custom_checkbox:    true    #   avec cases d'origine
-      clickable_checkbox: true    #   et cliquables.
-  - pymdownx.tabbed:              # Volets glissants.  === "Mon volet"
-      alternate_style: true 
+  
+  # -- Inclusion de fichiers externes --
+  # La notation est : --8<-- "nom-du-fichier"
+  # ``` title=".browserslistrc"
+  # --8<-- ".browserslistrc"
+  # ```
+  - pymdownx.snippets
+
+  # -- Volets glissants --
+  # === "Volet"
+  #   blabla
+  # === "Volet 2"
+  #   blabla
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # -- Cases cochables --
+  # Syntaxe : - [ ] / - [x]
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+
+  # -- Parsing en Markdown du contenus de blocs HTML --
+  - md_in_html
+  
+  # -- Table des matières --
   - toc:
       permalink: ⚓︎
       toc_depth: 3
 
+
+extra_javascript:
+  - xtra/mathjax.js # Requis pour afficher le latex côté client
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # Requis pour afficher le latex côté client
+
 plugins:
+  # -- Barre de recherche --
   - search
+
+  # -- Exécution de Python --
+  # Syntaxe (bloc de code) : ```python exec="true" html="true"
+  # https://pawamoy.github.io/markdown-exec/usage/
+  - markdown-exec
 
