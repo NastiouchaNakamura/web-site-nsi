@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   setup:
-    name: "Setup build environment"
+    name: "Build website"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout of repo's 'main' branch
@@ -31,19 +31,27 @@ jobs:
       #       mkdocs-material-
       - name: Installation of Python packages from requirements.txt
         run: pip install -r requirements.txt
-  build:
-    name: "Build material-mkdocs website"
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Material-mkdocs' build command
+      - name: Build material-mkdocs website
         run: mkdocs build -v
       # Ici pour éventuellement effectuer des transformations systématiques (regex, etc…)
+      - name: Artifact creation
+        uses:  actions/upload-artifact@v6
+        with:
+          name: mkdocs-site
+          path: ./site/
+          if-no-file-found: error
+          overwrite: true
+          include-hidden-files: true
   deploy:
     name: "Deployment on SFTP server"
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@7
+        with:
+          name: mkdocs-site
+          path: .
       - name: Upload to FTP server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # https://github.com/marketplace/actions/ftp-deploy
         with:
