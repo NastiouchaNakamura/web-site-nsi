@@ -6,23 +6,53 @@ on:
 permissions:
   contents: write
 jobs:
-  deploy:
+  setup:
+    name: "Setup build environment"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout of repo's 'main' branch
+        uses: actions/checkout@v4
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
+      - name: Setup of Python 3
+        uses: actions/setup-python@v6
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v4
+      # - name: Cache ID generation and export to environment
+      #   run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV # Place en env le n° de semaine - mise en cache hebdomadaire
+      # - name: Cache of mkdocs-material
+      #   uses: actions/cache@v4
+      #   with:
+      #     key: mkdocs-material-${{ env.cache_id }} # Utilisation de l'env placé ci-dessus
+      #     path: ~/.cache 
+      #     restore-keys: |
+      #       mkdocs-material-
+      - name: Installation of Python packages from requirements.txt
+        run: pip install -r requirements.txt
+  build:
+    name: "Build material-mkdocs website"
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Material-mkdocs' build command
+        run: mkdocs build -v
+      # Ici pour éventuellement effectuer des transformations systématiques (regex, etc…)
+  deploy:
+    name: "Deployment on SFTP server"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Upload to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # https://github.com/marketplace/actions/ftp-deploy
         with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: ~/.cache 
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install -r requirements.txt
-      - run: mkdocs gh-deploy -v --force
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          port: ${{ secrets.ftp_port }}
+          protocol: ${{ secrets.ftp_protocol }}
+          local-dir: ./site/
+          server-dir: ${{ secrets.ftp_destination }}
+          dangerous-clean-slate: true
+          log-level: verbose
