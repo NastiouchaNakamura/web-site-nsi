@@ -55,7 +55,7 @@ jobs:
       - name: Quick check of artifact
         run: ls -l
       - name: Upload to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # https://github.com/marketplace/actions/ftp-deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.1.0 # https://github.com/marketplace/actions/ftp-deploy
         with:
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_username }}
