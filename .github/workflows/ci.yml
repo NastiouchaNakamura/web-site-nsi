@@ -34,6 +34,8 @@ jobs:
       - name: Build material-mkdocs website
         run: mkdocs build -v
       # Ici pour éventuellement effectuer des transformations systématiques (regex, etc…)
+      - name: Quick check of build
+        run: find .
       - name: Artifact creation
         uses:  actions/upload-artifact@v6
         with:
@@ -53,7 +55,7 @@ jobs:
           name: mkdocs-site
           path: ./site/
       - name: Quick check of artifact
-        run: ls -l
+        run: find .
       # Ne fonctionne pas car l'action ne prend pas en charge SFTP en mode passif
       # - name: Upload to FTP server
       #   uses: SamKirkland/FTP-Deploy-Action@v4.1.0 # https://github.com/marketplace/actions/ftp-deploy
