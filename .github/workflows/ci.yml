@@ -64,5 +64,6 @@ jobs:
           protocol: ${{ secrets.ftp_protocol }}
           #local-dir: ./site/
           server-dir: ${{ secrets.ftp_destination }}
-          dangerous-clean-slate: true
+          #dangerous-clean-slate: true
           log-level: verbose
+          timeout: 120000 # 2 minutes
