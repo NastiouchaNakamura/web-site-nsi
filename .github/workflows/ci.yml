@@ -39,7 +39,7 @@ jobs:
         with:
           name: mkdocs-site
           path: ./site/
-          if-no-file-found: error
+          if-no-files-found: error
           overwrite: true
           include-hidden-files: true
   deploy:
@@ -48,7 +48,7 @@ jobs:
     needs: setup
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@7
+        uses: actions/download-artifact@v7
         with:
           name: mkdocs-site
           path: .
