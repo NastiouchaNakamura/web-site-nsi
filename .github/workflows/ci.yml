@@ -62,7 +62,7 @@ jobs:
           password: ${{ secrets.ftp_password }}
           port: ${{ secrets.ftp_port }}
           protocol: ${{ secrets.ftp_protocol }}
-          local-dir: ./site/
+          #local-dir: ./site/
           server-dir: ${{ secrets.ftp_destination }}
           dangerous-clean-slate: true
           log-level: verbose
