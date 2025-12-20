@@ -1,0 +1,15 @@
+nav:
+  - Seconde:
+    - "seconde/*"
+  - Première:
+    - "premiere/*"
+  - Terminale:
+    - "terminale/*"
+  - Boîte à outils:
+    - "outils/*"
+  - Challenges:
+    - "challenges/[0-9]_*"
+    - Liste complète:
+      - "challenges/*/enonce.md"
+
+  - Concours: https://docs.google.com/spreadsheets/d/1vklCIauWj8BNkNmgraetFxHo3Oh3a8i_OZrc0XGr0wI/

@@ -1,4 +1,4 @@
-site_name: NSI — Lycée Blaise Pascal
+site_name: NSI Blaise Pascal
 site_url: https://nsi.nastioucha.fr/
 site_author: Anaël BARODINE
 
@@ -8,9 +8,8 @@ use_directory_urls: true
 
 # Configuration
 theme:
-  favicon: /icons/key.svg
-  icon:
-    logo: material/abacus
+  favicon: icons/key.svg
+  logo: icons/key.svg
   name: material
 
   font:
@@ -112,7 +111,6 @@ markdown_extensions:
 
 
 extra_javascript:
-  - xtra/mathjax.js # Requis pour afficher le latex côté client
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # Requis pour afficher le latex côté client
 
 plugins:
@@ -123,4 +121,7 @@ plugins:
   # Syntaxe (bloc de code) : ```python exec="true" html="true"
   # https://pawamoy.github.io/markdown-exec/usage/
   - markdown-exec
+
+  - awesome-nav:
+      filename: .nav.yml
 
