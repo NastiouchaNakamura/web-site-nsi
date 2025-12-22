@@ -34,18 +34,20 @@ Les 6 premières lignes :
     Format de réponse : `trompette_6` si l'objet est une trompette en 6 exemplaires.
     
     === "Anonyme"
-        <form id="form_flag_anon" style="display: flex; flex-direction: column; text-align: center;" action="check_flag_anon();">
-            <label for="flag">Réponse</label>
-            <input type="text" id="flag" name="flag" style="font-family: monospace;" size="50">
-            <input type="submit" value="Vérifier" style="margin-top: 0.5rem;">
-        </form>
+        <div style="display: flex; flex-direction: column; text-align: center;">
+            <label for="flag_anon">Réponse</label>
+            <input type="text" id="flag_anon" name="flag" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
+            <p id="response_info_anon" style="display: none; border: solid; border-radius: 4px; font-weight: bold;"></p>
+            <input type="button" value="Vérifier" style="margin-top: 0.5rem;" onclick="check_flag_anon();">
+        </div>
     === "Via profil"
-        <form id="form_flag" style="display: flex; flex-direction: column; text-align: center;" action="check_flag();">
+        <div style="display: flex; flex-direction: column; text-align: center;">
             <label for="flag">Réponse</label>
-            <input type="text" id="flag" name="flag" style="font-family: monospace;" size="50">
+            <input type="text" id="flag" name="flag" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
             <label for="flag">Pseudo</label>
-            <input type="text" id="username" name="username" style="font-family: monospace;" size="50">
+            <input type="text" id="username" name="username" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
             <label for="flag">Mot de passe</label>
-            <input type="password" id="password" name="password" style="font-family: monospace;" size="50">
-            <input type="submit" value="Vérifier" style="margin-top: 0.5rem;">
-        </form>
+            <input type="password" id="password" name="password" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
+            <p id="response_info" style="display: none; border: solid; border-radius: 4px; font-weight: bold;"></p>
+            <input type="button" value="Vérifier" style="margin-top: 0.5rem;" onclick="check_flag();">
+        </div>
