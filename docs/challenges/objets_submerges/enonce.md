@@ -25,8 +25,27 @@ Les 6 premières lignes :
 -7.898325594868294;4.274560946425627;-6.392240387281625;15.690580583382081
 ```
 
-!!! question "Question"
-    **Quels objets sont tombés dans l'eau, et en quelle quantité ?**
-
 ??? tip "Indice"
     On dirait que les trois premières valeurs de chaque ligne sont des coordonnées X, Y et Z…
+
+!!! question "Question"
+    **Quel est l'objet le plus présent dans l'eau et en quelle quantité ?**
+
+    Format de réponse : `trompette_6` si l'objet est une trompette en 6 exemplaires.
+    
+    === "Anonyme"
+        <form id="form_flag_anon" style="display: flex; flex-direction: column; text-align: center;" action="check_flag_anon();">
+            <label for="flag">Réponse</label>
+            <input type="text" id="flag" name="flag" style="font-family: monospace;" size="50">
+            <input type="submit" value="Vérifier" style="margin-top: 0.5rem;">
+        </form>
+    === "Via profil"
+        <form id="form_flag" style="display: flex; flex-direction: column; text-align: center;" action="check_flag();">
+            <label for="flag">Réponse</label>
+            <input type="text" id="flag" name="flag" style="font-family: monospace;" size="50">
+            <label for="flag">Pseudo</label>
+            <input type="text" id="username" name="username" style="font-family: monospace;" size="50">
+            <label for="flag">Mot de passe</label>
+            <input type="password" id="password" name="password" style="font-family: monospace;" size="50">
+            <input type="submit" value="Vérifier" style="margin-top: 0.5rem;">
+        </form>

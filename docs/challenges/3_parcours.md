@@ -1,8 +1,8 @@
 ---
 author: Anaël BARODINE
-title: Le scoreboard
+title: Parcours
 ---
 
-# Le scoreboard
+# Parcours
 
 TODO présentation des challenges

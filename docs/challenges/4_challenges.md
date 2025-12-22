@@ -1,8 +1,8 @@
 ---
 author: Anaël BARODINE
-title: Le profil challenger
+title: Liste des challenges
 ---
 
-# Le profil challenger
+# Liste complète des challenges
 
 TODO présentation des challenges
