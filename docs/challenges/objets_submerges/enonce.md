@@ -34,20 +34,27 @@ Les 6 premières lignes :
     Format de réponse : `trompette_6` si l'objet est une trompette en 6 exemplaires.
     
     === "Anonyme"
-        <div style="display: flex; flex-direction: column; text-align: center;">
+        <div class="challenge-input">
             <label for="flag_anon">Réponse</label>
-            <input type="text" id="flag_anon" name="flag" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
-            <p id="response_info_anon" style="display: none; border: solid; border-radius: 4px; font-weight: bold;"></p>
-            <input type="button" value="Vérifier" style="margin-top: 0.5rem;" onclick="check_flag_anon();">
+            <div class="info-input-div">
+                <div id="icon_anon" class="info-input-icon icon-waiting"></div>
+                <input type="text" id="flag_anon" class="info-input-input" spellcheck="false">
+            </div>
+            <input id="submit_anon" class="input-submit" type="button" value="Vérifier" onclick="check_flag_anon();">
         </div>
     === "Via profil"
-        <div style="display: flex; flex-direction: column; text-align: center;">
+        <div class="challenge-input">
+            <label for="username">Identifiants</label>
+            <div class="info-input-div">
+                <div id="icon_credentials" class="info-input-icon icon-waiting"></div>
+                <input type="text" id="username" class="info-input-input" spellcheck="false" placeholder="identifiant">
+                <span class="info-input-credential-separator">:</span>
+                <input type="password" id="password" class="info-input-input" spellcheck="false" placeholder="mot de passe">
+            </div>
             <label for="flag">Réponse</label>
-            <input type="text" id="flag" name="flag" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
-            <label for="flag">Pseudo</label>
-            <input type="text" id="username" name="username" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
-            <label for="flag">Mot de passe</label>
-            <input type="password" id="password" name="password" style="font-family: monospace; border-radius: 4px; background-color: black; padding: 4px; color: white;" size="50">
-            <p id="response_info" style="display: none; border: solid; border-radius: 4px; font-weight: bold;"></p>
-            <input type="button" value="Vérifier" style="margin-top: 0.5rem;" onclick="check_flag();">
+            <div class="info-input-div">
+                <div id="icon_flag" class="info-input-icon icon-waiting"></div>
+                <input type="text" id="flag" class="info-input-input" spellcheck="false">
+            </div>
+            <input id="submit" class="input-submit" type="button" value="Vérifier" onclick="check_flag();">
         </div>

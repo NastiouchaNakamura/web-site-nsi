@@ -1,5 +1,6 @@
-const API_URL = "https://api.nationalize.io/"; // TEST, TODO changer
-
+//const API_URL = "https://nsi.nastioucha.fr/nsi/challenge";
+const API_URL = "http://localhost:8001/nsi/challenge";
+const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
 
 function check_flag_anon() {
     flag = document.getElementById("flag_anon").value;
@@ -8,23 +9,35 @@ function check_flag_anon() {
     } else if (!/^[\x20-\x7F]*$/.test(flag)) {
         alert("La réponse saisie contient des caractères invalides.");
     } else {
-        try {
-            fetch(API_URL + "?name=" + flag).then(response => {
-                if (response.status !== 200) {
-                    throw Error(`API error: [${response.status}${response.statusText}]`);
-                } else {
+        icon = document.getElementById("icon_anon");
+        icon.className = "info-input-icon icon-loading";
+
+        fetch(`${API_URL}?id=${CHALLENGE_ID}&flag=${flag}`, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        }).then(response => {
+            switch (response.status) {
+                case 200:
                     response.json().then(json => {
-                        if (Math.random() < 0.5) {
+                        if (json.data) {
+                            icon.className = "info-input-icon icon-success";
                             success("Bonne réponse !");
                         } else {
-                            failure("Mauvaise réponse...");
+                            icon.className = "info-input-icon icon-failure";
                         }
                     });
-                }
-            });
-        } catch (error) {
-            alert(error);
-        }
+
+                    document.getElementById("submit_anon").disabled = true;
+                    setTimeout(() => document.getElementById("submit_anon").disabled = false, 60_000);
+                    break;
+                case 429:
+                    icon.className = "info-input-icon icon-timeout";
+                    break;
+                default:
+                    icon.className = "info-input-icon icon-error";
+                    break;
+            }
+        }).catch(() => icon.className = "info-input-icon icon-error");
     }
 }
 
@@ -37,53 +50,59 @@ function check_flag() {
     } else if (!/^[\x20-\x7F]*$/.test(flag)) {
         alert("La réponse saisie contient des caractères invalides.");
     } else if (username === "") {
-        alert("Veuillez saisir un pseudo.");
+        alert("Veuillez saisir un identifiant.");
     } else if (password === "") {
         alert("Veuillez saisir un mot de passe.");
     } else {
-        try {
-            fetch(API_URL + "?name=" + flag, {
-                method: 'POST',
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: username, password: password })
-            }).then(response => {
-                if (response.status !== 200) {
-                    throw Error(`API error: [${response.status}${response.statusText}]`);
-                } else {
+        icon_flag = document.getElementById("icon_flag");
+        icon_credentials = document.getElementById("icon_credentials");
+        icon_flag.className = "info-input-icon icon-loading";
+        icon_credentials.className = "info-input-icon icon-loading";
+
+        fetch(`${API_URL}?id=${CHALLENGE_ID}&flag=${flag}`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Basic ${btoa(username + ":" + password)}`
+            }
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    icon_credentials.className = "info-input-icon icon-success";
+
                     response.json().then(json => {
-                        if (Math.random() < 0.5) {
-                            if (Math.random() < 0.5) {
-                                success("Bonne réponse ! Mais le challenge a déjà été résolu le 12/12/25 et ne rapport donc pas d'étoiles supplémentaires");
-                            } else {
-                                success("Bonne réponse ! Ce challenge rapporte 3 étoiles ! Total des étoiles : ");
-                            }
+                        if (json.data) {
+                            icon_flag.className = "info-input-icon icon-success";
+                            success("Bonne réponse !");
                         } else {
-                            failure("Mauvaise réponse...");
+                            icon_flag.className = "info-input-icon icon-failure";
                         }
                     });
-                }
-            });
-        } catch (error) {
-            alert(error);
-        }
+
+                    document.getElementById("submit").disabled = true;
+                    setTimeout(() => document.getElementById("submit").disabled = false, 60_000);
+                    break;
+                case 401:
+                    icon_credentials.className = "info-input-icon icon-failure";
+                    icon_flag.className = "info-input-icon icon-waiting";
+                    break;
+                case 429:
+                    icon_credentials.className = "info-input-icon icon-success";
+                    icon_flag.className = "info-input-icon icon-timeout";
+                    break;
+                default:
+                    icon_credentials.className = "info-input-icon icon-error";
+                    icon_flag.className = "info-input-icon icon-error";
+                    break;
+            }
+        }).catch(() => {
+            icon_flag.className = "info-input-icon icon-error";
+            icon_credentials.className = "info-input-icon icon-error";
+        });
     }
 }
 
-function failure(message) {
-    message_elem = document.getElementById("response_info_anon");
-    message_elem.style.removeProperty("display");
-    message_elem.style.borderColor = "darkred";
-    message_elem.style.backgroundColor = "orangered";
-    message_elem.innerText = message;
-}
-
 function success(message) {
-    message_elem = document.getElementById("response_info_anon");
-    message_elem.style.removeProperty("display");
-    message_elem.style.borderColor = "lime";
-    message_elem.style.backgroundColor = "forestgreen";
-    message_elem.innerText = message;
-
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };

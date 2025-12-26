@@ -115,6 +115,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js # Confettis !!
   - check_flag.js # Validateur de flag fait maison via API maison
 
+extra_css:
+  - challenge_inputs.css
+
 plugins:
   # -- Barre de recherche --
   - search
