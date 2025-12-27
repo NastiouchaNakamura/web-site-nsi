@@ -42,6 +42,8 @@ Cliquez sur les **différents volets** du cadre ci-dessus pour connaître ces th
         La thématique **serveur Web** implique les failles de sécurité exploitables **du côté serveur** de la communication client-serveur.
         
         C'est-à-dire, ce qui n'est **pas à notre disposition directe**. En effet, de très nombreuses manipulations sont possibles, sur des serveurs **peu sécurisés**, pour **obtenir des données** normalement cachées aux utilisateurs.
+    === OSINT
+        TODO desc OSINT
 
 ## Difficulté
 
