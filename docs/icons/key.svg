@@ -5,13 +5,14 @@
     <style>
       .st0 {
         fill: none;
-        stroke: #000;
+        stroke: #fff;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 80px;
       }
     </style>
   </defs>
-  <rect class="st0" x="53" y="167.8" width="694" height="464.3"/>
-  <polyline class="st0" points="747 219.8 400 452 53 219.8"/>
+  <circle class="st0" cx="566.3" cy="221.5" r="174.7"/>
+  <line class="st0" x1="59" y1="728.8" x2="442.8" y2="345"/>
+  <polyline class="st0" points="198.3 751.9 148.8 702.5 231.3 620 280.7 669.5"/>
 </svg>
