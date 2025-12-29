@@ -60,7 +60,7 @@ function check_flag() {
         icon_credentials.className = "info-input-icon icon-loading";
 
         fetch(`${API_URL}?id=${CHALLENGE_ID}&flag=${flag}`, {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Accept": "application/json",
                 "Authorization": `Basic ${btoa(username + ":" + password)}`
@@ -102,7 +102,7 @@ function check_flag() {
     }
 }
 
-function success(message) {
+function success() {
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
