@@ -38,7 +38,7 @@ Les 6 premières lignes :
             <label for="flag_anon">Réponse</label>
             <div class="info-input-div">
                 <div id="icon_anon" class="info-input-icon icon-waiting"></div>
-                <input type="text" id="flag_anon" class="info-input-input" spellcheck="false">
+                <input type="text" id="flag_anon" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
             <input id="submit_anon" class="input-submit" type="button" value="Vérifier" onclick="check_flag_anon();">
         </div>
@@ -54,7 +54,7 @@ Les 6 premières lignes :
             <label for="flag">Réponse</label>
             <div class="info-input-div">
                 <div id="icon_flag" class="info-input-icon icon-waiting"></div>
-                <input type="text" id="flag" class="info-input-input" spellcheck="false">
+                <input type="text" id="flag" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
             <input id="submit" class="input-submit" type="button" value="Vérifier" onclick="check_flag();">
         </div>
