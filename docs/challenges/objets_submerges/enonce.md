@@ -1,9 +1,9 @@
 ---
 author: Anaël BARODINE
-title: Objets submergés
+title: ⁂ Objets submergés
 ---
 
-# Objets submergés
+# ⁂ Objets submergés
 
 !!! abstract "Contexte"
     Challenge proposé par le prof – Vacances d'hiver 2025-2026
