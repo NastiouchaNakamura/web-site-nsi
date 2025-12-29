@@ -13,7 +13,7 @@ Certains challenges sont associés en [**parcours**](3_parcours.md), et sont pr�
 
 ## Thématique
 
-Cliquez sur les **différents volets** du cadre ci-dessus pour connaître ces thématiques.
+Chaque challenge est classé dans **au moins une des thématiques**. Cliquez sur les **différents volets** du cadre ci-dessus pour connaître ces thématiques.
 
 !!! question "Les thématiques"
     === "Programmation"
@@ -42,21 +42,19 @@ Cliquez sur les **différents volets** du cadre ci-dessus pour connaître ces th
         La thématique **serveur Web** implique les failles de sécurité exploitables **du côté serveur** de la communication client-serveur.
         
         C'est-à-dire, ce qui n'est **pas à notre disposition directe**. En effet, de très nombreuses manipulations sont possibles, sur des serveurs **peu sécurisés**, pour **obtenir des données** normalement cachées aux utilisateurs.
-    === OSINT
-        TODO desc OSINT
+    === "OSINT"
+        **[L'OSINT](https://drane-versailles.region-academique-idf.fr/spip.php?rubrique201)** (*Open Source Intelligence*, ce qui signifie **renseignement par sources ouvertes**) est un domaine fondamental de la cybersécurité bien que finalement **peu informatique**. Il s'agit de **rechercher de l'information précise** sur internet, en utilisant **des outils de recherche avancés**.
+
+        Il sera par exemple question de **recherche inversée** sur une image, de **recherche paramétrée** sur des sites particuliers, d'identification de **bases de données ouvertes**, etc.
 
 ## Difficulté
 
-Chaque challenge possède **une difficulté**, de une à cinq étoiles ⭐ :
+Chaque challenge possède **une difficulté**, de une ⁎, deux ⁑ ou trois étoiles ⁂ :
 
 !!! question "Les étoiles"
-    === "⭐"
-        **Une étoile**, le challenge est accessible sans s'y connaître particulièrement ni en programmation, ni dans le domaine du challenge. **L'énoncé suffit entièrement** à résoudre le problème.
-    === "⭐⭐"
-        **Deux étoiles**, le challenge est facile à condition d'avoir déjà **quelques connaissances** ou **quelques réflexes** dans le domaine du challenge.
-    === "⭐⭐⭐"
-        **Trois étoiles**, le challenge est de difficulté intermédiaire. Il y a besoin de **bonnes connaissances ou réflexes** dans le domaine mais aussi **de persévérance**.
-    === "⭐⭐⭐⭐"
-        **Quatre étoiles**, le challenge est difficile. En plus **de connaissance, de réflexes et de persévérance**, il faudra faire preuve de **recherches avancées** pour avancer.
-    === "⭐⭐⭐⭐⭐"
-        **Cinq étoiles**, le challenge est **très difficile** (en tout cas du point de vu du prof), et requiert **de solides compétences** ou bien **une sacré intuition** pour en venir à bout.
+    === "⁎"
+        **Une étoile ⁎**, le challenge est accessible sans s'y connaître particulièrement dans le domaine du challenge, sans connaissances préalables. **L'énoncé suffit entièrement** à résoudre le problème.
+    === "⁑"
+        **Deux étoiles ⁑**, le challenge est de difficulté intermédiaire, il requiert déjà **quelques connaissances** ou **quelques réflexes** dans le domaine du challenge.
+    === "⁂"
+        **Trois étoiles ⁂**, le challenge est difficile. En plus **de connaissance, de réflexes et de persévérance**, il faudra faire preuve de **recherches avancées** pour réussir.
