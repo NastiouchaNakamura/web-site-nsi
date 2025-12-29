@@ -1,4 +1,4 @@
-const API_URL = "https://api.nastioucha.fr/nsi/challenge/";
+const API_URL = "https://api.nastioucha.fr/nsi/";
 //const API_URL = "http://localhost:8001/nsi/";
 const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
 
