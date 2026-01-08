@@ -16,10 +16,14 @@ Le **leaderboard** TODO
 
 === "Podium"
     TODO podium les 10 premiers
-=== "Courbes"
-    TODO courbe depuis janvier
 === "Détail"
-    TODO liste des challengers et étoiles
+    | Profil |
+    |:-:|
+    | <div id="table_details_icon" class="icon-loading"></div> |
+
+    <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+    <script src="/scoreboard.js"></script>
+
 
 ## Création et modification
 
