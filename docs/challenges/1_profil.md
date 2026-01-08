@@ -12,14 +12,18 @@ De manière **totalement facultative**, le prof vous propose de disposer, **sur 
 
 ## Leaderboard
 
-Le **leaderboard** TODO
+Ci-dessous, le **leaderboard** indiquant combien d'étoiles ont été obtenues par chaque profil de challenger. Seuls les profils (anonymes) des élèves du lycée Blaise Pascal sont affichés.
 
-=== "Podium"
-    TODO podium les 10 premiers
-=== "Courbes"
-    TODO courbe depuis janvier
 === "Détail"
-    TODO liste des challengers et étoiles
+    | Profil |
+    |:-:|
+    | <div id="table_details_icon" class="icon-loading"></div> |
+
+    <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+    <script>
+        window.addEventListener("load", function() { make_table_details(); });
+    </script>
+
 
 ## Création et modification
 

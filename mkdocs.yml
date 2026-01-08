@@ -8,8 +8,8 @@ use_directory_urls: true
 
 # Configuration
 theme:
-  favicon: icons/key.svg
-  logo: icons/key.svg
+  favicon: assets/icons/key.svg
+  logo: assets/icons/key.svg
   name: material
 
   font:
@@ -113,10 +113,11 @@ markdown_extensions:
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # Requis pour afficher le latex côté client
   - https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js # Confettis !!
-  - check_flag.js # Validateur de flag fait maison via API maison
+  - assets/scripts/challenges.js
 
 extra_css:
-  - challenge_inputs.css
+  - assets/styles/challenge_inputs.css
+  - assets/icons/style.css
 
 plugins:
   # -- Barre de recherche --

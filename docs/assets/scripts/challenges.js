@@ -1,8 +1,9 @@
 const API_URL = "https://api.nastioucha.fr/nsi/";
 //const API_URL = "http://localhost:8001/nsi/";
-const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
 
 function check_flag_anon() {
+    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
+
     flag = document.getElementById("flag_anon").value;
     if (flag === "") {
         alert("Aucune réponse n'est saisie.");
@@ -42,6 +43,8 @@ function check_flag_anon() {
 }
 
 function check_flag() {
+    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
+
     flag = document.getElementById("flag").value;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
@@ -279,4 +282,122 @@ function success() {
             })
         );
     }, 250);
+}
+
+function make_table_details() {
+    function construct_html(table, challenges, profiles) {
+        let thead = table.children.item(0);
+        let tbody = table.children.item(1);
+
+        thead.innerHTML = "";
+        tbody.innerHTML = "";
+
+        let header = document.createElement("tr");
+        let username_head = document.createElement("th");
+        username_head.innerText = "Profils";
+        header.appendChild(username_head);
+        let total_head = document.createElement("th");
+        total_head.innerText = "Total d'étoiles";
+        total_head.style.textAlign = "center";
+        header.appendChild(total_head);
+        thead.appendChild(header);
+
+        profiles.forEach(([username, total]) => {
+            let line = document.createElement("tr");
+            let username_cell = document.createElement("td");
+            username_cell.innerText = username;
+            line.appendChild(username_cell);
+            let total_cell = document.createElement("td");
+            total_cell.innerText = total;
+            total_cell.style.textAlign = "center";
+            line.appendChild(total_cell);
+            tbody.appendChild(line);
+        });
+
+        Object.keys(challenges).toSorted((a, b) => { if (challenges[a].amount == 0) return b; if (challenges[b].amount == 0) return a; return a > b }).forEach(challenge_id => {
+            let header_cell = document.createElement("th");
+            header_cell.innerText = (challenges[challenge_id].amount != 0 ? (star_chars(challenges[challenge_id].amount) + " ") : "") + challenges[challenge_id].challenge_title;
+            header_cell.style.textAlign = "center";
+            header.appendChild(header_cell);
+
+            for (let i = 0; i < profiles.length; i++) {
+                let cell = document.createElement("td");
+                if (profiles[i][0] in challenges[challenge_id].successes) {
+                    let span = document.createElement("span");
+                    if (challenges[challenge_id].successes[profiles[i][0]][0] == "DIAMOND") {
+                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                        span.style.color = "#2db5ac";
+                        span.style.textShadow = "#2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px";
+                    } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "GOLD") {
+                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                        span.style.color = "#c69e19";
+                        span.style.textShadow = "#c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px";
+                    } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "SPECIAL") {
+                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                        span.style.color = "#d04646";
+                        span.style.textShadow = "#d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px";
+                    } else {
+                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                    }
+                    cell.appendChild(span);
+                    cell.style.textAlign = "center";
+                }
+                tbody.children.item(i).appendChild(cell);
+            }
+        });
+
+        new Tablesort(table);
+    }
+
+    function star_chars(amount) {
+        if (amount == 1) {
+            return "⁎";
+        } else if (amount == 2) {
+            return "⁑";
+        } else if (amount == 3) {
+            return "⁂";
+        } else {
+            return "⁑".repeat(Math.floor(amount / 2)) + "⁎".repeat(amount % 2);
+        }
+    }
+
+    fetch(`${API_URL}leaderboard/?limit=50`, {
+        method: "GET",
+        headers: { "Accept": "application/json" }
+    }).then(response => {
+        if (response.status == 200) {
+            response.json().then(json => {
+                let challenges = {};
+                let profiles = [];
+
+                json.data.values.forEach(score => {
+                    if (!(score.username in profiles)) {
+                        profiles.push([score.username, score.total_stars]);
+                    }
+
+                    score.stars.values.forEach(star => {
+                        if (!(star.challenge_id in challenges)) {
+                            challenges[star.challenge_id] = {
+                                challenge_title: star.challenge_title,
+                                amount: star.specialty != "SPECIAL" ? star.amount : 0,
+                                successes: {}
+                            };
+                        }
+
+                        challenges[star.challenge_id].successes[score.username] = [star.specialty, star.amount];
+                    });
+                });
+
+                let table_detail = document.getElementById("table_details_icon") // icon
+                        .parentElement // td
+                        .parentElement // tr
+                        .parentElement // tbody
+                        .parentElement; // table
+
+                construct_html(table_detail, challenges, profiles);
+            });
+        } else {
+            document.getElementById("table_details_icon").className = "icon-error";
+        }
+    }).catch(() => document.getElementById("table_details_icon").className = "icon-error");
 }

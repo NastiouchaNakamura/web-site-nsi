@@ -1,0 +1,47 @@
+.icon-waiting {
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/arrow_circle_right_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg");
+    background-size: cover;
+}
+
+.icon-success {
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/check_24dp_9DC384_FILL0_wght400_GRAD0_opsz24.svg");
+    background-size: cover;
+}
+
+.icon-failure {
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/close_24dp_D16D6A_FILL0_wght400_GRAD0_opsz24.svg");
+    background-size: cover;
+}
+
+.icon-timeout {
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/alarm_pause_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg");
+    background-size: cover;
+}
+
+.icon-error {
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/error_24dp_ECB576_FILL0_wght400_GRAD0_opsz24.svg");
+    background-size: cover;
+}
+
+.icon-loading {
+    animation: spin 2s linear infinite;
+    height: 1rem;
+    width: 1rem;
+    background-image: url("/assets/icons/spinner.svg");
+    background-size: cover;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
