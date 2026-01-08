@@ -117,6 +117,7 @@ extra_javascript:
 
 extra_css:
   - challenge_inputs.css
+  - icons/style.css
 
 plugins:
   # -- Barre de recherche --
