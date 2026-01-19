@@ -1,9 +1,7 @@
 const API_URL = "https://api.nastioucha.fr/nsi/";
 //const API_URL = "http://localhost:8001/nsi/";
 
-function check_flag_anon() {
-    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
-
+function check_flag_anon(challenge_id) {
     flag = document.getElementById("flag_anon").value;
     if (flag === "") {
         alert("Aucune réponse n'est saisie.");
@@ -13,7 +11,7 @@ function check_flag_anon() {
         icon = document.getElementById("icon_anon");
         icon.className = "info-input-icon icon-loading";
 
-        fetch(`${API_URL}challenge/?id=${CHALLENGE_ID}&flag=${flag}`, {
+        fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
             headers: { "Accept": "application/json" }
         }).then(response => {
@@ -29,7 +27,6 @@ function check_flag_anon() {
                     });
 
                     document.getElementById("submit_anon").disabled = true;
-                    setTimeout(() => document.getElementById("submit_anon").disabled = false, 60_000);
                     break;
                 case 429:
                     icon.className = "info-input-icon icon-timeout";
@@ -38,13 +35,25 @@ function check_flag_anon() {
                     icon.className = "info-input-icon icon-error";
                     break;
             }
+
+            document.getElementById("submit_anon").disabled = true;
+            document.getElementById("submit_anon").value = `Patienter 60s avant de vérifier une autre réponse`;
+            let wait_time = 59;
+            let countdown = setInterval(() => {
+                if (wait_time > 0) {
+                    document.getElementById("submit_anon").value = `Patienter ${wait_time}s avant de vérifier une autre réponse`;
+                } else {
+                    clearInterval(countdown);
+                    document.getElementById("submit_anon").disabled = false;
+                    document.getElementById("submit_anon").value = "Vérifier";
+                }
+                wait_time--;
+            }, 1_000);
         }).catch(() => icon.className = "info-input-icon icon-error");
     }
 }
 
-function check_flag() {
-    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
-
+function check_flag(challenge_id) {
     flag = document.getElementById("flag").value;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
@@ -62,7 +71,7 @@ function check_flag() {
         icon_flag.className = "info-input-icon icon-loading";
         icon_credentials.className = "info-input-icon icon-loading";
 
-        fetch(`${API_URL}challenge/?id=${CHALLENGE_ID}&flag=${flag}`, {
+        fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
@@ -98,6 +107,20 @@ function check_flag() {
                     icon_flag.className = "info-input-icon icon-error";
                     break;
             }
+            
+            document.getElementById("submit").disabled = true;
+            document.getElementById("submit").value = `Patienter 60s avant de vérifier une autre réponse`;
+            let wait_time = 59;
+            let countdown = setInterval(() => {
+                if (wait_time > 0) {
+                    document.getElementById("submit").value = `Patienter ${wait_time}s avant de vérifier une autre réponse`;
+                } else {
+                    clearInterval(countdown);
+                    document.getElementById("submit").disabled = false;
+                    document.getElementById("submit").value = "Vérifier";
+                }
+                wait_time--;
+            }, 1_000);
         }).catch(() => {
             icon_flag.className = "info-input-icon icon-error";
             icon_credentials.className = "info-input-icon icon-error";
