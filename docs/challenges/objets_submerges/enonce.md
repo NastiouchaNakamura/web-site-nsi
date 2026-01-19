@@ -40,7 +40,7 @@ Les 6 premières lignes :
                 <div id="icon_anon" class="info-input-icon icon-waiting"></div>
                 <input type="text" id="flag_anon" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
-            <input id="submit_anon" class="input-submit" type="button" value="Vérifier" onclick="check_flag_anon();">
+            <input id="submit_anon" class="input-submit" type="button" value="Vérifier" onclick="check_flag_anon('objets_submerges');">
         </div>
     === "Via profil"
         <div class="challenge-input">
@@ -56,5 +56,5 @@ Les 6 premières lignes :
                 <div id="icon_flag" class="info-input-icon icon-waiting"></div>
                 <input type="text" id="flag" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
-            <input id="submit" class="input-submit" type="button" value="Vérifier" onclick="check_flag();">
+            <input id="submit" class="input-submit" type="button" value="Vérifier" onclick="check_flag('objets_submerges');">
         </div>

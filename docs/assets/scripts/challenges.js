@@ -1,9 +1,7 @@
 const API_URL = "https://api.nastioucha.fr/nsi/";
 //const API_URL = "http://localhost:8001/nsi/";
 
-function check_flag_anon() {
-    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
-
+function check_flag_anon(challenge_id) {
     flag = document.getElementById("flag_anon").value;
     if (flag === "") {
         alert("Aucune réponse n'est saisie.");
@@ -13,7 +11,7 @@ function check_flag_anon() {
         icon = document.getElementById("icon_anon");
         icon.className = "info-input-icon icon-loading";
 
-        fetch(`${API_URL}challenge/?id=${CHALLENGE_ID}&flag=${flag}`, {
+        fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
             headers: { "Accept": "application/json" }
         }).then(response => {
@@ -42,9 +40,7 @@ function check_flag_anon() {
     }
 }
 
-function check_flag() {
-    const CHALLENGE_ID = window.location.href.split("/").splice(-3, 1)[0] ?? null;
-
+function check_flag(challenge_id) {
     flag = document.getElementById("flag").value;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
@@ -62,7 +58,7 @@ function check_flag() {
         icon_flag.className = "info-input-icon icon-loading";
         icon_credentials.className = "info-input-icon icon-loading";
 
-        fetch(`${API_URL}challenge/?id=${CHALLENGE_ID}&flag=${flag}`, {
+        fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
