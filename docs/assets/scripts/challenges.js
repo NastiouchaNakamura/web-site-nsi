@@ -27,7 +27,6 @@ function check_flag_anon(challenge_id) {
                     });
 
                     document.getElementById("submit_anon").disabled = true;
-                    setTimeout(() => document.getElementById("submit_anon").disabled = false, 60_000);
                     break;
                 case 429:
                     icon.className = "info-input-icon icon-timeout";
@@ -36,6 +35,20 @@ function check_flag_anon(challenge_id) {
                     icon.className = "info-input-icon icon-error";
                     break;
             }
+
+            document.getElementById("submit_anon").disabled = true;
+            document.getElementById("submit_anon").value = `Patienter 60s avant de vérifier une autre réponse`;
+            let wait_time = 59;
+            let countdown = setInterval(() => {
+                if (wait_time > 0) {
+                    document.getElementById("submit_anon").value = `Patienter ${wait_time}s avant de vérifier une autre réponse`;
+                } else {
+                    clearInterval(countdown);
+                    document.getElementById("submit_anon").disabled = false;
+                    document.getElementById("submit_anon").value = "Vérifier";
+                }
+                wait_time--;
+            }, 1_000);
         }).catch(() => icon.className = "info-input-icon icon-error");
     }
 }
@@ -94,6 +107,20 @@ function check_flag(challenge_id) {
                     icon_flag.className = "info-input-icon icon-error";
                     break;
             }
+            
+            document.getElementById("submit").disabled = true;
+            document.getElementById("submit").value = `Patienter 60s avant de vérifier une autre réponse`;
+            let wait_time = 59;
+            let countdown = setInterval(() => {
+                if (wait_time > 0) {
+                    document.getElementById("submit").value = `Patienter ${wait_time}s avant de vérifier une autre réponse`;
+                } else {
+                    clearInterval(countdown);
+                    document.getElementById("submit").disabled = false;
+                    document.getElementById("submit").value = "Vérifier";
+                }
+                wait_time--;
+            }, 1_000);
         }).catch(() => {
             icon_flag.className = "info-input-icon icon-error";
             icon_credentials.className = "info-input-icon icon-error";
