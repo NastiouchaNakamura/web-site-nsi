@@ -424,3 +424,24 @@ function make_table_details() {
         }
     }).catch(() => document.getElementById("table_details_icon").className = "icon-error");
 }
+
+function make_table_challenges() {
+    function star_chars(amount) {
+        if (amount == 1) {
+            return "⁎";
+        } else if (amount == 2) {
+            return "⁑";
+        } else if (amount == 3) {
+            return "⁂";
+        } else {
+            return "⁑".repeat(Math.floor(amount / 2)) + "⁎".repeat(amount % 2);
+        }
+    }
+
+    let table_challenges = document.getElementsByTagName("table").item(0);
+    new Tablesort(table_challenges);
+
+    let star_spans = document.getElementsByClassName("stars");
+    for (let i = 0; i < star_spans.length; i++)
+        star_spans[i].innerText = star_chars(parseInt(star_spans[i].innerText));
+}
