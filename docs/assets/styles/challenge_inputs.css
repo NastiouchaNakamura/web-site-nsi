@@ -34,6 +34,11 @@
     width: 100%;
     padding: 0;
     margin-left: 4px;
+    font-size: .64rem;
+}
+
+.info-input-label {
+    font-size: .8em;
 }
 
 .input-response {
@@ -45,5 +50,19 @@
 
 .input-submit {
     margin-top: 0.5rem;
+    font-size: .64rem;
+    border-radius: 4px;
+    background-color: var(--md-default-fg-color--lightest);
 }
 
+.input-submit:hover {
+    background-color: color-mix(in hsl shorter hue, var(--md-default-fg-color--lightest), white 4%);
+}
+
+.input-submit:active {
+    background-color: color-mix(in hsl shorter hue, var(--md-default-fg-color--lightest), black 4%);
+}
+
+.input-submit:disabled {
+    background-color: color-mix(in hsl shorter hue, var(--md-default-fg-color--lightest), black 10%);
+}
