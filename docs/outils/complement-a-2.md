@@ -173,7 +173,7 @@ title: Complément à 2
 
         // Hide and show of cases
         on_all_elements("cas_1", e => e.style.display = number >= 0 ? "" : "none");
-        on_all_elements("cas_2", e => e.stye.display = number >= 0 ? "none" : "");
+        on_all_elements("cas_2", e => e.style.display = number >= 0 ? "none" : "");
     }
 
     function check_bits() {
