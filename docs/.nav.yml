@@ -1,16 +1,10 @@
 nav:
-  - Seconde:
-    - "seconde/*"
-  - Première:
-    - "premiere/*"
-  - Terminale:
-    - "terminale/*"
   - Boîte à outils:
-    - "outils/*"
+    - "outils/"
+    - Exercices automatiques:
+      - "outils/complement-a-2.md"
   - Challenges:
     - "challenges/[0-9]_*"
     - Liste complète:
       - "challenges/*/enonce.md"
-
   - Concours: https://docs.google.com/spreadsheets/d/1vklCIauWj8BNkNmgraetFxHo3Oh3a8i_OZrc0XGr0wI/
-

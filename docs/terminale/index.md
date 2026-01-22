@@ -1,3 +1,0 @@
-# Terminale NSI
-
-TODO

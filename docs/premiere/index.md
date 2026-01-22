@@ -1,3 +1,0 @@
-# Première NSI
-
-TODO

@@ -1,3 +1,0 @@
-# Seconde SNT
-
-TODO
