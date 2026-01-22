@@ -1,6 +1,8 @@
 ---
 author: Anaël BARODINE
 title: Complément à 2
+hide:
+  - toc
 ---
 
 === "Valeur → Complément à 2"
