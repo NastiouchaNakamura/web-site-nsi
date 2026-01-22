@@ -167,9 +167,9 @@ title: Complément à 2
         on_all_elements("max_value", e => e.innerText = number_to_string(max_value));
         on_all_elements("number", e => e.innerText = number_to_string(number, base));
         on_all_elements("base", e => e.innerText = base);
-        on_all_elements("bits_abs", e => e.innerText = number_to_string(bits_abs.join("")));
-        on_all_elements("bits_inverted", e => e.innerText = number_to_string(bits_inverted.join("")));
-        on_all_elements("bits", e => e.innerText = number_to_string(bits.join("")));
+        on_all_elements("bits_abs", e => e.innerText = number_to_string(bits_abs.join(""), 2));
+        on_all_elements("bits_inverted", e => e.innerText = number_to_string(bits_inverted.join(""), 2));
+        on_all_elements("bits", e => e.innerText = number_to_string(bits.join(""), 2));
 
         // Hide and show of cases
         on_all_elements("cas_1", e => e.style.display = number >= 0 ? "" : "none");
