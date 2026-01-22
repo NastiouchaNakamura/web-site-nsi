@@ -9,63 +9,63 @@ title: Complément à 2
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Choix du <label>nombre de bits : <input id="bits_count_input" type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="update_bits_count();"></label>
+        Choix du <label>nombre de bits : <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = this.value; update();"></label>
         
-        Nombres compris entre <span id="number_min_value_html">?</span> et <span id="number_max_value_html">?</span>.
+        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
-        Écrire le nombre **<span id="number_as_based_string_html">?</span><sub id="base_html">?</sub></b>** sur **<span id="bits_count_html">?</span> bits** en **représentation par complément à 2**.
+        Écrire le nombre **<span name="number">?</span><sub name="base">?</sub></b>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
 
         <div class="challenge-input">
-            <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="new_number(10);">
-            <input class="input-submit" type="button" value="Nouveau nombre (binaire)" onclick="new_number(2);">
+            <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="base = 10; update();">
+            <input class="input-submit" type="button" value="Nouveau nombre (binaire)" onclick="base = 2; update();">
         </div>
 
     !!! question "Réponse"
         <div class="challenge-input">
-            <label class="info-input-label" for="rep_c2">Réponse</label>
+            <label class="info-input-label" for="bits_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="number_as_bits_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
                 <span class="info-input-credential-separator">[</span>
-                <input type="text" id="number_as_bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en complément à 2">
+                <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en complément à 2">
                 <span class="info-input-credential-separator">]<sup style="font-size: small;">C2</sup></span>
             </div>
-            <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_number_as_bits();">
+            <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_bits();">
         </div>
 
     ??? success "Correction"
-        <div id="cas_1_html" style="display: none;">
+        <div name="cas_1" style="display: none;">
             <p>
-                La valeur est **positive**, donc **on écrit le nombre en binaire sur n bits** pour obtenir la **représentation en complément à 2** :
+                La valeur est **positive**, donc **on écrit le nombre en binaire sur n bits** pour obtenir la **représentation en complément à 2** :
             </p>
             <p style="text-align: center;">
-                [<span id="cas_1_number_as_bits_html"></span>]<sup style="small">C2</sup>
+                [<span name="bits"></span>]<sup style="small">C2</sup>
             </p>
         </div>
 
-        <div id="cas_2_html" style="display: none;">
+        <div name="cas_2" style="display: none;">
             <p>
-                La valeur est **négative**, donc **on procède aux 3 étapes suivantes** :
+                La valeur est **négative**, donc **on procède aux 3 étapes suivantes** :
             </p>
             <h3>
-                Étape 1 : Écrire la valeur absolue en binaire
+                Étape 1 : Écrire la valeur absolue en binaire
             </h3>
             <p>
-                **Valeur absolue en binaire** sur n bits : [<span id="cas_2_number_as_bits_abs_html"></span>]
+                **Valeur absolue en binaire** sur n bits : [<span name="bits_abs"></span>]
             </p>
             <h3>
-                Étape 2 : Inverser tous les bits
+                Étape 2 : Inverser tous les bits
             </h3>
             <p>
-                **Inversion de tous les bits** de la valeur absolue en binaire : [<span id="cas_2_number_as_bits_inverted_html"></span>]
+                **Inversion de tous les bits** de la valeur absolue en binaire : [<span name="bits_inverted"></span>]
             </p>
             <h3>
-                Étape 3 : Additionner 1
+                Étape 3 : Additionner 1
             </h3>
             <p>
-                **Addition de 1** au nombre binaire que l'on a obtenu après l'inversion des bits pour obtenir **la représentation en complément à 2** :
+                **Addition de 1** au nombre binaire que l'on a obtenu après l'inversion des bits pour obtenir **la représentation en complément à 2** :
             </p>
             <p style="text-align: center;">
-                [<span id="cas_2_number_as_bits_html"></span>]<sup style="small">C2</sup>
+                [<span name="bits"></span>]<sup style="small">C2</sup>
             </p>
         </div>
     
@@ -74,65 +74,166 @@ title: Complément à 2
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
+    !!! abstract "Énoncé"
+        Choix du <label>nombre de bits : <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = this.value; update();"></label>
+        
+        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
+
+        Trouver **la valeur du nombre** qui est représenté **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup></b>**.
+
+        <div class="challenge-input">
+            <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
+        </div>
+
+    !!! question "Réponse"
+        <div class="challenge-input">
+            <label class="info-input-label" for="number_answer_input">Réponse</label>
+            <div class="info-input-div">
+                <div id="number_answer_icon" class="info-input-icon icon-waiting"></div>
+                <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Nombre en base 10">
+                <span class="info-input-credential-separator"><sub>10</sub></span>
+            </div>
+            <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_number();">
+        </div>
+
+    ??? success "Correction"
+        <div name="cas_1" style="display: none;">
+            <p>
+                **Le bit de poids fort** (le plus à gauche) est à **0**, donc la valeur est **positive**. Donc, il y a juste à **convertir de binaire à décimal** :
+            </p>
+            <p style="text-align: center;">
+                <span name="number"></span><sub>10</sub>
+            </p>
+        </div>
+
+        <div name="cas_2" style="display: none;">
+            <p>
+                **Le bit de poids fort** (le plus à gauche) est à **1**, donc la valeur est **négative**. Dans ce cas, **on procède aux 3 étapes suivantes** :
+            </p>
+            <h3>
+                Étape 1 : Soustraire 1
+            </h3>
+            <p>
+                **Soustraction de 1** à la représentation en complément à 2 : [<span name="bits_inverted"></span>]
+            </p>
+            <h3>
+                Étape 2 : Inverser tous les bits
+            </h3>
+            <p>
+                **Inversion de tous les bits** de résultat de la soustraction en binaire : [<span name="bits_abs"></span>]
+            </p>
+            <h3>
+                Étape 3 : Convertir en décimal
+            </h3>
+            <p>
+                **Conversion du résultat de l'inversion** du binaire vers le **décimal**, et **on n'oublie pas d'ajouter le signe moins** :
+            </p>
+            <p style="text-align: center;">
+                <span name="number"></span><sub>10</sub>
+            </p>
+        </div>
+
 
 <script>
-    let bits_count = 8;
-    let number_as_value = 0;
-    let number_as_bits = [];
-    let number_base = 10;
+    let bits_count;
+    let min_value;
+    let max_value;
+    let number;
+    let base;
+    let bits_abs;
+    let bits_inverted;
+    let bits;
 
-    function update_bits_count() {
-        bits_count = parseInt(document.getElementById("bits_count_input").value);
-        document.getElementById("bits_count_html").innerText = bits_count;
-        document.getElementById("number_min_value_html").innerText = (-(2 ** (bits_count - 1))).toString();
-        document.getElementById("number_max_value_html").innerText = (2 ** (bits_count - 1) - 1).toString();
-        new_number(number_base);
-    }
+    function update() {
+        // Number
+        min_value = -(2 ** (bits_count - 1));
+        max_value = 2 ** (bits_count - 1) - 1;
+        number = Math.floor(Math.random() * (2 ** bits_count)) - 2 ** (bits_count - 1);
 
-    function new_number(base) {
-        number_as_value = Math.floor(Math.random() * (2 ** bits_count - 1)) - 2 ** (bits_count - 1);
-        let number_as_based_string = number_as_value.toString(base);
-        if (base === 10) number_as_based_string = number_as_based_string.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        else if (base === 2) number_as_based_string = number_as_based_string.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
-        document.getElementById("number_as_based_string_html").innerText = number_as_based_string;
-        document.getElementById("base_html").innerText = base;
-        number_base = base;
-        get_bits_of_value();
-    }
+        // C2 representation
+        bits_abs = Math.abs(number).toString(2).padStart(bits_count, "0").split("").map(digit => parseInt(digit));
 
-    function get_bits_of_value() {
-        if (number_as_value > 0) {
-            document.getElementById("cas_1_html").style.display = "";
-            document.getElementById("cas_2_html").style.display = "none";
-            number_as_bits = Math.abs(number_as_value).toString(2).padStart(bits_count, "0").split("");
-            document.getElementById("cas_1_number_as_bits_html").innerText = number_as_bits.join("").replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+        if (number >= 0) {
+            bits_inverted = [];
+            bits = bits_abs;
         } else {
-            document.getElementById("cas_1_html").style.display = "none";
-            document.getElementById("cas_2_html").style.display = "";
-            number_as_bits = Math.abs(number_as_value).toString(2).padStart(bits_count, "0").split("");
-            document.getElementById("cas_2_number_as_bits_abs_html").innerText = number_as_bits.join("").replace(/\B(?=(\d{4})+(?!\d))/g, " ");
-            document.getElementById("cas_2_number_as_bits_inverted_html").innerText = number_as_bits.map(bit => (parseInt(bit) + 1) % 2).join("").replace(/\B(?=(\d{4})+(?!\d))/g, " ");
-            document.getElementById("cas_2_number_as_bits_html").innerText = (parseInt(number_as_bits.map(bit => (parseInt(bit) + 1) % 2).join(""), 2) + 1).toString(2).padStart(bits_count, "0").replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+            bits_inverted = bits_abs.map(bit => bit === 0 ? 1 : 0);
+            bits = (parseInt(bits_inverted.join(""), 2) + 1).toString(2).padStart(bits_count, "0").split("").map(digit => parseInt(digit));
         }
+
+        // Display of all variables
+        on_all_elements("bits_count", e => e.innerText = bits_count);
+        on_all_elements("min_value", e => e.innerText = number_to_string(min_value));
+        on_all_elements("max_value", e => e.innerText = number_to_string(max_value));
+        on_all_elements("number", e => e.innerText = number_to_string(number, base));
+        on_all_elements("base", e => e.innerText = base);
+        on_all_elements("bits_abs", e => e.innerText = number_to_string(bits_abs.join("")));
+        on_all_elements("bits_inverted", e => e.innerText = number_to_string(bits_inverted.join("")));
+        on_all_elements("bits", e => e.innerText = number_to_string(bits.join("")));
+
+        // Hide and show of cases
+        on_all_elements("cas_1", e => e.style.display = number >= 0 ? "" : "none");
+        on_all_elements("cas_2", e => e.stye.display = number >= 0 ? "none" : "");
     }
 
-    function check_number_as_bits() {
-        let submited_number_as_bits_icon = document.getElementById("number_as_bits_answer_icon");
-        let submited_number_as_bits_string = document.getElementById("number_as_bits_answer_input").value;
+    function check_bits() {
+        let submited_bits_icon = document.getElementById("bits_answer_icon");
+        let submited_bits_string = document.getElementById("bits_answer_input").value;
 
-        if (!/[\d ]+/.test(submited_number_as_bits_string)) {
-            submited_number_as_bits_icon.className = "info-input-icon icon-error";
+        if (!/^[01 ]+$/.test(submited_bits_string)) {
+            submited_bits_icon.className = "info-input-icon icon-error";
             alert("Veuillez ne saisir que des 0 et des 1 comme réponse. Il est possible de saisir des espaces pour séparer visuellement les bits.");
         } else {
-            let submited_number_as_bits = submited_number_as_bits_string.replaceAll(" ", "").split("");
-            if (submited_number_as_bits.join("") === number_as_bits.join("")) {
-                submited_number_as_bits_icon.className = "info-input-icon icon-success";
+            let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
+            if (submited_bits.join("") === bits.join("")) {
+                submited_bits_icon.className = "info-input-icon icon-success";
                 success();
             } else {
-                submited_number_as_bits_icon.className = "info-input-icon icon-failure";
+                submited_bits_icon.className = "info-input-icon icon-failure";
             }
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => { new_number(10); update_bits_count(); });
+    function check_number() {
+        let submited_number_icon = document.getElementById("number_answer_icon");
+        let submited_number_string = document.getElementById("number_answer_input").value;
+
+        if (!/^[-+\d ]+$/.test(submited_number_string)) {
+            submited_number_icon.className = "info-input-icon icon-error";
+            alert("Veuillez saisir un nombre en décimal, dont le signe - si négatif, comme réponse.");
+        } else {
+            let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
+            if (submited_number === number) {
+                submited_number_icon.className = "info-input-icon icon-success";
+                success();
+            } else {
+                submited_number_icon.className = "info-input-icon icon-failure";
+            }
+        }
+    }
+
+    function on_all_elements(name, fun) {
+        let elements = document.getElementsByName(name);
+        for (let i = 0; i < elements.length; i++)
+            fun(elements[i])
+    }
+
+    function elements_by_name(name) {
+        let elements = document.getElementsByName(name);
+        let elements_array = [];
+        for (let i = 0; i < elements.length; i++)
+            elements_array.push(elements[i]);
+        return elements_array;
+    }
+
+    function number_to_string(number, base = 10) {
+        if (base === 2)
+            return number.toString().replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
+        else if (base == 16)
+            return number.toString().replace(/\B(?=(\d{2})+(?!\d))/g, "\u00A0");
+        else
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => { bits_count = 8; base = 10; update(); });
 </script>
