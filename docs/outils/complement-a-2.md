@@ -11,7 +11,7 @@ hide:
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Choix du <label>nombre de bits : <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = this.value; update();"></label>
+        Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
         Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
@@ -48,23 +48,14 @@ hide:
             <p>
                 La valeur est **négative**, donc **on procède aux 3 étapes suivantes** :
             </p>
-            <h3>
-                Étape 1 : Écrire la valeur absolue en binaire
-            </h3>
             <p>
-                **Valeur absolue en binaire** sur n bits : [<span name="bits_abs"></span>]
+                ① **Écrire la valeur absolue en binaire** sur n bits : [<span name="bits_abs"></span>]
             </p>
-            <h3>
-                Étape 2 : Inverser tous les bits
-            </h3>
             <p>
-                **Inversion de tous les bits** de la valeur absolue en binaire : [<span name="bits_inverted"></span>]
+                ② **Inverser tous les bits** de la valeur absolue en binaire : [<span name="bits_inverted"></span>]
             </p>
-            <h3>
-                Étape 3 : Additionner 1
-            </h3>
             <p>
-                **Addition de 1** au nombre binaire que l'on a obtenu après l'inversion des bits pour obtenir **la représentation en complément à 2** :
+                ③ **Additionner 1** au nombre binaire que l'on a obtenu après l'inversion des bits pour obtenir **la représentation en complément à 2** :
             </p>
             <p style="text-align: center;">
                 [<span name="bits"></span>]<sup style="small">C2</sup>
@@ -77,7 +68,7 @@ hide:
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Choix du <label>nombre de bits : <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = this.value; update();"></label>
+        Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
         Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
@@ -112,23 +103,14 @@ hide:
             <p>
                 **Le bit de poids fort** (le plus à gauche) est à **1**, donc la valeur est **négative**. Dans ce cas, **on procède aux 3 étapes suivantes** :
             </p>
-            <h3>
-                Étape 1 : Soustraire 1
-            </h3>
             <p>
-                **Soustraction de 1** à la représentation en complément à 2 : [<span name="bits_inverted"></span>]
+                ① **Soustraire 1** à la représentation en complément à 2 : [<span name="bits_inverted"></span>]
             </p>
-            <h3>
-                Étape 2 : Inverser tous les bits
-            </h3>
             <p>
-                **Inversion de tous les bits** de résultat de la soustraction en binaire : [<span name="bits_abs"></span>]
+                ② **Inverser tous les bits** de résultat de la soustraction en binaire : [<span name="bits_abs"></span>]
             </p>
-            <h3>
-                Étape 3 : Convertir en décimal
-            </h3>
             <p>
-                **Conversion du résultat de l'inversion** du binaire vers le **décimal**, et **on n'oublie pas d'ajouter le signe moins** :
+                ③ **Convertir le résultat de l'inversion** du binaire vers le **décimal**, et **on n'oublie pas d'ajouter le signe moins** :
             </p>
             <p style="text-align: center;">
                 <span name="number"></span><sub>10</sub>
@@ -147,6 +129,12 @@ hide:
     let bits;
 
     function update() {
+        // Vérification
+        if (isNaN(bits_count) || bits_count < 2 || bits_count > 32) {
+            alert("Le nombre de bits doit être un nombre entier entre 2 et 32 inclus.");
+            return;
+        }
+
         // Number
         min_value = -(2 ** (bits_count - 1));
         max_value = 2 ** (bits_count - 1) - 1;
@@ -176,6 +164,12 @@ hide:
         // Hide and show of cases
         on_all_elements("cas_1", e => e.style.display = number >= 0 ? "" : "none");
         on_all_elements("cas_2", e => e.style.display = number >= 0 ? "none" : "");
+
+        // Reset submits
+        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("bits_answer_input").value = "";
+        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("number_answer_input").value = "";
     }
 
     function check_bits() {
