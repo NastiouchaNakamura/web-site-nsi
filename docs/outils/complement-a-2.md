@@ -72,7 +72,7 @@ hide:
         </div>
     
 === "Complément à 2 → Valeur"
-    ## Complément à deux → valeur"
+    ## Complément à deux → valeur
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
