@@ -10,19 +10,19 @@ title: ⁂ Objets submergés
 
 **Toto le chat** était en train de se promener [sur les bords du Loiret](https://cdt45.media.tourinsoft.eu/upload/45232-Olivet-Les-bords-du-Loiret-V0.pdf), région natale du prof, mais il a accidentellement **fait tomber le contenu de son sac à dos dans l'eau**… Effectivement, ne possédant pas de pouce opposable, il n'est pas particulièrement agile.
 
-**Voici l'eau en question** (fichier ZIP **1,17Go**, qui se dézippe en **2,63Go**) : <a href="../loiret.zip">loiret.zip</a>
+**Voici l'eau en question** (fichier ZIP **1,63Go**, qui se dézippe en **3,39Go**) : <a href="../loiret.zip">loiret.zip</a>
 
 Chacune des **45 millions de lignes** de ce fichier est composé de **4 valeurs flottantes** séparées par des point-virgules (c'est donc un format [CSV](https://fr.wikipedia.org/wiki/Comma-separated_values)).
 
 Les 6 premières lignes :
 
 ```csv linenums="1"
--1.0151238889220515;-6.217395704884994;-4.710974745768204;19.88706069942994
--5.912582772357684;1.9932299879219073;-1.8639112404024658;17.119476047766476
--9.684384044886285;-9.925828551124471;-3.8831727578770536;15.18311326890268
--3.0026642394003744;-2.881802089874843;-0.38426303994166133;13.63189356901719
-4.733640877595679;4.14525750731422;-3.5412589214471186;15.207974274593626
-3.2642409180163625;-1.561105731584254;-8.513081448195285;13.524133594152904
+4.333561137475497;-2.0377611805231126;-6.595977963126245;20.097424533864153
+3.9182210927443233;-0.036429474746061175;1.5131328504839114;21.062197092824125
+5.983338512428881;0.8252950173649722;-7.693875713224867;19.37775942189871
+-0.1898143098166134;-2.122987190755758;-0.23198641816269827;19.088251203541084
+4.556104929206974;-6.980373506092034;-0.8410987349792514;17.507557889555077
+4.4420127006953365;-5.718405874978238;-0.5088080846023182;19.80981076530525
 ```
 
 ??? tip "Indice"
