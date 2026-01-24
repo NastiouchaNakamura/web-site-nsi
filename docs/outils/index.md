@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: Boîte à outils
+title: Index des outils
 hide:
   - toc
 ---

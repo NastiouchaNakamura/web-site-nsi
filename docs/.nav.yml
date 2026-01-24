@@ -1,6 +1,6 @@
 nav:
   - Boîte à outils:
-    - "outils/"
+    - "outils/index.md"
     - Exercices automatiques:
       - "outils/complement-a-2.md"
   - Challenges:
