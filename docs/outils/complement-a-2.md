@@ -15,7 +15,7 @@ hide:
         
         Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
-        Écrire le nombre **<span name="number">?</span><sub name="base">?</sub></b>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
+        Écrire le nombre **<span name="number_based">?</span><sub name="base">?</sub></b>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="base = 10; update();">
@@ -155,7 +155,8 @@ hide:
         on_all_elements("bits_count", e => e.innerText = bits_count);
         on_all_elements("min_value", e => e.innerText = number_to_string(min_value));
         on_all_elements("max_value", e => e.innerText = number_to_string(max_value));
-        on_all_elements("number", e => e.innerText = number_to_string(number, base));
+        on_all_elements("number", e => e.innerText = number_to_string(number));
+        on_all_elements("number_based", e => e.innerText = number_to_string(number, base));
         on_all_elements("base", e => e.innerText = base);
         on_all_elements("bits_abs", e => e.innerText = number_to_string(bits_abs.join(""), 2));
         on_all_elements("bits_inverted", e => e.innerText = number_to_string(bits_inverted.join(""), 2));
@@ -224,11 +225,11 @@ hide:
 
     function number_to_string(number, base = 10) {
         if (base === 2)
-            return number.toString().replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
+            return number.toString(base).replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
         else if (base == 16)
-            return number.toString().replace(/\B(?=(\d{2})+(?!\d))/g, "\u00A0");
+            return number.toString(base).replace(/\B(?=(\d{2})+(?!\d))/g, "\u00A0");
         else
-            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
+            return number.toString(base).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
     }
 
     document.addEventListener("DOMContentLoaded", () => { bits_count = 8; base = 10; update(); });
