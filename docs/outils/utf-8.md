@@ -11,7 +11,7 @@ hide:
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Représenter le caractère « <span name="character">?</span> », dont le **point de code est <span name="codepoint_based">?</span><sub name="base">?</sub></b>** en **représentation selon la norme UTF-8**.
+        Représenter le caractère « <span name="character">?</span> », dont le **point de code est <span name="codepoint_based">?</span><sub name="base">?</sub>** en **représentation selon la norme UTF-8**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau point de code (décimal)" onclick="base = 10; update();">
@@ -119,8 +119,8 @@ hide:
             </p>
         </div>
     
-=== "Complément à 2 → Valeur"
-    ## Complément à deux → valeur
+=== "UTF-8 → point de code"
+    ## UTF-8 → point de code
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
@@ -128,48 +128,120 @@ hide:
         Trouver **le point de code** du caractère qui est représenté **en UTF-8** par les bits suivnats **[<span name="bits">?</span>]<sup style="small">UTF-8</sup>**.
 
         <div class="challenge-input">
-            <input class="input-submit" type="button" value="Nouveau caractère" onclick="update();">
+            <input class="input-submit" type="button" value="Nouveau point de code" onclick="update();">
         </div>
+
+    ??? tip "Rappel de la norme UTF-8"
+        Blabla
 
     !!! question "Réponse"
         <div class="challenge-input">
             <label class="info-input-label" for="number_answer_input">Réponse</label>
             <div class="info-input-div">
                 <div id="number_answer_icon" class="info-input-icon icon-waiting"></div>
-                <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Nombre en base 10">
+                <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Point de code en base 10">
                 <span class="info-input-credential-separator"><sub>10</sub></span>
             </div>
-            <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_number();">
+            <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_codepoint();">
         </div>
 
     ??? success "Correction"
-        <div name="cas_1" style="display: none;">
+        <div name="1_byte_case" style="display: none;">
             <p>
-                Tout d'abord, on écrit le **point de code** en binaire :
+                Cette représentation **commence par 0**, on est donc dans le cas de **un seul octet** :
             </p>
             <p style="text-align: center;">
-                <span name="codepoint_binary"></span><sub>2</sub>
+                [0**<span style="color: #00c853;">xxx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                Le **point de code** est écrit **sur 7 bits** :
+            </p>
+            <p style="text-align: center;">
+                [0**<span name="bits_1c" style="color: #00c853;"></span>**]<sup style="small">UTF-8</sup>
+            </p>
+            </p>
+            <p>
+                On a donc **le point de code** :
+            </p>
+            <p style="text-align: center;">
+                <span name="codepoint_binary"></span><sub>2</sub> = **<span name="codepoint"></span><sub>10</sub>**
+            </p>
+            <p>
+                À titre indicatif, il s'agit du caractère « **<span name="character">?</span>** » selon la **norme Unicode**.
             </p>
         </div>
 
-        <div name="cas_2" style="display: none;">
+        <div name="2_byte_case" style="display: none;">
             <p>
-                **Le bit de poids fort** (le plus à gauche) est à **1**, donc la valeur est **négative**. Dans ce cas, **on procède aux 3 étapes suivantes** :
-            </p>
-            <p>
-                ① **Soustraire 1** à la représentation en complément à 2 : [<span name="bits_inverted"></span>]
-            </p>
-            <p>
-                ② **Inverser tous les bits** de résultat de la soustraction en binaire : [<span name="bits_abs"></span>]
-            </p>
-            <p>
-                ③ **Convertir le résultat de l'inversion** du binaire vers le **décimal**, et **on n'oublie pas d'ajouter le signe moins** :
+                Cette représentation **commence par 110**, on est donc dans le cas de **deux octets** :
             </p>
             <p style="text-align: center;">
-                <span name="number"></span><sub>10</sub>
+                [110**<span style="color: #00c853;">x&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                Le **point de code** est écrit **sur 11 bits** :
+            </p>
+            <p style="text-align: center;">
+                [110**<span name="bits_2c_1" style="color: #00c853;">x&nbsp;xxxx</span>**&nbsp;10**<span name="bits_2c_2" style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                On a donc **le point de code** :
+            </p>
+            <p style="text-align: center;">
+                <span name="codepoint_binary"></span><sub>2</sub> = **<span name="codepoint"></span><sub>10</sub>**
+            </p>
+            <p>
+                À titre indicatif, il s'agit du caractère « **<span name="character">?</span>** » selon la **norme Unicode**.
             </p>
         </div>
 
+        <div name="3_byte_case" style="display: none;">
+            <p>
+                Cette représentation **commence par 1110**, on est donc dans le cas de **trois octets** :
+            </p>
+            <p style="text-align: center;">
+                [1110&nbsp;**<span style="color: #00c853;">xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                Le **point de code** est écrit **sur 16 bits** :
+            </p>
+            <p style="text-align: center;">
+                [1110&nbsp;**<span name="bits_3c_1" style="color: #00c853;">xxxx</span>**&nbsp;10**<span name="bits_3c_2" style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span name="bits_3c_3" style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                On a donc **le point de code** :
+            </p>
+            <p style="text-align: center;">
+                <span name="codepoint_binary"></span><sub>2</sub> = **<span name="codepoint"></span><sub>10</sub>**
+            </p>
+            <p>
+                À titre indicatif, il s'agit du caractère « **<span name="character">?</span>** » selon la **norme Unicode**.
+            </p>
+        </div>
+
+        <div name="4_byte_case" style="display: none;">
+            <p>
+                Cette représentation **commence par 11110**, on est donc dans le cas de **quatre octets** :
+            </p>
+            <p style="text-align: center;">
+                [1111&nbsp;0**<span style="color: #00c853;">xxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                Le **point de code** est écrit **sur 21 bits** :
+            </p>
+            <p style="text-align: center;">
+                [1111&nbsp;0**<span name="bits_4c_1" style="color: #00c853;">xxxx</span>**&nbsp;10**<span name="bits_4c_2" style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span name="bits_4c_3" style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span name="bits_4c_4" style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
+            </p>
+            <p>
+                On a donc **le point de code** :
+            </p>
+            <p style="text-align: center;">
+                <span name="codepoint_binary"></span><sub>2</sub> = **<span name="codepoint"></span><sub>10</sub>**
+            </p>
+            <p>
+                À titre indicatif, il s'agit du caractère « **<span name="character">?</span>** » selon la **norme Unicode**.
+            </p>
+        </div>
 
 <script>
     let base;
@@ -283,7 +355,7 @@ hide:
         }
     }
 
-    function check_number() {
+    function check_codepoint() {
         let submited_number_icon = document.getElementById("number_answer_icon");
         let submited_number_string = document.getElementById("number_answer_input").value;
 
@@ -292,7 +364,7 @@ hide:
             alert("Veuillez saisir un nombre en décimal, dont le signe - si négatif, comme réponse.");
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
-            if (submited_number === number) {
+            if (submited_number === codepoint) {
                 submited_number_icon.className = "info-input-icon icon-success";
                 success();
             } else {
