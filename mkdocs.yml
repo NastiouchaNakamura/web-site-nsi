@@ -2,14 +2,27 @@ site_name: NSI Blaise Pascal
 site_url: https://nsi.nastioucha.fr/
 site_author: Anaël BARODINE
 
+copyright: |
+   Anaël BARODINE —
+   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" style="display:inline-block;">
+   <img style="height:22px!important;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg">
+   <img style="height:22px!important;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg">
+   <img style="height:22px!important;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg">
+   <img style="height:22px!important;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg">
+   CC BY-NC-SA 4.0
+   </a> —
+   <a href="https://www.uqac.ca/ressourcespedago/iag/" target="_blank" style="display:inline-block;">
+   <img style="height:22px!important;vertical-align:text-bottom;" src="assets/images/picto-iag-aucune.png">
+   </a>
+
 
 docs_dir: docs
 use_directory_urls: true
 
 # Configuration
 theme:
-  favicon: assets/icons/key.svg
-  logo: assets/icons/key.svg
+  favicon: assets/images/logo-blaise-pascal-tiny-white.png
+  logo: assets/images/logo-blaise-pascal-tiny-white.png
   name: material
 
   font:
