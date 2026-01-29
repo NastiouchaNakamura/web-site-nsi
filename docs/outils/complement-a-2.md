@@ -15,7 +15,7 @@ hide:
         
         Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
-        Écrire le nombre **<span name="number_based">?</span><sub name="base">?</sub></b>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
+        Écrire le nombre **<span name="number_based">?</span><sub name="base">?</sub>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="base = 10; update();">
