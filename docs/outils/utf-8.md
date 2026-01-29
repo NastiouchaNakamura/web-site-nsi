@@ -383,7 +383,7 @@ hide:
 
         if (!/^[-+\d ]+$/.test(submited_number_string)) {
             submited_number_icon.className = "info-input-icon icon-error";
-            alert("Veuillez saisir un nombre en décimal, dont le signe - si négatif, comme réponse.");
+            alert("Veuillez saisir un nombre en décimal.");
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
             if (submited_number === codepoint) {
