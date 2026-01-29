@@ -3,6 +3,7 @@ nav:
     - "outils/index.md"
     - Exercices automatiques:
       - "outils/complement-a-2.md"
+      - "outils/utf-8.md"
   - Challenges:
     - "challenges/[0-9]_*"
     - Liste complète:
