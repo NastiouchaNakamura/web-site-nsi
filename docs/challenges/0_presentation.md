@@ -9,8 +9,6 @@ Dans cette partie de ce site Web, vous trouverez plusieurs **challenges informat
 
 Votre prof a préparé un certain nombre de challenges, **de sa propre création**. Mais en plus de cela, certains challenges provenant d'autres plateformes sont aussi listés. Dans tous les cas **l'auteur ou l'autrice du challenge** est toujours indiqué.
 
-Certains challenges sont associés en [**parcours**](3_parcours.md), et sont prévus pour être **faits les uns après les autres** !
-
 ## Thématique
 
 Chaque challenge est classé dans **au moins une des thématiques**. Cliquez sur les **différents volets** du cadre ci-dessus pour connaître ces thématiques.
