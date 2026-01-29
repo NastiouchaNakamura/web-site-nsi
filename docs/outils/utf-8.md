@@ -20,7 +20,18 @@ hide:
         </div>
 
     ??? tip "Rappel de la norme UTF-8"
-        Blabla
+        <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
+
+        La **norme UTF-8** indique que **le point de code d'un caractère** est encodé **soit sur un octets**, **soit sur deux octets**, **soit sur trois octets**, **soit sur quatre octets**, selon **le nombre de bits requis pour écrire le point de code en binaire** :
+
+        - Si le **point de code** s'écrit en binaire **sur 1 à 7 bits inclus**, alors on utilisera **un seul octet** et **écrira le point de code en binaire** **sur les 7 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[0**<span style="color: #00c853;">xxx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 8 à 11 bits inclus**, alors on utilisera **deux octets** et **écrira le point de code en binaire** **sur les 11 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[110**<span style="color: #00c853;">x&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 12 à 16 bits inclus**, alors on utilisera **trois octets** et **écrira le point de code en binaire** **sur les 16 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[1110&nbsp;**<span style="color: #00c853;">xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 16 à 21 bits inclus**, alors on utilisera **quatre octets** et **écrira le point de code en binaire** **sur les 21 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[1111&nbsp;0**<span style="color: #00c853;">xxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
 
     !!! question "Réponse"
         <div class="challenge-input">
@@ -132,7 +143,18 @@ hide:
         </div>
 
     ??? tip "Rappel de la norme UTF-8"
-        Blabla
+        <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
+
+        La **norme UTF-8** indique que **le point de code d'un caractère** est encodé **soit sur un octets**, **soit sur deux octets**, **soit sur trois octets**, **soit sur quatre octets**, selon **le nombre de bits requis pour écrire le point de code en binaire** :
+
+        - Si le **point de code** s'écrit en binaire **sur 1 à 7 bits inclus**, alors on utilisera **un seul octet** et **écrira le point de code en binaire** **sur les 7 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[0**<span style="color: #00c853;">xxx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 8 à 11 bits inclus**, alors on utilisera **deux octets** et **écrira le point de code en binaire** **sur les 11 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[110**<span style="color: #00c853;">x&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 12 à 16 bits inclus**, alors on utilisera **trois octets** et **écrira le point de code en binaire** **sur les 16 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[1110&nbsp;**<span style="color: #00c853;">xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
+        - Si le **point de code** s'écrit en binaire **sur 16 à 21 bits inclus**, alors on utilisera **quatre octets** et **écrira le point de code en binaire** **sur les 21 bits <span style="color: #00c853;">x</span> ci-dessous** :
+        <p style="text-align: center;">[1111&nbsp;0**<span style="color: #00c853;">xxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup></p>
 
     !!! question "Réponse"
         <div class="challenge-input">
