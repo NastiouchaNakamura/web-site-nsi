@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: Complément à 2
+title: Exercice complément à 2
 hide:
   - toc
 ---
