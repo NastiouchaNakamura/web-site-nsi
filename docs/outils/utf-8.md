@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: UTF-8
+title: Exercice UTF-8
 hide:
   - toc
 ---
