@@ -72,7 +72,7 @@ hide:
         
         Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
 
-        Trouver **la valeur du nombre** qui est représenté **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup></b>**.
+        Trouver **la valeur du nombre** qui est représenté **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup>**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
