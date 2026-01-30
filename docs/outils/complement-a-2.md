@@ -227,7 +227,7 @@ hide:
         if (base === 2)
             return number.toString(base).replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
         else if (base == 16)
-            return number.toString(base).replace(/\B(?=(\d{2})+(?!\d))/g, "\u00A0");
+            return number.toString(base).replace(/\B(?=([\dA-Fa-f]{2})+(?![\dA-Fa-f]))/g, "\u00A0");
         else
             return number.toString(base).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
     }
