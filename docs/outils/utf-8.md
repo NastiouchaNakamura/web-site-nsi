@@ -383,7 +383,7 @@ hide:
 
         if (!/^[-+\d ]+$/.test(submited_number_string)) {
             submited_number_icon.className = "info-input-icon icon-error";
-            alert("Veuillez saisir un nombre en décimal, dont le signe - si négatif, comme réponse.");
+            alert("Veuillez saisir un nombre en décimal.");
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
             if (submited_number === codepoint) {
@@ -413,7 +413,7 @@ hide:
         if (base === 2)
             return number.toString(base).replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
         else if (base == 16)
-            return number.toString(base).replace(/\B(?=(\d{2})+(?!\d))/g, "\u00A0");
+            return number.toString(base).replace(/\B(?=([\dA-Fa-f]{2})+(?![\dA-Fa-f]))/g, "\u00A0");
         else
             return number.toString(base).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
     }
