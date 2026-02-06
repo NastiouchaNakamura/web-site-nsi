@@ -321,7 +321,7 @@ function star_chars(amount) {
 
 function make_table_details() {
     function construct_html(table, challenges, profiles) {
-        profiles.sort((profile1, profile2) => { return profile1[1] > profile2[1]; })
+        profiles.sort((profile1, profile2) => { return profile1[1] < profile2[1]; })
 
         let thead = table.children.item(0);
         let tbody = table.children.item(1);
