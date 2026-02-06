@@ -1,5 +1,5 @@
-//const API_URL = "https://api.nastioucha.fr/nsi/";
-const API_URL = "http://localhost:8001/nsi/";
+const API_URL = "https://api.nastioucha.fr/nsi/";
+//const API_URL = "http://localhost:8001/nsi/";
 
 function check_flag_anon(challenge_id) {
     flag = document.getElementById("flag_anon").value;
