@@ -1,5 +1,5 @@
-//const API_URL = "https://api.nastioucha.fr/nsi/";
-const API_URL = "http://localhost:8001/nsi/";
+const API_URL = "https://api.nastioucha.fr/nsi/";
+//const API_URL = "http://localhost:8001/nsi/";
 
 function check_flag_anon(challenge_id) {
     flag = document.getElementById("flag_anon").value;
@@ -321,7 +321,7 @@ function star_chars(amount) {
 
 function make_table_details() {
     function construct_html(table, challenges, profiles) {
-        profiles.sort((profile1, profile2) => { return profile1[1] < profile2[1]; })
+        profiles.sort((profile1, profile2) => { return profile1[1] > profile2[1]; })
 
         let thead = table.children.item(0);
         let tbody = table.children.item(1);
