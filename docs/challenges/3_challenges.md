@@ -1,6 +1,8 @@
 ---
 author: Anaël BARODINE
 title: Liste des challenges
+hide:
+  - toc
 ---
 
 # Liste complète des challenges

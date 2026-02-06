@@ -1,5 +1,5 @@
-const API_URL = "https://api.nastioucha.fr/nsi/";
-//const API_URL = "http://localhost:8001/nsi/";
+//const API_URL = "https://api.nastioucha.fr/nsi/";
+const API_URL = "http://localhost:8001/nsi/";
 
 function check_flag_anon(challenge_id) {
     flag = document.getElementById("flag_anon").value;
@@ -307,8 +307,22 @@ function success() {
     }, 250);
 }
 
+function star_chars(amount) {
+    if (amount == 1) {
+        return "⁎";
+    } else if (amount == 2) {
+        return "⁑";
+    } else if (amount == 3) {
+        return "⁂";
+    } else {
+        return "⁑".repeat(Math.floor(amount / 2)) + "⁎".repeat(amount % 2);
+    }
+}
+
 function make_table_details() {
     function construct_html(table, challenges, profiles) {
+        profiles.sort((profile1, profile2) => { return profile1[1] < profile2[1]; })
+
         let thead = table.children.item(0);
         let tbody = table.children.item(1);
 
@@ -322,6 +336,7 @@ function make_table_details() {
         let total_head = document.createElement("th");
         total_head.innerText = "Total d'étoiles";
         total_head.style.textAlign = "center";
+        total_head.style.borderRight = ".05rem solid var(--md-typeset-table-color)";
         header.appendChild(total_head);
         thead.appendChild(header);
 
@@ -333,55 +348,76 @@ function make_table_details() {
             let total_cell = document.createElement("td");
             total_cell.innerText = total;
             total_cell.style.textAlign = "center";
+            total_cell.style.borderRight = ".05rem solid var(--md-typeset-table-color)";
             line.appendChild(total_cell);
             tbody.appendChild(line);
         });
 
-        Object.keys(challenges).toSorted((a, b) => { if (challenges[a].amount == 0) return b; if (challenges[b].amount == 0) return a; return a > b }).forEach(challenge_id => {
-            let header_cell = document.createElement("th");
-            header_cell.innerText = (challenges[challenge_id].amount != 0 ? (star_chars(challenges[challenge_id].amount) + " ") : "") + challenges[challenge_id].challenge_title;
-            header_cell.style.textAlign = "center";
-            header.appendChild(header_cell);
+        function is_event(challenge) {
+            return Object.values(challenge.successes)[0][0] == "SPECIAL";
+        }
 
-            for (let i = 0; i < profiles.length; i++) {
-                let cell = document.createElement("td");
-                if (profiles[i][0] in challenges[challenge_id].successes) {
-                    let span = document.createElement("span");
-                    if (challenges[challenge_id].successes[profiles[i][0]][0] == "DIAMOND") {
-                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
-                        span.style.color = "#2db5ac";
-                        span.style.textShadow = "#2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px";
-                    } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "GOLD") {
-                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
-                        span.style.color = "#c69e19";
-                        span.style.textShadow = "#c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px";
-                    } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "SPECIAL") {
-                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
-                        span.style.color = "#d04646";
-                        span.style.textShadow = "#d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px";
+        Object.keys(challenges)
+            .toSorted((id_1, id_2) => {
+                if (!is_event(challenges[id_1]) && is_event(challenges[id_2]))
+                    return -1;
+                else if (is_event(challenges[id_1]) && !is_event(challenges[id_2]))
+                    return 1
+                else
+                    return id_1 > id_2
+            }).forEach(challenge_id => {
+                let header_cell = document.createElement("th");
+                header_cell.innerText = challenges[challenge_id].challenge_title;
+                header_cell.style.textAlign = "center";
+                header.appendChild(header_cell);
+
+                for (let i = 0; i < profiles.length; i++) {
+                    let cell = document.createElement("td");
+                    if (profiles[i][0] in challenges[challenge_id].successes) {
+                        let specialty = document.createElement("span");
+                        if (challenges[challenge_id].successes[profiles[i][0]][0] == "DIAMOND") {
+                            specialty.innerText = "B";
+                        } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "GOLD") {
+                            specialty.innerText = "C";
+                        } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "SPECIAL") {
+                            specialty.innerText = "A";
+                        } else {
+                            specialty.innerText = "D";
+                        }
+                        specialty.style.display = "none";
+                        cell.appendChild(specialty);
+
+                        let span = document.createElement("span");
+                        if (challenges[challenge_id].successes[profiles[i][0]][0] == "DIAMOND") {
+                            span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                            span.style.color = "#2db5ac";
+                            span.style.textShadow = "#2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px, #2db5ac 0 0 10px";
+                        } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "GOLD") {
+                            span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                            span.style.color = "#c69e19";
+                            span.style.textShadow = "#c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px, #c69e19 0 0 10px";
+                        } else if (challenges[challenge_id].successes[profiles[i][0]][0] == "SPECIAL") {
+                            span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                            span.style.color = "#d04646";
+                            span.style.textShadow = "#d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px, #d04646 0 0 10px";
+                        } else {
+                            span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                        }
+                        cell.appendChild(span);
+
+                        cell.style.textAlign = "center";
+
                     } else {
-                        span.innerText = star_chars(challenges[challenge_id].successes[profiles[i][0]][1]);
+                        let specialty = document.createElement("span");
+                        specialty.innerText = "E";
+                        specialty.style.display = "none";
+                        cell.appendChild(specialty);
                     }
-                    cell.appendChild(span);
-                    cell.style.textAlign = "center";
+                    tbody.children.item(i).appendChild(cell);
                 }
-                tbody.children.item(i).appendChild(cell);
-            }
         });
 
         new Tablesort(table);
-    }
-
-    function star_chars(amount) {
-        if (amount == 1) {
-            return "⁎";
-        } else if (amount == 2) {
-            return "⁑";
-        } else if (amount == 3) {
-            return "⁂";
-        } else {
-            return "⁑".repeat(Math.floor(amount / 2)) + "⁎".repeat(amount % 2);
-        }
     }
 
     fetch(`${API_URL}leaderboard/?limit=50`, {
@@ -402,7 +438,6 @@ function make_table_details() {
                         if (!(star.challenge_id in challenges)) {
                             challenges[star.challenge_id] = {
                                 challenge_title: star.challenge_title,
-                                amount: star.specialty != "SPECIAL" ? star.amount : 0,
                                 successes: {}
                             };
                         }
@@ -426,18 +461,6 @@ function make_table_details() {
 }
 
 function make_table_challenges() {
-    function star_chars(amount) {
-        if (amount == 1) {
-            return "⁎";
-        } else if (amount == 2) {
-            return "⁑";
-        } else if (amount == 3) {
-            return "⁂";
-        } else {
-            return "⁑".repeat(Math.floor(amount / 2)) + "⁎".repeat(amount % 2);
-        }
-    }
-
     let table_challenges = document.getElementsByTagName("table").item(0);
     new Tablesort(table_challenges);
 

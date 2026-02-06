@@ -1,6 +1,8 @@
 ---
 author: Anaël BARODINE
 title: Didacticiel
+hide:
+  - toc
 ---
 
 # Didacticiel
