@@ -26,6 +26,70 @@ hide:
     ??? tip "Rappel de la norme IEEE-754"
         <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
 
+        La **norme IEEE-754** décrit **un ensemble de représentations des nombres non-entiers**, sur différentes tailles d'octets :
+
+        | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
+        |:-:|:-:|:-:|:-:|:-:|:-:|
+        | Demi-précision — binary16 | 16 | 1 | 10 | 5 | 15 |
+        | Simple précision — binary32 | 32 | 1 | 23 | 8 | 127 |
+        | Double précision — binary64 | 64 | 1 | 52 | 11 | 1 023 |
+        | Quadruple précision — binary128 | 128 | 1 | 112 | 15 | 16 383 |
+        | Octuple précision — binary256 | 256 | 1 | 236 | 19 | 262 143 |
+
+        Pour **chaque précision**, le principe est identique : on **représente** un **nombre non-entier** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
+
+        <p style="text-align: center;">
+            **s × m<sub>2</sub> × 2<sup>e<sub>10</sub></sup>**, avec…
+        </p>
+
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **s** ∈ {-1 ; +1},<br> le **signe**.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 30%;">
+                <p style="text-align: center;">
+                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
+                </p>
+            </div>
+        </div>
+
+        **Ces trois valeurs s, m et e** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
+
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **[0 si s = +1, 1 si s = -1]** pour **s**.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 30%;">
+                <p style="text-align: center;">
+                    **[partie non-entière de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
+                </p>
+            </div>
+        </div>
+
+        La **représentation complète** du **nombre non-entier de départ** sera la **concaténation des représentations** de **s**, **e** et **m**, dans cet ordre :
+
+        <p style="text-align: center;">
+            **[0 si s = +1, 1 si s = -1 ⋮ e + δ<sub>e</sub> ⋮ partie non-entière de m]<sup>précision</sup>**,<br>où **précision** est **une des précisions** proposées par la norme : **binary16**, **binary32**, etc…
+        </p>
+
     !!! question "Réponse"
         <div class="challenge-input">
             <label class="info-input-label" for="bits_answer_input">Réponse</label>
@@ -33,7 +97,7 @@ hide:
                 <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
                 <span class="info-input-credential-separator">[</span>
                 <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en binary16">
-                <span class="info-input-credential-separator">]<sup style="font-size: small;">FP<span name="bits_count"></sup></span>
+                <span class="info-input-credential-separator">]<sup style="font-size: small;">bin<span name="bits_count"></sup></span>
             </div>
             <input class="input-submit" type="button" value="Vérifier la réponse" onclick="check_bits();">
         </div>
@@ -141,7 +205,7 @@ hide:
         On combine les représentations, dans l'ordre <span style="color: #ff9100;">s</span>, <span style="color: #00b0ff;">e</span> et <span style="color: #00c853;">m</span> :
         
         <p style="text-align: center;">
-            [<span name="sign_bit" style="color: #ff9100;"></span><span name="combined_bits"><span name="combined_biased_exponent_bits" style="color: #00b0ff;"></span><span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span></span>]<sup>FP<span name="bits_count"></span></sup>
+            [<span name="sign_bit" style="color: #ff9100;"></span><span name="combined_bits"><span name="combined_biased_exponent_bits" style="color: #00b0ff;"></span><span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span></span>]<sup>bin<span name="bits_count"></span></sup>
         </p>
     
 === "IEEE-754 → valeur"
@@ -156,7 +220,7 @@ hide:
             <option value="binary64">Double précision — binary64 (64 bits)</option>
         </select></label>
         
-        Trouver **la valeur du nombre non-entier** (*arrondie au centième si besoin*) qui est représenté en **représentation flottante “<span name="precision">?</span>”** par les bits [<span name="sign_bit"></span><span name="combined_bits"><span name="combined_biased_exponent_bits"></span><span name="floating_point_dec_bits_spaced"></span></span>]<sup>FP<span name="bits_count">?</span></sup>.
+        Trouver **la valeur du nombre non-entier** (*arrondie au centième si besoin*) qui est représenté en **représentation flottante “<span name="precision">?</span>”** par les bits [<span name="sign_bit"></span><span name="combined_bits"><span name="combined_biased_exponent_bits"></span><span name="floating_point_dec_bits_spaced"></span></span>]<sup>bin<span name="bits_count">?</span></sup>.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
@@ -164,6 +228,70 @@ hide:
 
     ??? tip "Rappel de la norme IEEE-754"
         <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
+
+        La **norme IEEE-754** décrit **un ensemble de représentations des nombres non-entiers**, sur différentes tailles d'octets :
+
+        | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
+        |:-:|:-:|:-:|:-:|:-:|:-:|
+        | Demi-précision — binary16 | 16 | 1 | 10 | 5 | 15 |
+        | Simple précision — binary32 | 32 | 1 | 23 | 8 | 127 |
+        | Double précision — binary64 | 64 | 1 | 52 | 11 | 1 023 |
+        | Quadruple précision — binary128 | 128 | 1 | 112 | 15 | 16 383 |
+        | Octuple précision — binary256 | 256 | 1 | 236 | 19 | 262 143 |
+
+        Pour **chaque précision**, le principe est identique : on **représente** un **nombre non-entier** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
+
+        <p style="text-align: center;">
+            **s × m<sub>2</sub> × 2<sup>e<sub>10</sub></sup>**, avec…
+        </p>
+
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **s** ∈ {-1 ; +1},<br> le **signe**.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 30%;">
+                <p style="text-align: center;">
+                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
+                </p>
+            </div>
+        </div>
+
+        **Ces trois valeurs s, m et e** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
+
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **[0 si s = +1, 1 si s = -1]** pour **s**.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 30%;">
+                <p style="text-align: center;">
+                    **[partie non-entière de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
+                </p>
+            </div>
+            <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
+            <div style="width: 31%;">
+                <p style="text-align: center;">
+                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
+                </p>
+            </div>
+        </div>
+
+        La **représentation complète** du **nombre non-entier de départ** sera la **concaténation des représentations** de **s**, **e** et **m**, dans cet ordre :
+
+        <p style="text-align: center;">
+            **[0 si s = +1, 1 si s = -1 ⋮ e + δ<sub>e</sub> ⋮ partie non-entière de m]<sup>précision</sup>**,<br>où **précision** est **une des précisions** proposées par la norme : **binary16**, **binary32**, etc…
+        </p>
 
     !!! question "Réponse"
         <div class="challenge-input">
@@ -183,7 +311,7 @@ hide:
         On identifie **les représentations de <span style="color: #ff9100;">s</span>, <span style="color: #00c853;">m</span> et <span style="color: #00b0ff;">e</span>**, à l'aide du nombre de bits de chaque, indiquées par la **norme IEEE-754** pour la **représentation flottante “<span name="precision"></span>”** :
 
         <p style="text-align: center;">
-            [<span name="sign_bit" style="color: #ff9100;"></span><span name="combined_bits"><span name="combined_biased_exponent_bits" style="color: #00b0ff;"></span><span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span></span>]<sup>FP<span name="bits_count"></span></sup>
+            [<span name="sign_bit" style="color: #ff9100;"></span><span name="combined_bits"><span name="combined_biased_exponent_bits" style="color: #00b0ff;"></span><span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span></span>]<sup>bin<span name="bits_count"></span></sup>
         </p>
 
         On a donc **[<span name="sign_bit" style="color: #ff9100;"></span>] pour <span style="color: #ff9100;">s</span>**, **[<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] pour <span style="color: #00c853;">m</span>** et **[<span name="biased_exponent_bits" style="color: #00b0ff;"></span>] pour <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span>**.
