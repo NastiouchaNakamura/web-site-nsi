@@ -357,6 +357,8 @@ hide:
         // Reset submit
         document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
         document.getElementById("bits_answer_input").value = "";
+        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("number_answer_input").value = "";
     }
 
     function check_bits() {
@@ -381,7 +383,7 @@ hide:
         let submited_number_icon = document.getElementById("number_answer_icon");
         let submited_number_string = document.getElementById("number_answer_input").value;
 
-        if (!/^[-+\d ]+$/.test(submited_number_string)) {
+        if (!/^[-+] *\d+$/.test(submited_number_string)) {
             submited_number_icon.className = "info-input-icon icon-error";
             alert("Veuillez saisir un nombre en décimal.");
         } else {
