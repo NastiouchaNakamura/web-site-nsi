@@ -9,7 +9,7 @@ hide:
 
 Vous trouverez dans cette section **des outils pour vous entraîner** sur les notions vues en cours, ou sur d'autres notions.
 
-Utilisez **la table des matières** pour trouver rapidement les outils qui vous intéressent.
+Utilisez **la table des matières** (à gauche) pour trouver rapidement les outils qui vous intéressent.
 
 ### Exercices automatiques
 

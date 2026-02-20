@@ -1,6 +1,8 @@
 ---
 author: Anaël BARODINE
 title: Présentation
+hide:
+  - toc
 ---
 
 # Présentation
