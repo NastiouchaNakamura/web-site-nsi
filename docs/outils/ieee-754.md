@@ -30,11 +30,11 @@ hide:
 
         | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
         |:-:|:-:|:-:|:-:|:-:|:-:|
-        | Demi-précision — binary16 | 16 | 1 | 10 | 5 | 15 |
-        | Simple précision — binary32 | 32 | 1 | 23 | 8 | 127 |
-        | Double précision — binary64 | 64 | 1 | 52 | 11 | 1 023 |
-        | Quadruple précision — binary128 | 128 | 1 | 112 | 15 | 16 383 |
-        | Octuple précision — binary256 | 256 | 1 | 236 | 19 | 262 143 |
+        | Demi-précision — **binary16** | 16 | 1 | 10 | 5 | 15 |
+        | Simple précision — **binary32** | 32 | 1 | 23 | 8 | 127 |
+        | Double précision — **binary64** | 64 | 1 | 52 | 11 | 1 023 |
+        | Quadr. précision — **binary128** | 128 | 1 | 112 | 15 | 16 383 |
+        | Octup. précision — **binary256** | 256 | 1 | 236 | 19 | 262 143 |
 
         Pour **chaque précision**, le principe est identique : on **représente** un **nombre non-entier** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
 
@@ -233,11 +233,11 @@ hide:
 
         | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
         |:-:|:-:|:-:|:-:|:-:|:-:|
-        | Demi-précision — binary16 | 16 | 1 | 10 | 5 | 15 |
-        | Simple précision — binary32 | 32 | 1 | 23 | 8 | 127 |
-        | Double précision — binary64 | 64 | 1 | 52 | 11 | 1 023 |
-        | Quadruple précision — binary128 | 128 | 1 | 112 | 15 | 16 383 |
-        | Octuple précision — binary256 | 256 | 1 | 236 | 19 | 262 143 |
+        | Demi-précision — **binary16** | 16 | 1 | 10 | 5 | 15 |
+        | Simple précision — **binary32** | 32 | 1 | 23 | 8 | 127 |
+        | Double précision — **binary64** | 64 | 1 | 52 | 11 | 1 023 |
+        | Quadr. précision — **binary128** | 128 | 1 | 112 | 15 | 16 383 |
+        | Octup. précision — **binary256** | 256 | 1 | 236 | 19 | 262 143 |
 
         Pour **chaque précision**, le principe est identique : on **représente** un **nombre non-entier** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
 
