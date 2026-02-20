@@ -4,6 +4,7 @@ nav:
     - Exercices automatiques:
       - "outils/complement-a-2.md"
       - "outils/utf-8.md"
+      - "outils/ieee-754.md"
   - Challenges:
     - "challenges/[0-9]_*"
     - Liste complète:
