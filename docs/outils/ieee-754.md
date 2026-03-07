@@ -94,7 +94,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="bits_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="bits_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <span class="info-input-credential-separator">[</span>
                 <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en binary16">
                 <span class="info-input-credential-separator">]<sup style="font-size: small;">bin<span name="bits_count"></sup></span>
@@ -297,7 +297,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="value_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="value_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="value_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <span class="info-input-credential-separator"></span>
                 <input type="text" id="value_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Valeur décimale">
                 <span class="info-input-credential-separator"><sub style="font-size: small;">10</sub></span>
@@ -509,7 +509,7 @@ hide:
         on_all_elements("dec_bits_not_exact", e => e.style.display = !got_10 && dec_val != 0 ? "" : "none");
 
         // Reset submit
-        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("bits_answer_input").value = "";
     }
 
@@ -523,10 +523,10 @@ hide:
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
             if (submited_bits.join("") === bits.join("")) {
-                submited_bits_icon.className = "info-input-icon icon-success";
+                submited_bits_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_bits_icon.className = "info-input-icon icon-failure";
+                submited_bits_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }
@@ -541,10 +541,10 @@ hide:
         } else {
             let submited_value = parseFloat(submited_value_string.replaceAll(" ", "").replaceAll(",", "."));
             if (Math.abs(submited_value - parseFloat((sign > 0 ? "+" : "-") + int_val.toString() + "." + dec_val.toString())) < 0.05) {
-                submited_value_icon.className = "info-input-icon icon-success";
+                submited_value_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_value_icon.className = "info-input-icon icon-failure";
+                submited_value_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }

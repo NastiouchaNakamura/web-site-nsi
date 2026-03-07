@@ -26,7 +26,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="bits_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="bits_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <span class="info-input-credential-separator">[</span>
                 <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en complément à 2">
                 <span class="info-input-credential-separator">]<sup style="font-size: small;">C2</sup></span>
@@ -82,7 +82,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="number_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="number_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="number_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Nombre en base 10">
                 <span class="info-input-credential-separator"><sub>10</sub></span>
             </div>
@@ -167,9 +167,9 @@ hide:
         on_all_elements("cas_2", e => e.style.display = number >= 0 ? "none" : "");
 
         // Reset submits
-        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("bits_answer_input").value = "";
-        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("number_answer_input").value = "";
     }
 
@@ -183,10 +183,10 @@ hide:
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
             if (submited_bits.join("") === bits.join("")) {
-                submited_bits_icon.className = "info-input-icon icon-success";
+                submited_bits_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_bits_icon.className = "info-input-icon icon-failure";
+                submited_bits_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }
@@ -201,10 +201,10 @@ hide:
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
             if (submited_number === number) {
-                submited_number_icon.className = "info-input-icon icon-success";
+                submited_number_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_number_icon.className = "info-input-icon icon-failure";
+                submited_number_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }

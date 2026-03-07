@@ -22,7 +22,7 @@ Vous pouvez soit **saisir la réponse** dans l'onglet **Anonyme**, ce qui vous p
         <div class="challenge-input">
             <label for="flag_anon">Réponse</label>
             <div class="info-input-div">
-                <div id="icon_anon" class="info-input-icon icon-waiting"></div>
+                <div id="icon_anon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="flag_anon" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
             <input id="submit_anon" class="input-submit" type="button" value="Vérifier" onclick="check_flag_anon('didacticiel');">
@@ -31,14 +31,14 @@ Vous pouvez soit **saisir la réponse** dans l'onglet **Anonyme**, ce qui vous p
         <div class="challenge-input">
             <label for="username">Identifiants</label>
             <div class="info-input-div">
-                <div id="icon_credentials" class="info-input-icon icon-waiting"></div>
+                <div id="icon_credentials" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="username" class="info-input-input" spellcheck="false" placeholder="identifiant">
                 <span class="info-input-credential-separator">:</span>
                 <input type="password" id="password" class="info-input-input" spellcheck="false" placeholder="mot de passe">
             </div>
             <label for="flag">Réponse</label>
             <div class="info-input-div">
-                <div id="icon_flag" class="info-input-icon icon-waiting"></div>
+                <div id="icon_flag" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="flag" class="info-input-input" spellcheck="false" placeholder="réponse">
             </div>
             <input id="submit" class="input-submit" type="button" value="Vérifier" onclick="check_flag('didacticiel');">
