@@ -1,3 +1,7 @@
+.icon {
+    display: inline-block;
+}
+
 .icon-waiting {
     height: 1rem;
     width: 1rem;
@@ -46,6 +50,20 @@
   100% { transform: rotate(360deg); }
 }
 
+.icon-pdf {
+    height: 1rem;
+    width: 1rem;
+    mask-image: url("/assets/icons/pdf.svg");
+    mask-size: 100%;
+}
+
+.icon-jupyter {
+    height: 1rem;
+    width: 1rem;
+    mask-image: url("/assets/icons/jupyter.svg");
+    mask-size: 100%;
+}
+
 .icon-color-white {
     background-color: #ffffff;
 }
@@ -60,4 +78,8 @@
 
 .icon-color-orange {
     background-color: #ecb576;
+}
+
+.icon-color-jupyter-orange {
+    background-color: #f37726;
 }
