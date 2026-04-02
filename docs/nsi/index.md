@@ -59,12 +59,12 @@ Cette section est dédiée **aux élèves de première et terminale NSI** du lyc
 ??? "Annales de contrôle"
     Blabla
 
-    <span style="text-align: center;">[Accéder aux annales de contrôles](nsi/controles/index.md)</span>
+    <span style="text-align: center;">[Accéder aux annales de contrôles](controles/index.md)</span>
 
 ??? "Annales de baccalauréat"
     Blabla
 
-    <span style="text-align: center;">[Accéder aux annales de baccalauréat](nsi/bac/index.md)</span>
+    <span style="text-align: center;">[Accéder aux annales de baccalauréat](bac/index.md)</span>
 
 <script>
     const details = [
