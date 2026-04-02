@@ -1,21 +1,21 @@
 ---
 author: Anaël BARODINE
-title: Exercice complément à 2
+title: Repr. d'entier signé (comp. à 2)
 hide:
   - toc
 ---
 
-=== "Valeur → Complément à 2"
-    ## Valeur → complément à deux
+=== "Valeur → représentation"
+    ## Valeur → représentation
 
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
         Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
-        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
+        Ensemble des entiers signés représentables : ⟦<span name="min_value">?</span> ; <span name="max_value">?</span>⟧.
 
-        Écrire le nombre **<span name="number_based">?</span><sub name="base">?</sub>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
+        Écrire l'entier signé **<span name="number_based">?</span><sub name="base">?</sub>** sur **<span name="bits_count">?</span> bits** en **représentation en complément à 2**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="base = 10; update();">
@@ -62,17 +62,17 @@ hide:
             </p>
         </div>
     
-=== "Complément à 2 → Valeur"
-    ## Complément à deux → valeur
+=== "Représentation → Valeur"
+    ## Représentation → valeur
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
         Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
-        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
+        Ensemble des entiers signés représentables : ⟦<span name="min_value">?</span> ; <span name="max_value">?</span>⟧.
 
-        Trouver **la valeur du nombre** qui est représenté **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup>**.
+        Trouver **la valeur décimale de l'entier signé** qui est écrit en représentation **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup>**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
