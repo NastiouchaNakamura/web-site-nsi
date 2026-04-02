@@ -72,6 +72,11 @@ markdown_extensions:
   # En bas de document : *[HTML]: Hyper Text Markup Language
   - abbr
 
+  # -- Bloc d'info (+) --
+  # Dans un élément écrire '(1)', cet élément doit avoir la classe 'annotate'
+  # Puis plus loin dans la page, bloc commençant par '1.' pour définir le contenu.
+  - attr_list
+
   # -- Blocs de texte colorés --
   # Bloc visible : !!! info
   # Bloc déroulant : ??? danger

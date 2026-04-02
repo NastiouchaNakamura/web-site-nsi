@@ -1,7 +1,8 @@
 nav:
   - NSI:
-    - "nsi/annacontrole.md"
-    - "nsi/annabac.md"
+    - "nsi/index.md"
+    - "nsi/controles/index.md"
+    - "nsi/bac/index.md"
   - Boîte à outils:
     - "outils/index.md"
     - Exercices automatiques:
