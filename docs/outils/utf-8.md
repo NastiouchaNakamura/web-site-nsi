@@ -1,17 +1,17 @@
 ---
 author: Anaël BARODINE
-title: Exercice UTF-8
+title: Repr. de texte (UTF-8)
 hide:
   - toc
 ---
 
-=== "Point de code → UTF-8"
-    ## Point de code → UTF-8
+=== "Point de code → représentation"
+    ## Point de code → représentation
 
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Représenter le caractère « <span name="character">?</span> », dont le **point de code est <span name="codepoint_based">?</span><sub name="base">?</sub>** en **représentation selon la norme UTF-8**.
+        Représenter le caractère « <span name="character">?</span> », dont le **point de code est <span name="codepoint_based">?</span><sub name="base">?</sub>** en **représentation en UTF-8**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau point de code (décimal)" onclick="base = 10; update();">
@@ -37,7 +37,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="bits_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="bits_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <span class="info-input-credential-separator">[</span>
                 <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en UTF-8">
                 <span class="info-input-credential-separator">]<sup style="font-size: small;">UTF-8</sup></span>
@@ -123,20 +123,20 @@ hide:
                 [1111&nbsp;0**<span style="color: #00c853;">xxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
             </p>
             <p>
-                On place **le point de code en binaire à la place des <span style="color: #00c853;">x</span>** de la représentation, en ajoutant **des 0 à gauche** si nécessaire (pour compléter les 21 bits prévus), pour obtenir **la représentation UTF-8** :
+                On place **le point de code en binaire à la place des <span style="color: #00c853;">x</span>** de la représentation, en ajoutant **des 0 à gauche** si nécessaire (pour compléter les 21 bits prévus), pour obtenir **la représentation en UTF-8** :
             </p>
             <p style="text-align: center;">
                 [1111&nbsp;0**<span name="bits_4c_1" style="color: #00c853;">xxxx</span>**&nbsp;10**<span name="bits_4c_2" style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span name="bits_4c_3" style="color: #00c853;">xx&nbsp;xxxx</span>**&nbsp;10**<span name="bits_4c_4" style="color: #00c853;">xx&nbsp;xxxx</span>**]<sup style="small">UTF-8</sup>
             </p>
         </div>
     
-=== "UTF-8 → point de code"
-    ## UTF-8 → point de code
+=== "Représentation → point de code"
+    ## Représentation → point de code
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
-        Trouver **le point de code** du caractère qui est représenté **en UTF-8** par les bits suivnats **[<span name="bits">?</span>]<sup style="small">UTF-8</sup>**.
+        Trouver **le point de code** du caractère qui est **représenté en UTF-8** par les bits **[<span name="bits">?</span>]<sup style="small">UTF-8</sup>**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau point de code" onclick="update();">
@@ -160,7 +160,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="number_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="number_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="number_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Point de code en base 10">
                 <span class="info-input-credential-separator"><sub>10</sub></span>
             </div>
@@ -355,9 +355,9 @@ hide:
         on_all_elements("4_byte_case", e => e.style.display = bytes_count == 3 ? "" : "none");
 
         // Reset submit
-        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("bits_answer_input").value = "";
-        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("number_answer_input").value = "";
     }
 
@@ -371,10 +371,10 @@ hide:
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
             if (submited_bits.join("") === bits.join("")) {
-                submited_bits_icon.className = "info-input-icon icon-success";
+                submited_bits_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_bits_icon.className = "info-input-icon icon-failure";
+                submited_bits_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }
@@ -389,10 +389,10 @@ hide:
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
             if (submited_number === codepoint) {
-                submited_number_icon.className = "info-input-icon icon-success";
+                submited_number_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_number_icon.className = "info-input-icon icon-failure";
+                submited_number_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }

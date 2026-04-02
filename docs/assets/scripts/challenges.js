@@ -9,7 +9,7 @@ function check_flag_anon(challenge_id) {
         alert("La réponse saisie contient des caractères invalides.");
     } else {
         icon = document.getElementById("icon_anon");
-        icon.className = "info-input-icon icon-loading";
+        icon.className = "info-input-icon icon-loading icon-color-white";
 
         fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
@@ -19,20 +19,20 @@ function check_flag_anon(challenge_id) {
                 case 200:
                     response.json().then(json => {
                         if (json.data) {
-                            icon.className = "info-input-icon icon-success";
+                            icon.className = "info-input-icon icon-success icon-color-green";
                             success("Bonne réponse !");
                         } else {
-                            icon.className = "info-input-icon icon-failure";
+                            icon.className = "info-input-icon icon-failure icon-color-red";
                         }
                     });
 
                     document.getElementById("submit_anon").disabled = true;
                     break;
                 case 429:
-                    icon.className = "info-input-icon icon-timeout";
+                    icon.className = "info-input-icon icon-timeout icon-color-orange";
                     break;
                 default:
-                    icon.className = "info-input-icon icon-error";
+                    icon.className = "info-input-icon icon-error icon-color-orange";
                     break;
             }
 
@@ -49,7 +49,7 @@ function check_flag_anon(challenge_id) {
                 }
                 wait_time--;
             }, 1_000);
-        }).catch(() => icon.className = "info-input-icon icon-error");
+        }).catch(() => icon.className = "info-input-icon icon-error icon-color-orange");
     }
 }
 
@@ -68,8 +68,8 @@ function check_flag(challenge_id) {
     } else {
         icon_flag = document.getElementById("icon_flag");
         icon_credentials = document.getElementById("icon_credentials");
-        icon_flag.className = "info-input-icon icon-loading";
-        icon_credentials.className = "info-input-icon icon-loading";
+        icon_flag.className = "info-input-icon icon-loading icon-color-white";
+        icon_credentials.className = "info-input-icon icon-loading icon-color-white";
 
         fetch(`${API_URL}challenge/?id=${challenge_id}&flag=${flag}`, {
             method: "GET",
@@ -80,14 +80,14 @@ function check_flag(challenge_id) {
         }).then(response => {
             switch (response.status) {
                 case 200:
-                    icon_credentials.className = "info-input-icon icon-success";
+                    icon_credentials.className = "info-input-icon icon-success icon-color-green";
 
                     response.json().then(json => {
                         if (json.data) {
-                            icon_flag.className = "info-input-icon icon-success";
+                            icon_flag.className = "info-input-icon icon-success icon-color-green";
                             success("Bonne réponse !");
                         } else {
-                            icon_flag.className = "info-input-icon icon-failure";
+                            icon_flag.className = "info-input-icon icon-failure icon-color-red";
                         }
                     });
 
@@ -95,16 +95,16 @@ function check_flag(challenge_id) {
                     setTimeout(() => document.getElementById("submit").disabled = false, 60_000);
                     break;
                 case 401:
-                    icon_credentials.className = "info-input-icon icon-failure";
-                    icon_flag.className = "info-input-icon icon-waiting";
+                    icon_credentials.className = "info-input-icon icon-failure icon-color-red";
+                    icon_flag.className = "info-input-icon icon-waiting icon-color-white";
                     break;
                 case 429:
-                    icon_credentials.className = "info-input-icon icon-success";
-                    icon_flag.className = "info-input-icon icon-timeout";
+                    icon_credentials.className = "info-input-icon icon-success icon-color-green";
+                    icon_flag.className = "info-input-icon icon-timeout icon-color-orange";
                     break;
                 default:
-                    icon_credentials.className = "info-input-icon icon-error";
-                    icon_flag.className = "info-input-icon icon-error";
+                    icon_credentials.className = "info-input-icon icon-error icon-color-orange";
+                    icon_flag.className = "info-input-icon icon-error icon-color-orange";
                     break;
             }
             
@@ -122,8 +122,8 @@ function check_flag(challenge_id) {
                 wait_time--;
             }, 1_000);
         }).catch(() => {
-            icon_flag.className = "info-input-icon icon-error";
-            icon_credentials.className = "info-input-icon icon-error";
+            icon_flag.className = "info-input-icon icon-error icon-color-orange";
+            icon_credentials.className = "info-input-icon icon-error icon-color-orange";
         });
     }
 }
@@ -152,13 +152,13 @@ function post_profile() {
         alert("Veuillez saisir votre classe.");
     } else {
         icon_username = document.getElementById("icon_username");
-        icon_username.className = "info-input-icon icon-loading";
+        icon_username.className = "info-input-icon icon-loading icon-color-white";
         icon_password = document.getElementById("icon_password");
-        icon_password.className = "info-input-icon icon-loading";
+        icon_password.className = "info-input-icon icon-loading icon-color-white";
         icon_password_repeat = document.getElementById("icon_password_repeat");
-        icon_password_repeat.className = "info-input-icon icon-loading";
+        icon_password_repeat.className = "info-input-icon icon-loading icon-color-white";
         icon_infos = document.getElementById("icon_infos");
-        icon_infos.className = "info-input-icon icon-loading";
+        icon_infos.className = "info-input-icon icon-loading icon-color-white";
 
         fetch(`${API_URL}profile/`, {
             method: "POST",
@@ -173,37 +173,37 @@ function post_profile() {
         }).then(response => {
             switch (response.status) {
                 case 201:
-                    icon_username.className = "info-input-icon icon-success";
-                    icon_password.className = "info-input-icon icon-success";
-                    icon_password_repeat.className = "info-input-icon icon-success";
-                    icon_infos.className = "info-input-icon icon-success";
+                    icon_username.className = "info-input-icon icon-success icon-color-green";
+                    icon_password.className = "info-input-icon icon-success icon-color-green";
+                    icon_password_repeat.className = "info-input-icon icon-success icon-color-green";
+                    icon_infos.className = "info-input-icon icon-success icon-color-green";
 
                     document.getElementById("post_submit").disabled = true;
                     document.getElementById("post_submit").value = "Le profil a bien été créé !";
                     success();
                     break;
                 case 409:
-                    icon_username.className = "info-input-icon icon-failure";
-                    icon_password.className = "info-input-icon icon-waiting";
-                    icon_password_repeat.className = "info-input-icon icon-waiting";
-                    icon_infos.className = "info-input-icon icon-waiting";
+                    icon_username.className = "info-input-icon icon-failure icon-color-red";
+                    icon_password.className = "info-input-icon icon-waiting icon-color-white";
+                    icon_password_repeat.className = "info-input-icon icon-waiting icon-color-white";
+                    icon_infos.className = "info-input-icon icon-waiting icon-color-white";
 
                     alert(`Le pseudo ${username} est déjà utilisé.`)
                     break;
                 default:
-                    icon_username.className = "info-input-icon icon-error";
-                    icon_password.className = "info-input-icon icon-error";
-                    icon_password_repeat.className = "info-input-icon icon-error";
-                    icon_infos.className = "info-input-icon icon-error";
+                    icon_username.className = "info-input-icon icon-error icon-color-orange";
+                    icon_password.className = "info-input-icon icon-error icon-color-orange";
+                    icon_password_repeat.className = "info-input-icon icon-error icon-color-orange";
+                    icon_infos.className = "info-input-icon icon-error icon-color-orange";
 
                     alert("Une erreur s'est produite, le profil n'a pas pu être créé.");
                     break;
             }
         }).catch(() => {
-            icon_username.className = "info-input-icon icon-error";
-            icon_password.className = "info-input-icon icon-error";
-            icon_password_repeat.className = "info-input-icon icon-error";
-            icon_infos.className = "info-input-icon icon-error";
+            icon_username.className = "info-input-icon icon-error icon-color-orange";
+            icon_password.className = "info-input-icon icon-error icon-color-orange";
+            icon_password_repeat.className = "info-input-icon icon-error icon-color-orange";
+            icon_infos.className = "info-input-icon icon-error icon-color-orange";
             alert("Une erreur s'est produite, le profil n'a pas pu être créé.");
         });
     }
@@ -227,11 +227,11 @@ function patch_profile() {
         alert("Le mot de passe répété ne correspond pas au nouveau mot de passe.");
     } else {
         icon_credentials = document.getElementById("icon_credentials");
-        icon_credentials.className = "info-input-icon icon-loading";
+        icon_credentials.className = "info-input-icon icon-loading icon-color-white";
         icon_new_password = document.getElementById("icon_new_password");
-        icon_new_password.className = "info-input-icon icon-loading";
+        icon_new_password.className = "info-input-icon icon-loading icon-color-white";
         icon_new_password_repeat = document.getElementById("icon_new_password_repeat");
-        icon_new_password_repeat.className = "info-input-icon icon-loading";
+        icon_new_password_repeat.className = "info-input-icon icon-loading icon-color-white";
 
         fetch(`${API_URL}profile/`, {
             method: "PATCH",
@@ -245,32 +245,32 @@ function patch_profile() {
         }).then(response => {
             switch (response.status) {
                 case 200:
-                    icon_credentials.className = "info-input-icon icon-success";
-                    icon_new_password.className = "info-input-icon icon-success";
-                    icon_new_password_repeat.className = "info-input-icon icon-success";
+                    icon_credentials.className = "info-input-icon icon-success icon-color-green";
+                    icon_new_password.className = "info-input-icon icon-success icon-color-green";
+                    icon_new_password_repeat.className = "info-input-icon icon-success icon-color-green";
 
                     document.getElementById("patch_submit").disabled = true;
                     document.getElementById("patch_submit").value = "Le mot de passe a bien été modifié !";
                     success();
                     break;
                 case 401:
-                    icon_credentials.className = "info-input-icon icon-failure";
-                    icon_new_password.className = "info-input-icon icon-waiting";
-                    icon_new_password_repeat.className = "info-input-icon icon-waiting";
+                    icon_credentials.className = "info-input-icon icon-failure icon-color-red";
+                    icon_new_password.className = "info-input-icon icon-waiting icon-color-white";
+                    icon_new_password_repeat.className = "info-input-icon icon-waiting icon-color-white";
 
                     break;
                 default:
-                    icon_credentials.className = "info-input-icon icon-error";
-                    icon_new_password.className = "info-input-icon icon-error";
-                    icon_new_password_repeat.className = "info-input-icon icon-error";
+                    icon_credentials.className = "info-input-icon icon-error icon-color-orange";
+                    icon_new_password.className = "info-input-icon icon-error icon-color-orange";
+                    icon_new_password_repeat.className = "info-input-icon icon-error icon-color-orange";
 
                     alert("Une erreur s'est produite, le mot de passe n'a pas pu être modifié.");
                     break;
             }
         }).catch(() => {
-            icon_credentials.className = "info-input-icon icon-error";
-            icon_new_password.className = "info-input-icon icon-error";
-            icon_new_password_repeat.className = "info-input-icon icon-error";
+            icon_credentials.className = "info-input-icon icon-error icon-color-orange";
+            icon_new_password.className = "info-input-icon icon-error icon-color-orange";
+            icon_new_password_repeat.className = "info-input-icon icon-error icon-color-orange";
             alert("Une erreur s'est produite, le mot de passe n'a pas pu être modifié.");
         });
     }
@@ -455,9 +455,9 @@ function make_table_details() {
                 construct_html(table_detail, challenges, profiles);
             });
         } else {
-            document.getElementById("table_details_icon").className = "icon-error";
+            document.getElementById("table_details_icon").className = "icon-error icon-color-orange";
         }
-    }).catch(() => document.getElementById("table_details_icon").className = "icon-error");
+    }).catch(() => document.getElementById("table_details_icon").className = "icon-error icon-color-orange");
 }
 
 function make_table_challenges() {

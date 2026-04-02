@@ -1,21 +1,21 @@
 ---
 author: Anaël BARODINE
-title: Exercice complément à 2
+title: Repr. d'entier signé (comp. à 2)
 hide:
   - toc
 ---
 
-=== "Valeur → Complément à 2"
-    ## Valeur → complément à deux
+=== "Valeur → représentation"
+    ## Valeur → représentation
 
     <a href="#__tabbed_1_2">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
         Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
-        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
+        Ensemble des entiers signés représentables : ⟦<span name="min_value">?</span> ; <span name="max_value">?</span>⟧.
 
-        Écrire le nombre **<span name="number_based">?</span><sub name="base">?</sub>** sur **<span name="bits_count">?</span> bits** en **représentation par complément à 2**.
+        Écrire l'entier signé **<span name="number_based">?</span><sub name="base">?</sub>** sur **<span name="bits_count">?</span> bits** en **représentation en complément à 2**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre (décimal)" onclick="base = 10; update();">
@@ -26,7 +26,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="bits_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="bits_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="bits_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <span class="info-input-credential-separator">[</span>
                 <input type="text" id="bits_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Bits en complément à 2">
                 <span class="info-input-credential-separator">]<sup style="font-size: small;">C2</sup></span>
@@ -62,17 +62,17 @@ hide:
             </p>
         </div>
     
-=== "Complément à 2 → Valeur"
-    ## Complément à deux → valeur
+=== "Représentation → Valeur"
+    ## Représentation → valeur
 
     <a href="#__tabbed_1_1">Exercice inverse ici</a>
 
     !!! abstract "Énoncé"
         Choix du nombre de bits : <label>n = <input type="number" min="2" max="32" value="8" style="font-size: 1em;" onchange="bits_count = parseInt(this.value); update();"></label>
         
-        Nombres compris entre <span name="min_value">?</span> et <span name="max_value">?</span>.
+        Ensemble des entiers signés représentables : ⟦<span name="min_value">?</span> ; <span name="max_value">?</span>⟧.
 
-        Trouver **la valeur du nombre** qui est représenté **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup>**.
+        Trouver **la valeur décimale de l'entier signé** qui est écrit en représentation **en complément à 2** par les bits **[<span name="bits">?</span>]<sup style="small">C2</sup>**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
@@ -82,7 +82,7 @@ hide:
         <div class="challenge-input">
             <label class="info-input-label" for="number_answer_input">Réponse</label>
             <div class="info-input-div">
-                <div id="number_answer_icon" class="info-input-icon icon-waiting"></div>
+                <div id="number_answer_icon" class="info-input-icon icon-waiting icon-color-white"></div>
                 <input type="text" id="number_answer_input" class="info-input-input" style="width: revert; field-sizing: content;" spellcheck="false" placeholder="Nombre en base 10">
                 <span class="info-input-credential-separator"><sub>10</sub></span>
             </div>
@@ -167,9 +167,9 @@ hide:
         on_all_elements("cas_2", e => e.style.display = number >= 0 ? "none" : "");
 
         // Reset submits
-        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("bits_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("bits_answer_input").value = "";
-        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting";
+        document.getElementById("number_answer_icon").className = "info-input-icon icon-waiting icon-color-white";
         document.getElementById("number_answer_input").value = "";
     }
 
@@ -183,10 +183,10 @@ hide:
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
             if (submited_bits.join("") === bits.join("")) {
-                submited_bits_icon.className = "info-input-icon icon-success";
+                submited_bits_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_bits_icon.className = "info-input-icon icon-failure";
+                submited_bits_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }
@@ -201,10 +201,10 @@ hide:
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
             if (submited_number === number) {
-                submited_number_icon.className = "info-input-icon icon-success";
+                submited_number_icon.className = "info-input-icon icon-success icon-color-green";
                 success();
             } else {
-                submited_number_icon.className = "info-input-icon icon-failure";
+                submited_number_icon.className = "info-input-icon icon-failure icon-color-red";
             }
         }
     }
