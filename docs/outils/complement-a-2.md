@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: Repr. d'entier signé (comp. à 2)
+title: Repr. des entiers signés (comp. à 2)
 hide:
   - toc
 ---
@@ -178,7 +178,7 @@ hide:
         let submited_bits_string = document.getElementById("bits_answer_input").value;
 
         if (!/^[01 ]+$/.test(submited_bits_string)) {
-            submited_bits_icon.className = "info-input-icon icon-error";
+            submited_bits_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez ne saisir que des 0 et des 1 comme réponse. Il est possible de saisir des espaces pour séparer visuellement les bits.");
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
@@ -196,7 +196,7 @@ hide:
         let submited_number_string = document.getElementById("number_answer_input").value;
 
         if (!/^[-+\d ]+$/.test(submited_number_string)) {
-            submited_number_icon.className = "info-input-icon icon-error";
+            submited_number_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez saisir un nombre en décimal, dont le signe - si négatif, comme réponse.");
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
