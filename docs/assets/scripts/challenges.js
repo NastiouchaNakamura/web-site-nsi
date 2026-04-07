@@ -277,7 +277,7 @@ function patch_profile() {
 }
 
 function success() {
-    const duration = 15 * 1000;
+    const duration = 5 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
     const randomInRange = (min, max) => Math.random() * (max - min) + min;

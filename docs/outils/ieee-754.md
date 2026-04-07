@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: Repr. de nombre à virgule en virgule flottante (IEEE-754)
+title: Repr. des nombres à virgule en virgule flottante (IEEE-754)
 hide:
   - toc
 ---
@@ -17,7 +17,7 @@ hide:
             <option value="binary64">Double précision — binary64 (64 bits)</option>
         </select></label>
         
-        Écrire le nombre à virgule **<span name="sign">?</span><span name="int_val">?</span>,<span name="dec_val">?</span><sub>10</sub>** sur **<span name="bits_count">?</span> bits** en **représentation en virgule flottante “<span name="precision">?</span>”** (norme IEEE-754).
+        Écrire le nombre à virgule **<span name="sign">?</span><span name="int_val">?</span>,<span name="dec_val">?</span><sub>10</sub>** en **représentation en virgule flottante “<span name="precision">?</span>”** (norme IEEE-754).
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
@@ -36,7 +36,7 @@ hide:
         | Quadr. précision — **binary128** | 128 | 1 | 112 | 15 | 16 383 |
         | Octup. précision — **binary256** | 256 | 1 | 236 | 19 | 262 143 |
 
-        Pour **chaque précision**, le principe est identique : on **représente** un **nombre à virgule** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
+        Pour **chaque précision**, le principe est identique : on **représente** un **nombre à virgule** par le biais de son **écriture en notation scientifique en binaire** de la forme :
 
         <p style="text-align: center;">
             **s × m<sub>2</sub> × 2<sup>e<sub>10</sub></sup>**, avec…
@@ -51,18 +51,18 @@ hide:
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 30%;">
                 <p style="text-align: center;">
-                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
+                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
                 </p>
             </div>
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 31%;">
                 <p style="text-align: center;">
-                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
+                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
                 </p>
             </div>
         </div>
 
-        **Ces trois valeurs s, m et e** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
+        **Ces trois valeurs s, e et m** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
 
         <div style="display: flex; flex-direction: row;">
             <div style="width: 31%;">
@@ -73,13 +73,13 @@ hide:
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 30%;">
                 <p style="text-align: center;">
-                    **[partie fractionnaire de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
+                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
                 </p>
             </div>
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 31%;">
                 <p style="text-align: center;">
-                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
+                    **[partie fractionnaire de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
                 </p>
             </div>
         </div>
@@ -134,7 +134,7 @@ hide:
                         0,<span name="dec_val"></span><sub>10</sub> = 0,<span name="dec_first_bits"></span>…<sub>2</sub>
                     </p>
                     <p>
-                        **On n'est pas tombé sur 1,0** après une multiplication, et il n'y a **aucune période** dans cette partie fractionnaire, donc **on a continué les calculs** jusqu'à avoir **assez de bits pour la mantisse**.
+                        **On n'est pas tombé sur 1,0** après une multiplication, et il n'y a **aucune période** identifiable, donc **on a continué les calculs** jusqu'à avoir **assez de bits pour la mantisse**.
                     </p>
                 </div>
                 <div name="dec_bits_no_cycle_10">
@@ -156,7 +156,7 @@ hide:
                         0,<span name="dec_val"></span><sub>10</sub> = 0,<span name="dec_first_bits"></span><span name="dec_bits_cycle" style="text-decoration: overline;"></span><sub>2</sub>
                     </p>
                     <p>
-                        On est tombé sur **une période** (partie souslignée), ce qui nous a permis **d'arrêter les calculs**.
+                        On est tombé sur **une période** (partie soulignée), ce qui nous a permis **d'arrêter les calculs**.
                     </p>
                 </div>
                 <div name="dec_bits_is_0">
@@ -184,20 +184,20 @@ hide:
             <span name="equal_sign"></span> <span name="sign" style="color: #ff9100;"></span><span style="color: #00c853;">1,</span><span name="floating_point_dec_bits" style="color: #00c853;"></span><sub>2</sub> × 2<sup><span name="exponent" style="color: #00b0ff;"></span></sup>
         </p>
 
-        On identifie **le signe <span style="color: #ff9100;">s</span> = <span style="color: #ff9100;"><span name="sign"></span>1</span>**, **la mantisse <span style="color: #00c853;">m</span> = <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub>** et **l'exposant <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub>**.
+        On identifie **le signe <span style="color: #ff9100;">s</span> = <span style="color: #ff9100;"><span name="sign"></span>1</span>**, **l'exposant <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub>** et **la mantisse <span style="color: #00c853;">m</span> = <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub>**.
 
-        ### ③ Déterminer les représentations de s, m et e
+        ### ③ Déterminer les représentations de s, e et m
 
-        La **norme IEEE-754**, pour la **représentation flottante “<span name="precision"></span>”** nous donne les **méthodes de représentation** et le **nombre de bits** pour **<span style="color: #ff9100;">s</span>**, **<span style="color: #00c853;">m</span>** et **<span style="color: #00b0ff;">e</span>** :
+        La **norme IEEE-754**, pour la **représentation flottante “<span name="precision"></span>”** nous donne les **méthodes de représentation** et le **nombre de bits** pour **<span style="color: #ff9100;">s</span>**, **<span style="color: #00b0ff;">e</span>** et **<span style="color: #00c853;">m</span>** :
         
         <p style="text-align: center;">
             <span style="color: #ff9100;">s</span> = <span style="color: #ff9100;"><span name="sign"></span>1</span> → [0 si <span style="color: #ff9100;">s</span> = +1, 1 si <span style="color: #ff9100;">s</span> = -1] = [<span name="sign_bit" style="color: #ff9100;"></span>]
         </p>
         <p style="text-align: center;">
-            <span style="color: #00c853;">m</span> = <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub> → [partie fractionnaire de <span style="color: #00c853;">m</span> sur <span name="mantissa_length"></span> bits] = [<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>]
+            <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub> → [<span style="color: #00b0ff;">e</span> + δ<sub>e</sub> sur <span name="exponent_length"></span> bits] = [<span name="exponent" style="color: #00b0ff;"></span> + <span name="bias"></span> = <span name="biased_exponent"></span> sur <span name="exponent_length"></span> bits] = [<span name="biased_exponent_bits" style="color: #00b0ff;"></span>]
         </p>
         <p style="text-align: center;">
-            <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub> → [<span style="color: #00b0ff;">e</span> + δ<sub>e</sub> sur <span name="exponent_length"></span> bits] = [<span name="exponent" style="color: #00b0ff;"></span> + <span name="bias"></span> = <span name="biased_exponent"></span> sur <span name="exponent_length"></span> bits] = [<span name="biased_exponent_bits" style="color: #00b0ff;"></span>]
+            <span style="color: #00c853;">m</span> = <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub> → [partie fractionnaire de <span style="color: #00c853;">m</span> sur <span name="mantissa_length"></span> bits] = [<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>]
         </p>
 
         ### ④ Combiner les représentations
@@ -220,7 +220,7 @@ hide:
             <option value="binary64">Double précision — binary64 (64 bits)</option>
         </select></label>
         
-        Trouver **la valeur du nombre non-entier** (*arrondie au centième si besoin*) qui est représenté en **représentation flottante “<span name="precision">?</span>”** par les bits [<span name="sign_bit"></span><span name="combined_bits"><span name="combined_biased_exponent_bits"></span><span name="floating_point_dec_bits_spaced"></span></span>]<sup>binary<span name="bits_count">?</span></sup>.
+        Trouver **la valeur du nombre à virgule** (*arrondie au centième si besoin*) qui est représenté en **représentation flottante “<span name="precision">?</span>”** par les bits **[<span name="sign_bit"></span><span name="combined_bits"><span name="combined_biased_exponent_bits"></span><span name="floating_point_dec_bits_spaced"></span></span>]<sup>binary<span name="bits_count">?</span></sup>**.
 
         <div class="challenge-input">
             <input class="input-submit" type="button" value="Nouveau nombre" onclick="update();">
@@ -229,7 +229,7 @@ hide:
     ??? tip "Rappel de la norme IEEE-754"
         <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
 
-        La **norme IEEE-754** décrit **un ensemble de représentations des nombres non-entiers**, sur différentes tailles d'octets :
+        La **norme IEEE-754** décrit **un ensemble de représentations des nombres à virgule**, sur différentes tailles d'octets :
 
         | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
         |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -239,7 +239,7 @@ hide:
         | Quadr. précision — **binary128** | 128 | 1 | 112 | 15 | 16 383 |
         | Octup. précision — **binary256** | 256 | 1 | 236 | 19 | 262 143 |
 
-        Pour **chaque précision**, le principe est identique : on **représente** un **nombre non-entier** par le biais de son **écriture binaire en notation à virgule flottante** (qu'on appelle aussi “**écriture scientifique**”) de la forme :
+        Pour **chaque précision**, le principe est identique : on **représente** un **nombre à virgule** par le biais de son **écriture en notation scientifique en binaire** de la forme :
 
         <p style="text-align: center;">
             **s × m<sub>2</sub> × 2<sup>e<sub>10</sub></sup>**, avec…
@@ -254,18 +254,18 @@ hide:
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 30%;">
                 <p style="text-align: center;">
-                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
+                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
                 </p>
             </div>
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 31%;">
                 <p style="text-align: center;">
-                    **e** ∈ ℤ,<br> l'**exposant**, écrit en décimal.
+                    **m** ∈ [1 ; 2[,<br> la **mantisse**, écrite en binaire.
                 </p>
             </div>
         </div>
 
-        **Ces trois valeurs s, m et e** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
+        **Ces trois valeurs s, e et m** sont **représentées** par les représentations de la **norme IEEE-754** de manière différente pour chacune :
 
         <div style="display: flex; flex-direction: row;">
             <div style="width: 31%;">
@@ -276,18 +276,18 @@ hide:
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 30%;">
                 <p style="text-align: center;">
-                    **[partie fractionnaire de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
+                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
                 </p>
             </div>
             <div style="width: 1px; margin-left: calc(2% - 0.1px); margin-right: calc(2% - 0.1px); background-color: var(--md-admonition-fg-color);"></div>
             <div style="width: 31%;">
                 <p style="text-align: center;">
-                    **[e + δ<sub>e</sub>]** pour **e**,<br>δ<sub>e</sub> sert à empêcher les valeurs négatives.
+                    **[partie fractionnaire de m]** pour **m**,<br>ce qui revient à écrire les bits uniquement à **droite de la virgule** de m.
                 </p>
             </div>
         </div>
 
-        La **représentation complète** du **nombre non-entier de départ** sera la **concaténation des représentations** de **s**, **e** et **m**, dans cet ordre :
+        La **représentation complète** du **nombre à virgule de départ** sera la **concaténation des représentations** de **s**, **e** et **m**, dans cet ordre :
 
         <p style="text-align: center;">
             **[0 si s = +1, 1 si s = -1 ⋮ e + δ<sub>e</sub> ⋮ partie fractionnaire de m]<sup>précision</sup>**,<br>où **précision** est **une des précisions** proposées par la norme : **binary16**, **binary32**, etc…
@@ -308,37 +308,37 @@ hide:
     ??? success "Correction"
         ### ① Identifier les représentations de s, m et e
 
-        On identifie **les représentations de <span style="color: #ff9100;">s</span>, <span style="color: #00c853;">m</span> et <span style="color: #00b0ff;">e</span>**, à l'aide du nombre de bits de chaque, indiquées par la **norme IEEE-754** pour la **représentation flottante “<span name="precision"></span>”** :
+        On identifie **les représentations de <span style="color: #ff9100;">s</span>, <span style="color: #00b0ff;">e</span> et <span style="color: #00c853;">m</span>**, à l'aide du nombre de bits de chaque, indiquées par la **norme IEEE-754** pour la **représentation flottante “<span name="precision"></span>”** :
 
         <p style="text-align: center;">
             [<span name="sign_bit" style="color: #ff9100;"></span><span name="combined_bits"><span name="combined_biased_exponent_bits" style="color: #00b0ff;"></span><span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span></span>]<sup>binary<span name="bits_count"></span></sup>
         </p>
 
-        On a donc **[<span name="sign_bit" style="color: #ff9100;"></span>] pour <span style="color: #ff9100;">s</span>**, **[<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] pour <span style="color: #00c853;">m</span>** et **[<span name="biased_exponent_bits" style="color: #00b0ff;"></span>] pour <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span>**.
+        On a donc **[<span name="sign_bit" style="color: #ff9100;"></span>] pour <span style="color: #ff9100;">s</span>**, **[<span name="biased_exponent_bits" style="color: #00b0ff;"></span>] pour <span style="color: #00b0ff;">e</span> = <span style="color: #00b0ff;" name="exponent"></span>** et **[<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] pour <span style="color: #00c853;">m</span>**.
 
-        ### ② Retrouver les valeurs de s, m et e
+        ### ② Retrouver les valeurs de s, e et m
 
-        À l'aide des indications de la **norme IEEE-754**, pour la **représentation en virgule flottante “<span name="precision"></span>”** on retrouve les **valeurs** de **<span style="color: #ff9100;">s</span>**, **<span style="color: #00c853;">m</span>** et **<span style="color: #00b0ff;">e</span>** :
+        À l'aide des indications de la **norme IEEE-754**, pour la **représentation en virgule flottante “<span name="precision"></span>”** on retrouve les **valeurs** de **<span style="color: #ff9100;">s</span>**, **<span style="color: #00b0ff;">e</span>** et **<span style="color: #00c853;">m</span>** :
 
         <p style="text-align: center;">
             <span style="color: #ff9100;">s</span> → [0 si <span style="color: #ff9100;">s</span> = +1, 1 si <span style="color: #ff9100;">s</span> = -1], donc [<span name="sign_bit" style="color: #ff9100;"></span>] représente <span style="color: #ff9100;">s</span> = <span style="color: #ff9100;"><span name="sign"></span>1</span>
         </p>
         <p style="text-align: center;">
-            <span style="color: #00c853;">m</span> → [partie fractionnaire de <span style="color: #00c853;">m</span>], donc [<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] représente <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub>
+            <span style="color: #00b0ff;">e</span> → [<span style="color: #00b0ff;">e</span> + δ<sub>e</sub>], donc <span style="color: #00b0ff;">e</span> = <span name="biased_exponent"></span> - δ<sub>e</sub> = <span name="biased_exponent"></span> - <span name="bias"></span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub>
         </p>
         <p style="text-align: center;">
-            <span style="color: #00b0ff;">e</span> → [<span style="color: #00b0ff;">e</span> + δ<sub>e</sub>], donc <span style="color: #00b0ff;">e</span> = <span name="biased_exponent"></span> - δ<sub>e</sub> = <span name="biased_exponent"></span> - <span name="bias"></span> = <span style="color: #00b0ff;" name="exponent"></span><sub>10</sub>
+            <span style="color: #00c853;">m</span> → [partie fractionnaire de <span style="color: #00c853;">m</span>], donc [<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] représente <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub>
         </p>
 
         ### ③ Recomposer le nombre en notation à virgule flottante
 
-        On utilise **<span style="color: #ff9100;">s</span>**, **<span style="color: #00c853;">m</span>** et **<span style="color: #00b0ff;">e</span>** pour **écrire le nombre en binaire** en **notation à virgule flottante** :
+        On utilise **<span style="color: #ff9100;">s</span>**, **<span style="color: #00b0ff;">e</span>** et **<span style="color: #00c853;">m</span>** pour **écrire le nombre en binaire** en **notation à virgule flottante** :
 
         <p style="text-align: center;">
             <span name="equal_sign"></span> <span name="sign" style="color: #ff9100;"></span><span style="color: #00c853;">1,</span><span name="floating_point_dec_bits" style="color: #00c853;"></span><sub>2</sub> × 2<sup><span name="exponent" style="color: #00b0ff;"></span></sup>
         </p>
 
-        On a donc le nombre non-entier binaire :
+        On a donc le nombre à virgule binaire :
 
         <p style="text-align: center;">
             <span name="sign"></span><span name="int_bits"></span>,<span name="dec_bits_full"></span><sub>2</sub>
@@ -476,7 +476,7 @@ hide:
         // Display of all variables
         on_all_elements("bits_count", e => e.innerText = bits_count);
         on_all_elements("precision", e => e.innerText = precision);
-        on_all_elements("sign", e => e.innerText = sign == -1 ? "-" : "+")
+        on_all_elements("sign", e => e.innerText = sign == -1 ? "-" : "+");
         on_all_elements("int_val", e => e.innerText = number_to_string(int_val));
         on_all_elements("int_bits", e => e.innerText = number_to_string(int_bits.join(""), 2));
         on_all_elements("dec_val", e => e.innerText = dec_val);
@@ -487,7 +487,7 @@ hide:
         on_all_elements("floating_point_dec_bits", e => e.innerText = mantissa.slice(1).join(""));
         on_all_elements("floating_point_dec_bits_spaced", e => e.innerText = number_to_string(mantissa.slice(1).join(""), 2));
         on_all_elements("exponent", e => e.innerText = exponent);
-        on_all_elements("sign_bit", e => e.innerText = sign == -1 ? "1" : "0")
+        on_all_elements("sign_bit", e => e.innerText = sign == -1 ? "1" : "0");
         on_all_elements("mantissa_length", e => e.innerText = mantissa_length - 1);
         on_all_elements("exponent_length", e => e.innerText = bits_count - mantissa_length);
         on_all_elements("bias", e => e.innerText = 2 ** (bits_count - mantissa_length - 1) - 1);
@@ -518,7 +518,7 @@ hide:
         let submited_bits_string = document.getElementById("bits_answer_input").value;
 
         if (!/^[01 ]+$/.test(submited_bits_string)) {
-            submited_bits_icon.className = "info-input-icon icon-error";
+            submited_bits_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez ne saisir que des 0 et des 1 comme réponse. Il est possible de saisir des espaces pour séparer visuellement les bits.");
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
@@ -536,7 +536,7 @@ hide:
         let submited_value_string = document.getElementById("value_answer_input").value;
 
         if (!/^[-+]? *\d+[,\.]\d+$/.test(submited_value_string)) {
-            submited_value_icon.className = "info-input-icon icon-error";
+            submited_value_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez saisir un nombre avec virgule en décimal, avec le signe (exemple : “-3,6”).");
         } else {
             let submited_value = parseFloat(submited_value_string.replaceAll(" ", "").replaceAll(",", "."));
@@ -584,5 +584,5 @@ hide:
         return rep;
     }
 
-    document.addEventListener("DOMContentLoaded", () => { bits_count = 8; base = 10; update(); });
+    document.addEventListener("DOMContentLoaded", () => { bits_count = 8; update(); });
 </script>
