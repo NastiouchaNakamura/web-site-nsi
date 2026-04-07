@@ -1,6 +1,6 @@
 ---
 author: Anaël BARODINE
-title: Repr. de texte (UTF-8)
+title: Repr. du texte (UTF-8)
 hide:
   - toc
 ---
@@ -330,7 +330,6 @@ hide:
 
         // Display of all variables
         on_all_elements("base", e => e.innerText = base);
-        on_all_elements("bits_count", e => e.innerText = bits_count);
         on_all_elements("character", e => e.innerText = character);
         on_all_elements("codepoint", e => e.innerText = number_to_string(codepoint));
         on_all_elements("codepoint_based", e => e.innerText = number_to_string(codepoint, base));
@@ -366,7 +365,7 @@ hide:
         let submited_bits_string = document.getElementById("bits_answer_input").value;
 
         if (!/^[01 ]+$/.test(submited_bits_string)) {
-            submited_bits_icon.className = "info-input-icon icon-error";
+            submited_bits_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez ne saisir que des 0 et des 1 comme réponse. Il est possible de saisir des espaces pour séparer visuellement les bits.");
         } else {
             let submited_bits = submited_bits_string.replaceAll(" ", "").split("");
@@ -384,7 +383,7 @@ hide:
         let submited_number_string = document.getElementById("number_answer_input").value;
 
         if (!/^[-+] *\d+$/.test(submited_number_string)) {
-            submited_number_icon.className = "info-input-icon icon-error";
+            submited_number_icon.className = "info-input-icon icon-error icon-color-orange";
             alert("Veuillez saisir un nombre en décimal.");
         } else {
             let submited_number = parseInt(submited_number_string.replaceAll(" ", ""));
@@ -430,5 +429,5 @@ hide:
         return rep;
     }
 
-    document.addEventListener("DOMContentLoaded", () => { bits_count = 8; base = 10; update(); });
+    document.addEventListener("DOMContentLoaded", () => { base = 10; update(); });
 </script>
