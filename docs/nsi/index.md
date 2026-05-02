@@ -24,7 +24,7 @@ Cette section est dédiée **aux élèves de première et terminale NSI** du lyc
 
     <span style="text-align: center;">[Accéder au thème 3](/)</span>
 
-??? "Thème 4 - Données en tables"
+??? "Thème 4 - Données en tables et bases de données"
     Blabla
 
     <span style="text-align: center;">[Accéder au thème 4](/)</span>
