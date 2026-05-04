@@ -26,7 +26,7 @@ hide:
     ??? tip "Rappel de la norme IEEE-754"
         <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
 
-        La **norme IEEE-754** décrit **un ensemble de représentations des nombres à virgule**, sur différentes tailles d'octets :
+        La **norme IEEE-754** décrit **un ensemble de représentations des nombres à virgule**, sur différents nombres d'octets :
 
         | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
         |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -176,7 +176,7 @@ hide:
             <span name="int_bits"></span>,<span name="dec_first_bits"></span><span name="dec_bits_cycle" style="text-decoration: overline;"></span><span name="ellipsis"></span><sub>2</sub>
         </p>
         
-        ### ② Écrire le nombre en notation à virgule flottante
+        ### ② Écrire le nombre en écriture scientifique en binaire
 
         On écrit le nombre en **notation scientifique en binaire** (donc avec des puissances de 2). Pour cela, on **décale la virgule** de sorte à **ne laisser qu'un seul 1 à gauche** de la virgule :
 
@@ -229,7 +229,7 @@ hide:
     ??? tip "Rappel de la norme IEEE-754"
         <p style="text-align: center;">***Cette norme n'est pas à connaître par cœur et sera toujours fournie avec les exercices.***</p>
 
-        La **norme IEEE-754** décrit **un ensemble de représentations des nombres à virgule**, sur différentes tailles d'octets :
+        La **norme IEEE-754** décrit **un ensemble de représentations des nombres à virgule**, sur différents nombres d'octets :
 
         | Nom | Nb. total de bits | Nb. de bits du signe |Nb. de bits de la mantisse | Nb. de bits de l'exposant | Biais de l'exposant δ<sub>e</sub> |
         |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -330,9 +330,9 @@ hide:
             <span style="color: #00c853;">m</span> → [partie fractionnaire de <span style="color: #00c853;">m</span>], donc [<span name="floating_point_dec_bits_spaced" style="color: #00c853;"></span>] représente <span style="color: #00c853;">1,<span name="floating_point_dec_bits"></span></span><sub>2</sub>
         </p>
 
-        ### ③ Recomposer le nombre en notation à virgule flottante
+        ### ③ Recomposer le nombre en écriture scientifique en binaire
 
-        On utilise **<span style="color: #ff9100;">s</span>**, **<span style="color: #00b0ff;">e</span>** et **<span style="color: #00c853;">m</span>** pour **écrire le nombre en binaire** en **notation à virgule flottante** :
+        On utilise **<span style="color: #ff9100;">s</span>**, **<span style="color: #00b0ff;">e</span>** et **<span style="color: #00c853;">m</span>** pour **écrire le nombre** en **écriture scientifique en binaire** :
 
         <p style="text-align: center;">
             <span name="equal_sign"></span> <span name="sign" style="color: #ff9100;"></span><span style="color: #00c853;">1,</span><span name="floating_point_dec_bits" style="color: #00c853;"></span><sub>2</sub> × 2<sup><span name="exponent" style="color: #00b0ff;"></span></sup>
