@@ -25,6 +25,7 @@ theme:
   favicon: assets/images/logo-blaise-pascal-tiny-white.png
   logo: assets/images/logo-blaise-pascal-tiny-white.png
   name: material
+  custom_dir: extended_theme/
 
   font:
     text: PT Sans
