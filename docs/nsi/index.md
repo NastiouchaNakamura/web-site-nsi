@@ -9,15 +9,16 @@ hide:
 Vous vous questionnez sur ce nouvel enseignement ?
 Vous souhaitez en savoir plus sur les débouchés ?
 
-### Une nouvelle matière à coloration scientifique
+## Une nouvelle matière à coloration scientifique
 
 La **NSI** est une nouvelle matière enseignée depuis 2019 en tant qu'**enseignement de spécialité**. Il ne s'agit pas d'une option, mais bien d'un **enseignement scientifique** au même volume horaire et aux mêmes modalités d'évaluations que les autres spécialités comme les mathématiques ou la physique/chimie.
 
 Comme toutes les autres spécialités proposées, elle correspond à **4h par semaine en classe de première**, et **6h par semaine en classe de terminale**.
 
-### Une spécialité qui vise à l'appropriation des fondements de l'informatique
+## Une spécialité qui vise à l'appropriation des fondements de l'informatique
 
 La **première année** (en classe de première) voit l'appropriation par les élèves des **fondements de l'informatique** à travers sept thèmes :
+
 - la programmation,
 - la représentation des données,
 - l'algorithmique,
@@ -27,6 +28,7 @@ La **première année** (en classe de première) voit l'appropriation par les é
 - le Web.
 
 La **deuxième année** (en classe de terminale) permet **d'approfondir** les nombreuses notions vues l'année précédente, ainsi qu'acquérir **des connaissances et des compétences de pointe** qui préparent aux études informatiques :
+
 - la conception et la programmation orientée objet,
 - les stratégies algorithmiques,
 - les structures de données abstraites,
@@ -36,7 +38,7 @@ La **deuxième année** (en classe de terminale) permet **d'approfondir** les no
 
 Tableau des thèmes
 
-### Les perspectives post-bac
+## Les perspectives post-bac
 
 **De très nombreuses portes s'ouvrent** après un baccalauréat spécialité NSI. Dans le domaine de **l'informatique**, notamment :
 
@@ -52,7 +54,7 @@ Mais aussi de nombreuses autres formations dont **l'informatique** se pose comme
 
 Via **Parcoursup** il est préférable, en première comme en terminale, de choisir une spécialité dans laquelle **on y trouve de l'intérêt**, dans laquelle **il est agréable de travailler et de comprendre**, et surtout dans laquelle **on a de bons résultats** : choisir une spécialité "stratégique" dans laquelle on a de mauvais résultats n'est jamais un avantage dans la sélection.
 
-### Quelques points importants à connaître avant de choisir NSI en première :
+## Quelques points importants à connaître avant de choisir NSI en première
 
 - **La NSI n'est pas la continuation de la SNT de seconde**. Le programme est très différent et il y a un vrai saut en termes de technicité : on ne cherche plus à survoler dans un but de culture générale, on cherche à analyser et comprendre en profondeur.
 - **La programmation** (en Python) **est utilisée tout au long de l'année**, pour appliquer les notions de tous les thèmes. Les algorithmes sont abordés de manière pratique mais aussi théorique.
