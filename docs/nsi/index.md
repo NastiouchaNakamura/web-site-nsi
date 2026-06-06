@@ -1,206 +1,63 @@
 ---
 author: Anaël BARODINE
-title: Index des thèmes
+title: Qu'est-ce que la NSI
 hide:
-  - toc
 ---
 
-# Ressources NSI
+# La NSI
 
-Cette section est dédiée aux élèves de **première et terminale NSI** du lycée Blaise Pascal. Vous y trouverez, pour chacun des **neuf thèmes**, les **polycopiés de TD et TP**, les **URL des TP CAPYTALE**, les **fiches aides**, les **annales de contrôle** et leurs **corrections**, et les **annales de bac** et leurs **propositions de corrections**.
+Vous vous questionnez sur ce nouvel enseignement ?
+Vous souhaitez en savoir plus sur les débouchés ?
 
-??? "Thème 1 - Programmation"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th1";
-        document.currentScript.remove();
-    </script>
-    Les ordinateurs sont des machines qui **servent l'humain** en réalisant des
-    tâches et en répondant à des problèmes. Pour cela, ils exécutent une
-    **suite d'instructions** de manière **ordonnée**, c'est-à-dire qu'ils
-    suivent un **programme** (un planning) d'exécution. Écrire ce programme,
-    c'est décrire son fonctionnement à la machine, pour lui faire résoudre nos
-    propres problèmes.
+### Une nouvelle matière à coloration scientifique
 
-    Dans ce thème, nous apprenons à **programmer en utilisant le langage
-    Python**, des **instructions de base** (instructions, expressions,
-    variables…) jusqu'aux **constructions complexes** (programmation orientée
-    objet, récursivité, lambda-calcul…).
+La **NSI** est une nouvelle matière enseignée depuis 2019 en tant qu'**enseignement de spécialité**. Il ne s'agit pas d'une option, mais bien d'un **enseignement scientifique** au même volume horaire et aux mêmes modalités d'évaluations que les autres spécialités comme les mathématiques ou la physique/chimie.
 
-    [Accéder au thème 1](/)
+Comme toutes les autres spécialités proposées, elle correspond à **4h par semaine en classe de première**, et **6h par semaine en classe de terminale**.
 
-??? "Thème 2 - Représentation des données"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th2";
-        document.currentScript.remove();
-    </script>
-    Les ordinateurs modernes permettent de manipuler de très nombreux **formats
-    de données** : nombres, texte, images, … Pourtant, dans leurs circuits ne
-    sont stockés **que des bits, 0 ou 1**. 
+### Une spécialité qui vise à l'appropriation des fondements de l'informatique
 
-    Nous voyons dans ce thème quels sont **les formats**, **standards** et
-    **conventions** de représentation des données, c'est-à-dire, comment
-    **écrire et lire ces 0 et ces 1** de la mémoire de l'ordinateur pour leur
-    donner le sens d'une donnée compréhensible par un humain. C'est le domaine
-    de **l'encodage**.
+La **première année** (en classe de première) voit l'appropriation par les élèves des **fondements de l'informatique** à travers sept thèmes :
+- la programmation,
+- la représentation des données,
+- l'algorithmique,
+- les bases de données,
+- l'architecture matérielle,
+- l'architecture réseau,
+- le Web.
 
-    [Accéder au thème 2](/)
+La **deuxième année** (en classe de terminale) permet **d'approfondir** les nombreuses notions vues l'année précédente, ainsi qu'acquérir **des connaissances et des compétences de pointe** qui préparent aux études informatiques :
+- la conception et la programmation orientée objet,
+- les stratégies algorithmiques,
+- les structures de données abstraites,
+- la cryptographie.
 
-??? "Thème 3 - Conception et analyse d'algorithmes"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th3";
-        document.currentScript.remove();
-    </script>
-    Blabla
+**Sur deux ans**, la spécialité NSI vise à préparer au mieux à la **poursuite en études informatique**, à la fois comme majeure d'un diplôme informatique, ou bien comme mineure d'un diplôme à coloration scientifique (mathématiques, physique, statistiques...)
 
-    [Accéder au thème 3](/)
+Tableau des thèmes
 
-??? "Thème 4 - Données en tables et bases de données"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th4";
-        document.currentScript.remove();
-    </script>
-    Blabla
+### Les perspectives post-bac
 
-    [Accéder au thème 4](/)
+**De très nombreuses portes s'ouvrent** après un baccalauréat spécialité NSI. Dans le domaine de **l'informatique**, notamment :
 
-??? "Thème 5 - Architecture des ordinateurs"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th5";
-        document.currentScript.remove();
-    </script>
-    Blabla
+- **Licence d'informatique ou de mathématiques-informatique**, par exemple à l'Université Paris-Saclay, menant à un Master spécialisé en 5 ans.
+- **B.U.T. d'informatique**, d'électronique ou de réseaux et télécommunications, à l'IUT d'Orsay, l'IUT de Sceaux, ou l'IUT de Paris par exemple, pour une insertion rapide dans le monde professionnel en 3 ans, ou une poursuite en Master spécialisé en 5 ans.
+- **Ecole d'ingénieur post-bac**, comme Polytech (public) ou Epita (privé) par exemple, pour un diplôme d'ingénieur en 5 ans.
+- **Classe préparatoire aux concours des Grandes Ecoles (CPGE)**, comme la **MP2I** par exemple qui est prévue pour les bacheliers de spécialité maths-info (la physique est reprise au niveau 1e), afin de passer les concours d'admissions aux grandes écoles d'informatique après 2 ans, et obtenir un diplôme d'ingénieur en 5 ans.
 
-    [Accéder au thème 5](/)
+Mais aussi de nombreuses autres formations dont **l'informatique** se pose comme **mineure d'enseignement**, comme par exemple :
 
-??? "Thème 6 - Réseaux"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th6";
-        document.currentScript.remove();
-    </script>
-    Blabla
+- **Les licences scientifiques**, notamment de maths et de physique.
+- **Les CPGE scientifiques**, pour viser une Grande Ecole à coloration scientifique.
 
-    [Accéder au thème 6](/)
+Via **Parcoursup** il est préférable, en première comme en terminale, de choisir une spécialité dans laquelle **on y trouve de l'intérêt**, dans laquelle **il est agréable de travailler et de comprendre**, et surtout dans laquelle **on a de bons résultats** : choisir une spécialité "stratégique" dans laquelle on a de mauvais résultats n'est jamais un avantage dans la sélection.
 
-??? "Thème 7 - Web"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th7";
-        document.currentScript.remove();
-    </script>
-    Blabla
+### Quelques points importants à connaître avant de choisir NSI en première :
 
-    [Accéder au thème 7](/)
+- **La NSI n'est pas la continuation de la SNT de seconde**. Le programme est très différent et il y a un vrai saut en termes de technicité : on ne cherche plus à survoler dans un but de culture générale, on cherche à analyser et comprendre en profondeur.
+- **La programmation** (en Python) **est utilisée tout au long de l'année**, pour appliquer les notions de tous les thèmes. Les algorithmes sont abordés de manière pratique mais aussi théorique.
+- **La NSI est une matière exigeante**, qui demande une **méthode** et une **rigueur** particulière, ainsi qu'une capacité d'analyse et de réflexion importante.
+- **Le travail pratique** (TP sur ordinateur) en classe comme en devoir à la maison **est à faire avec sérieux et ténacité**, afin d'acquérir les concepts de la programmation Python.
+- Il faut avoir goût pour la résolution de problèmes, et pour la **programmation**, c'est le plus important !
 
-??? "Thème 8 - Structures de données"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th8";
-        document.currentScript.remove();
-    </script>
-    Blabla
-
-    [Accéder au thème 8](/)
-
-??? "Thème 9 - Sécurité des communications"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "th9";
-        document.currentScript.remove();
-    </script>
-    Blabla
-
-    [Accéder au thème 9](/)
-
----
-
-??? "Annales de contrôle"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "annales";
-        document.currentScript.remove();
-    </script>
-    Blabla
-
-    [Accéder aux annales de contrôles](controles/index.md)
-
-??? "Annales de baccalauréat"
-    <script>
-        document.currentScript.parentElement.parentElement.className = "annales";
-        document.currentScript.remove();
-    </script>
-    Blabla
-
-    [Accéder aux annales de baccalauréat](bac/index.md)
-
-<style type="text/css" id="customAdmonitionCss">
-    details.th1 {
-        border-color: #6aa84f;
-        background-color: #6aa84f1a;
-        >summary { background-color: #6aa84f1a; }
-        >summary:before { mask-image: url(/assets/icons/snake.svg); background-color: #6aa84f; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th2 {
-        border-color: #1155cc;
-        background-color: #1155cc1a;
-        >summary { background-color: #1155cc1a; }
-        >summary:before { mask-image: url(/assets/icons/bits.svg); background-color: #1155cc; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th3 {
-        border-color: #bf9000;
-        background-color: #bf90001a;
-        >summary { background-color: #bf90001a; }
-        >summary:before { mask-image: url(/assets/icons/bulb.svg); background-color: #bf9000; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th4 {
-        border-color: #a64d79;
-        background-color: #a64d791a;
-        >summary { background-color: #a64d791a; }
-        >summary:before { mask-image: url(/assets/icons/table.svg); background-color: #a64d79; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th5 {
-        border-color: #a61c00;
-        background-color: #a61c001a;
-        >summary { background-color: #a61c001a; }
-        >summary:before { mask-image: url(/assets/icons/chip.svg); background-color: #a61c00; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th6 {
-        border-color: #c27ba0;
-        background-color: #c27ba01a;
-        >summary { background-color: #c27ba01a; }
-        >summary:before { mask-image: url(/assets/icons/lan.svg); background-color: #c27ba0; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th7 {
-        border-color: #674ea7;
-        background-color: #674ea71a;
-        >summary { background-color: #674ea71a; }
-        >summary:before { mask-image: url(/assets/icons/sphere.svg); background-color: #674ea7; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th8 {
-        border-color: #308f96;
-        background-color: #308f961a;
-        >summary { background-color: #308f961a; }
-        >summary:before { mask-image: url(/assets/icons/tree.svg); background-color: #308f96; }
-        >p:has(a) { text-align: center; }
-    }
-    details.th9 {
-        border-color: #38761d;
-        background-color: #38761d1a;
-        >summary { background-color: #38761d1a; }
-        >summary:before { mask-image: url(/assets/icons/lock.svg); background-color: #38761d; }
-        >p:has(a) { text-align: center; }
-    }
-    details.annales {
-        border-color: #448aff;
-        background-color: #448aff1a;
-        >summary { background-color: #448aff1a; }
-        >summary:before { mask-image: url(/assets/icons/pdf.svg); background-color: #448aff; }
-        >p:has(a) { text-align: center; }
-    }
-</style>
-<script>
-    document.getElementsByTagName("head")[0].appendChild(document.getElementById("customAdmonitionCss"));
-    document.currentScript.remove();
-</script>
+<div style="text-align: center;"><iframe style="border-radius: 20px" width="560" height="315" src="https://www.youtube.com/embed/Vx4ReBkMpP0?si=nSrfqKDcgp-lqgmU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
