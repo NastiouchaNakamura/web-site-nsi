@@ -1,6 +1,7 @@
 nav:
   - NSI:
     - "nsi/index.md"
+    - "nsi/index-des-themes.md"
     - "nsi/controles/index.md"
     - "nsi/bac/index.md"
   - Boîte à outils:

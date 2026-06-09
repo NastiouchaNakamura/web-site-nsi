@@ -1,96 +1,65 @@
 ---
 author: Anaël BARODINE
-title: Index des thèmes
+title: Qu'est-ce que la NSI
 hide:
-  - toc
 ---
 
-# Ressources NSI
+# La NSI
 
-Cette section est dédiée **aux élèves de première et terminale NSI** du lycée Blaise Pascal. Vous y trouverez, pour **chacun des neuf thèmes**, les **polycopiés de TD et TP**, les **URL des TP CAPYTALE**, les **fiches aides**, les **annales de contrôle** et leurs **corrections**, et les **annales de bac** et leurs **propositions de corrections**.
+Vous vous questionnez sur ce nouvel enseignement ?
+Vous souhaitez en savoir plus sur les débouchés ?
 
-??? "Thème 1 - Programmation"
-    Blabla
+## Une nouvelle matière à coloration scientifique
 
-    <span style="text-align: center;">[Accéder au thème 1](/)</span>
+La **NSI** est une nouvelle matière enseignée depuis 2019 en tant qu'**enseignement de spécialité**. Il ne s'agit pas d'une option, mais bien d'un **enseignement scientifique** au même volume horaire et aux mêmes modalités d'évaluations que les autres spécialités comme les mathématiques ou la physique/chimie.
 
-??? "Thème 2 - Représentation des données"
-    Blabla
+Comme toutes les autres spécialités proposées, elle correspond à **4h par semaine en classe de première**, et **6h par semaine en classe de terminale**.
 
-    <span style="text-align: center;">[Accéder au thème 2](/)</span>
+## Une spécialité qui vise à l'appropriation des fondements de l'informatique
 
-??? "Thème 3 - Conception et analyse d'algorithmes"
-    Blabla
+La **première année** (en classe de première) voit l'appropriation par les élèves des **fondements de l'informatique** à travers sept thèmes :
 
-    <span style="text-align: center;">[Accéder au thème 3](/)</span>
+- la programmation,
+- la représentation des données,
+- l'algorithmique,
+- les bases de données,
+- l'architecture matérielle,
+- l'architecture réseau,
+- le Web.
 
-??? "Thème 4 - Données en tables et bases de données"
-    Blabla
+La **deuxième année** (en classe de terminale) permet **d'approfondir** les nombreuses notions vues l'année précédente, ainsi qu'acquérir **des connaissances et des compétences de pointe** qui préparent aux études informatiques :
 
-    <span style="text-align: center;">[Accéder au thème 4](/)</span>
+- la conception et la programmation orientée objet,
+- les stratégies algorithmiques,
+- les structures de données abstraites,
+- la cryptographie.
 
-??? "Thème 5 - Architecture des ordinateurs"
-    Blabla
+**Sur deux ans**, la spécialité NSI vise à préparer au mieux à la **poursuite en études informatique**, à la fois comme majeure d'un diplôme informatique, ou bien comme mineure d'un diplôme à coloration scientifique (mathématiques, physique, statistiques...)
 
-    <span style="text-align: center;">[Accéder au thème 5](/)</span>
+Tableau des thèmes
 
-??? "Thème 6 - Réseaux"
-    Blabla
+## Les perspectives post-bac
 
-    <span style="text-align: center;">[Accéder au thème 6](/)</span>
+**De très nombreuses portes s'ouvrent** après un baccalauréat spécialité NSI. Dans le domaine de **l'informatique**, notamment :
 
-??? "Thème 7 - Web"
-    Blabla
+- **Licence d'informatique ou de mathématiques-informatique**, par exemple à l'Université Paris-Saclay, menant à un Master spécialisé en 5 ans.
+- **B.U.T. d'informatique**, d'électronique ou de réseaux et télécommunications, à l'IUT d'Orsay, l'IUT de Sceaux, ou l'IUT de Paris par exemple, pour une insertion rapide dans le monde professionnel en 3 ans, ou une poursuite en Master spécialisé en 5 ans.
+- **Ecole d'ingénieur post-bac**, comme Polytech (public) ou Epita (privé) par exemple, pour un diplôme d'ingénieur en 5 ans.
+- **Classe préparatoire aux concours des Grandes Ecoles (CPGE)**, comme la **MP2I** par exemple qui est prévue pour les bacheliers de spécialité maths-info (la physique est reprise au niveau 1e), afin de passer les concours d'admissions aux grandes écoles d'informatique après 2 ans, et obtenir un diplôme d'ingénieur en 5 ans.
 
-    <span style="text-align: center;">[Accéder au thème 7](/)</span>
+Mais aussi de nombreuses autres formations dont **l'informatique** se pose comme **mineure d'enseignement**, comme par exemple :
 
-??? "Thème 8 - Structures de données"
-    Blabla
+- **Les licences scientifiques**, notamment de maths et de physique.
+- **Les CPGE scientifiques**, pour viser une Grande Ecole à coloration scientifique.
 
-    <span style="text-align: center;">[Accéder au thème 8](/)</span>
+Via **Parcoursup** il est préférable, en première comme en terminale, de choisir une spécialité dans laquelle **on y trouve de l'intérêt**, dans laquelle **il est agréable de travailler et de comprendre**, et surtout dans laquelle **on a de bons résultats** : choisir une spécialité "stratégique" dans laquelle on a de mauvais résultats n'est jamais un avantage dans la sélection.
 
-??? "Thème 9 - Sécurité des communications"
-    Blabla
+## Quelques points importants à connaître avant de choisir NSI en première
 
-    <span style="text-align: center;">[Accéder au thème 9](/)</span>
+- **La NSI n'est pas la continuation de la SNT de seconde**. Le programme est très différent et il y a un vrai saut en termes de technicité : on ne cherche plus à survoler dans un but de culture générale, on cherche à analyser et comprendre en profondeur.
+- **La programmation** (en Python) **est utilisée tout au long de l'année**, pour appliquer les notions de tous les thèmes. Les algorithmes sont abordés de manière pratique mais aussi théorique.
+- **La NSI est une matière exigeante**, qui demande une **méthode** et une **rigueur** particulière, ainsi qu'une capacité d'analyse et de réflexion importante.
+- **Le travail pratique** (TP sur ordinateur) en classe comme en devoir à la maison **est à faire avec sérieux et ténacité**, afin d'acquérir les concepts de la programmation Python.
+- Il faut avoir goût pour la résolution de problèmes, et pour la **programmation**, c'est le plus important !
 
----
-
-??? "Annales de contrôle"
-    Blabla
-
-    <span style="text-align: center;">[Accéder aux annales de contrôles](controles/index.md)</span>
-
-??? "Annales de baccalauréat"
-    Blabla
-
-    <span style="text-align: center;">[Accéder aux annales de baccalauréat](bac/index.md)</span>
-
-<script>
-    const details = [
-        { color: "#6aa84f", icon: "/assets/icons/snake.svg" },
-        { color: "#1155cc", icon: "/assets/icons/bits.svg" },
-        { color: "#bf9000", icon: "/assets/icons/bulb.svg" },
-        { color: "#a64d79", icon: "/assets/icons/table.svg" },
-        { color: "#a61c00", icon: "/assets/icons/chip.svg" },
-        { color: "#c27ba0", icon: "/assets/icons/lan.svg" },
-        { color: "#674ea7", icon: "/assets/icons/sphere.svg" },
-        { color: "#308f96", icon: "/assets/icons/tree.svg" },
-        { color: "#38761d", icon: "/assets/icons/lock.svg" },
-        { color: "#448aff", icon: "/assets/icons/pdf.svg" },
-        { color: "#448aff", icon: "/assets/icons/pdf.svg" }
-    ]
-    let styleElement = document.createElement("style");
-    styleElement.type = "text/css";
-    let articleElement = document.getElementsByTagName("article").item(0);
-    let detailsElements = [];
-    for (let i = 0; i < articleElement.children.length; i++)
-        if (articleElement.children.item(i).tagName.toLowerCase() == "details")
-            detailsElements.push(articleElement.children.item(i));
-    for (let i = 0; i < details.length; i++) {
-        detailsElements[i].className = `th${i}`;
-        styleElement.innerText += `.th${i} { border-color: ${details[i].color} !important; background-color: ${details[i].color}1a !important; text-align: center; > summary { background-color: ${details[i].color}1a !important; } > summary:before { mask-image: url(${details[i].icon}) !important; background-color: ${details[i].color} !important; } > summary:after { color: ${details[i].color} !important; }}`;
-    }
-
-    document.getElementsByTagName("head").item(0).appendChild(styleElement);
-</script>
+<div style="text-align: center;"><iframe style="border-radius: 20px" width="560" height="315" src="https://www.youtube.com/embed/Vx4ReBkMpP0?si=nSrfqKDcgp-lqgmU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
