@@ -11,7 +11,7 @@ title: ⁂ Quelle fresque !
 Une **drôle de fresque** a été dessinée en 2020, **curieusement proche de la rue Tombe Issoire**, à Paris. Elle représente un arbre autour duquel deux hommes se tiennent debout. En tout cas, ces fresques sont plus appréciées des chauves-souris que des pigeons…
 
 !!! question "Question"
-    **Quelles sont les 3 premières lettres de chaque prénoms des dessinateurs de la fresque ?**
+    **Quelles sont les 3 premières lettres de chaque prénom des dessinateurs de la fresque ?**
 
     Format de réponse : `THO_DAN_FLA_CHA_TOT`.
     
