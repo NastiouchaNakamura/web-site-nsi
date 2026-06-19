@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Network Canva</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.33.1/cytoscape.min.js"></script>
+  <script>
+    class Ip {
+      #ip_bytes;
+
+      constructor(ip_bytes) {
+        // Format : liste de 4 valeurs d'octets
+        // Exemple : [192, 168, 0, 100]
+        // Exemple : [0b00111000, 0b11001100, 0b11110000, 0b00000000]
+        if (typeof ip_bytes != "object" || ip_bytes.length != 4 || false in ip_bytes.map(val => 0 > val || val > 255)) {
+          throw new Error("Bad format for IP address: must be an array of four 8-bits integer (0 <= n <= 255)");
+        } else {
+          this.#ip_bytes = ip_bytes;
+        }
+      }
+
+      is_valid_mask() {
+        let n = 0;
+        let saw_zero = false;
+        for (let bit of this.#ip_bytes.map(val => val.toString(2).padStart(8, "0")).join("")) {
+          if (bit == "1" && !saw_zero) {
+            n++;
+          } else if (bit == "1") {
+            return false;
+          } else {
+            saw_zero = true;
+          }
+        }
+        return true;
+      }
+
+      as_cidr() {
+        let n = 0;
+        for (let bit of this.#ip_bytes.map(val => val.toString(2).padStart(8, "0")).join("")) {
+          if (bit == "1") {
+            n++;
+          } else {
+            return n;
+          }
+        }
+        return n;
+      }
+
+      as_decimal() {
+        return this.#ip_bytes.join(".");
+      }
+
+      as_binary() {
+        return this.#ip_bytes.map(val => val.toString(2).padStart(8, "0")).join(".");
+      }
+
+      equals(ip) {
+        return this.as_binary() == ip.as_binary();
+      }
+    }
+
+    class Interface {
+      static wildcard_interface = new Interface(
+        new Ip([0, 0, 0, 0]),
+        new Ip([0, 0, 0, 0]),
+        true
+      );
+
+      constructor(ip, mask, hidden) {
+        this.ip = ip;
+        this.mask = mask;
+        this.hidden = hidden;
+      }
+
+      subnet() {
+        let ip_bytes = this.ip.as_decimal().split(".").map(v => parseInt(v));
+        let mask_bytes = this.mask.as_decimal().split(".").map(v => parseInt(v));
+        let subnet_bytes = ip_bytes.slice();
+        for (let i = 0; i < 4; i++) {
+          subnet_bytes[i] = ip_bytes[i] & mask_bytes[i];
+        }
+        return new Ip(subnet_bytes);
+      }
+
+      bcast() {
+        let ip_bytes = this.ip.as_decimal().split(".").map(v => parseInt(v));
+        let mask_bytes = this.mask.as_decimal().split(".").map(v => parseInt(v));
+        let broadcast_bytes = ip_bytes.slice();
+        for (let i = 0; i < 4; i++) {
+          broadcast_bytes[i] = (ip_bytes[i] & mask_bytes[i]) ^ (mask_bytes[i] ^ 255);
+        }
+        return new Ip(broadcast_bytes);
+      }
+
+      shares_subnet(other_interface) {
+        if (this == Interface.wildcard_interface || other_interface == Interface.wildcard_interface) {
+          return true;
+        } else {
+          return this.subnet().equals(other_interface.subnet());
+        }
+      }
+    }
+
+    class Subnetwork {
+      constructor(id, name, interface_) {
+        this.id = id;
+        this.name = name;
+        this.interface_ = interface_;
+        this.devices = {};
+      }
+    }
+
+    class Device {
+      /**
+       * Represents a network device.
+       * @constructor
+       * @param {string} id - The ID of the device, should be unique in the
+       * network.
+       * @param {string} name - The displayable name of the device.
+       */
+      constructor(id, name) {
+        this.id = id;
+        this.name = name;
+      }
+
+      /**
+       * Returns connection on each interface of the device as object.
+       * @abstract
+       * @returns {Object.<string, Interface|null>} - Object containing
+       * connection on each interface key, or null on interface key if the
+       * interface is available.
+       */
+      get_connections() {
+        return {};
+      }
+
+      /**
+       * Returns available interfaces of the device as object. If the device
+       * has no available interface, returns an empty object. Key are
+       * deterministic, and to be used as parameter of the connect method.
+       * @abstract
+       * @returns {Object.<string, Interface>} - Available interfaces as an
+       * object with interface key as key and interface as value.
+       */
+      get_interfaces() {
+        return {};
+      }
+
+      /**
+       * Checks if a connection is possible on an available interface of the
+       * targeted device, and returns the keys of the first connectable
+       * interfaces of both devices. If no interface can accept the connection,
+       * returns null.
+       * @abstract
+       * @param {Device} device - The device on which to check.
+       * @returns {?{self_key: string, target_key: string}} - Object
+       * containing this switch's interface key and the other device's
+       * interface key that are connectible.
+       */
+      can_connect(device) {
+        return null
+      }
+
+      /**
+       * Connects self with a device. If the devices are not connectible,
+       * throws an error. This method connects both way the devices. It must
+       * not be executed on each device.
+       * @abstract
+       * @param {Device} device - The target device on which to connect.
+       * @param {string} key - The interface key of this switch on which to
+       * connect.
+       * @throws Throws an error if the interface with this key is not
+       * available.
+       */
+      connect(device, self_key, target_key) {
+        throw new Error(`Cannot connect abstract device`);
+      }
+
+      /**
+       * Returns the type of device as string.
+       * @abstract
+       * @returns {string} - The type of the device as string.
+       */
+      get_type() {
+        return "AbstractDevice";
+      }
+
+      /**
+       * Returns an array of the neighboring devices of this device.
+       * @abstract
+       * @returns {Device[]} - Array of the neighboring devices of this device.
+       */
+      get_neighbors() {
+        return [];
+      }
+    }
+
+    class Switch extends Device {
+      /**
+       * Represents a Switch.
+       * @constructor
+       * @param {string} id - The ID of the switch, should be unique in the
+       * network.
+       * @param {string} name - The displayable name of the switch.
+       */
+      constructor(id, name) {
+        super(id, name);
+        this.connections = [];
+      }
+
+      /**
+       * Returns connection on each interface of the device as object.
+       * @returns {Object.<string, Interface|null>} - Object containing
+       * connection on each interface key, or null on interface key if the
+       * interface is available.
+       */
+      get_connections() {
+        let connections = {};
+        for (let i = 0; i < this.connections.length; i++) {
+          connections[`eth${i}`] = this.connections[i];
+        }
+        return connections;
+      }
+
+      /**
+       * Returns available interfaces of the device as object. As a switch
+       * doesn't use interfaces, it always returns a wildcard interface.
+       * @returns {Object.<string, Interface>} - Wildcard interface,
+       * representing that a switch doesn't use interfaces.
+       */
+      get_interfaces() {
+        let interfaces = {};
+        interfaces[`eth${this.connections.length}`] = Interface.wildcard_interface;
+        return interfaces;
+      }
+
+      /**
+       * Checks if a connection is possible on an available interface of the
+       * targeted device, and returns the keys of the first connectable
+       * interfaces of both devices. If no interface can accept the connection,
+       * returns null.
+       * @param {Device} device - The device on which to check.
+       * @returns {?{self_key: string, target_key: string}} - Object
+       * containing this switch's interface key and the other device's
+       * interface key that are connectible.
+       */
+      can_connect(device) {
+        let target_interfaces = device.get_interfaces();
+        if (Object.keys(target_interfaces).length == 0) {
+          return null;
+        } else if (this.connections.length == 0) {
+          return {self_key: "eth0", target_key: Object.keys(target_interfaces)[0]};
+        } else {
+          for (let target_key in target_interfaces) {
+            if (target_interfaces[target_key].shares_subnet(this.connections[0].interface_)) {
+              return {self_key: `eth${this.connections.length}`, target_key: target_key};
+            }
+          }
+          return null;
+        }
+      }
+
+      /**
+       * Connects self with a device. If the devices are not connectible,
+       * throws an error. This method does not connect both way the devices. It
+       * should be executed on each device.
+       * @param {Device} device - The target device on which to connect.
+       * @param {string} key - The interface key of this switch on which to
+       * connect.
+       * @throws Throws an error if the interface with this key is not
+       * available.
+       */
+      connect(device, key) {
+        if (key != `eth${this.connections.length}`) {
+          throw new Error(`Interface ${key} is not available on ${device.get_type()} ${device.id}`);
+        } else {
+          this.connections.push(device);
+        }
+      }
+
+      /**
+       * Returns the type of this switch ("Switch") as string.
+       * @returns {string} - The type of the switch as string.
+       */
+      get_type() {
+        return "Switch";
+      }
+
+      /**
+       * Returns an array of the neighboring devices of this switch.
+       * @returns {Device[]} - Array of the neighboring devices of this switch.
+       */
+      get_neighbors() {
+        return this.connections.slice();
+      }
+    }
+
+    class Pc extends Device {
+      /**
+       * Represents a PC.
+       * @constructor
+       * @param {string} id - The ID of the PC, should be unique in the
+       * network.
+       * @param {string} name - The displayable name of the PC.
+       * @param {Interface} interface_ - The interface of the PC.
+       */
+      constructor(id, name, interface_) {
+        super(id, name);
+        this.interface_ = interface_;
+        this.connection = undefined;
+      }
+
+      /**
+       * Returns connection on each interface of the device as object.
+       * @returns {Object.<string, Interface|null>} - Object containing
+       * connection on each interface key, or null on interface key if the
+       * interface is available.
+       */
+      get_connections() {
+        return {"eth0": this.interface_};
+      }
+
+      /**
+       * Returns available interfaces of the device as object. As a PC, it
+       * always returns a single interface.
+       * @returns {Object.<string, Interface>} - List of only one PC interface.
+       */
+      get_interfaces() {
+        if (this.connection == undefined) {
+          return {"eth0": this.interface_};
+        } else {
+          return {};
+        }
+      }
+
+      /**
+       * Checks if a connection is possible on an available interface of the
+       * targeted device, and returns the keys of the first connectable
+       * interfaces of both devices. If no interface can accept the connection,
+       * returns null.
+       * @param {Device} device - The device on which to check.
+       * @returns {?{self_key: string, target_key: string}} - Object
+       * containing this PC's interface key and the other device's interface
+       * key that are connectible.
+       */
+      can_connect(device) {
+        let target_interfaces = device.get_interfaces();
+        if (Object.keys(target_interfaces).length == 0) {
+          return null;
+        } else if (this.connection != undefined) {
+          return null;
+        } else {
+          for (let target_key in target_interfaces) {
+            if (target_interfaces[target_key].shares_subnet(this.interface_)) {
+              return {self_key: "eth0", target_key: target_key};
+            }
+          }
+          return null;
+        }
+      }
+
+      /**
+       * Connects self with a device. If the devices are not connectible,
+       * throws an error. This method does not connect both way the devices. It
+       * should be executed on each device.
+       * @param {Device} device - The target device on which to connect.
+       * @param {string} key - The interface key of this PC on which to
+       * connect.
+       * @throws Throws an error if the interface with this key is not
+       * available.
+       */
+      connect(device, key) {
+        if (key != "eth0") {
+          throw new Error(`Interface ${key} is not available on ${device.get_type()} ${device.id}`);
+        } else {
+          this.connection = device;
+        }
+      }
+
+      /**
+       * Returns the type of this PC ("Pc") as string.
+       * @returns {string} - The type of the PC as string.
+       */
+      get_type() {
+        return "Pc";
+      }
+
+      /**
+       * Returns an array of the neighboring devices of this PC.
+       * @returns {Device[]} - Array of the neighboring devices of this PC.
+       */
+      get_neighbors() {
+        return [this.connection];
+      }
+    }
+
+    class Router extends Device {
+      /**
+       * Represents a Router.
+       * @constructor
+       * @param {string} id - The ID of the Router, should be unique in the
+       * network.
+       * @param {string} name - The displayable name of the Router.
+       * @param {Interface[]} interfaces - The interfaces of the Router.
+       */
+      constructor(id, name, interfaces) {
+        super(id, name);
+        this.interfaces = interfaces;
+        this.connections = interfaces.map(i => undefined);
+      }
+
+      /**
+       * Returns connection on each interface of the device as object.
+       * @returns {Object.<string, Interface|null>} - Object containing
+       * connection on each interface key, or null on interface key if the
+       * interface is available.
+       */
+      get_connections() {
+        let connections = {};
+        for (let i = 0; i < this.connections.length; i++) {
+          connections[`eth${i}`] = this.connections[i];
+        }
+        return connections;
+      }
+
+      /**
+       * Returns available interfaces of the device as object.
+       * @returns {Object.<string, Interface>} - List available interfaces.
+       */
+      get_interfaces() {
+        let interfaces = {};
+        for (let i = 0; i < this.connections.length; i++) {
+          if (this.connections[i] == undefined) {
+            interfaces[`eth${i}`] = this.interfaces[i];
+          }
+        }
+        return interfaces;
+      }
+
+      /**
+       * Checks if a connection is possible on an available interface of the
+       * targeted device, and returns the keys of the first connectable
+       * interfaces of both devices. If no interface can accept the connection,
+       * returns null.
+       * @param {Device} device - The device on which to check.
+       * @returns {?{self_key: string, target_key: string}} - Object
+       * containing this PC's interface key and the other device's interface
+       * key that are connectible.
+       */
+      can_connect(device) {
+        let self_interfaces = this.get_interfaces();
+        let target_interfaces = device.get_interfaces();
+        if (Object.keys(self_interfaces).length == 0) {
+          return null;
+        } else if (Object.keys(target_interfaces).length == 0) {
+          return null;
+        } else {
+          for (let target_key in target_interfaces) {
+            for (let self_key in self_interfaces) {
+              if (target_interfaces[target_key].shares_subnet(self_interfaces[self_key])) {
+                return {self_key: self_key, target_key: target_key};
+              }
+            }
+          }
+          return null;
+        }
+      }
+
+      /**
+       * Connects self with a device. If the devices are not connectible,
+       * throws an error. This method does not connect both way the devices. It
+       * should be executed on each device.
+       * @param {Device} device - The target device on which to connect.
+       * @param {string} key - The interface key of this router on which to
+       * connect.
+       * @throws Throws an error if the interface with this key is not
+       * available.
+       */
+      connect(device, key) {
+        if (!key.startsWith("eth")) {
+          throw new Error(`Interface ${key} is not available on ${device.get_type()} ${device.id}`);
+        } else if (parseInt(key.substring(3)) >= this.connections.length) {
+          throw new Error(`Interface ${key} is not available on ${device.get_type()} ${device.id}`);
+        } else {
+          this.connections[parseInt(key.substring(3))] = device;
+        }
+      }
+
+      /**
+       * Returns the type of this router ("Router") as string.
+       * @returns {string} - The type of the router as string.
+       */
+      get_type() {
+        return "Router";
+      }
+
+      /**
+       * Returns an array of the neighboring devices of this router.
+       * @returns {Device[]} - Array of the neighboring devices of this router.
+       */
+      get_neighbors() {
+        return this.connections.slice();
+      }
+    }
+    
+    class NetworkCanva {
+      /**
+       * Cytoscape canva.
+       * @private
+       */
+      #cy;
+
+      /**
+       * Created subnetworks in the network.
+       * @type {Object.<string, Subnetwork>}
+       * @private
+       */
+      #subnetworks;
+
+      /**
+       * Created routers in the network.
+       * @type {Object.<string, Router>}
+       * @private
+       */
+      #routers;
+
+      /**
+       * Represents a Network.
+       * @constructor
+       * @param {HTMLElement} container - Container element that will contain
+       * the dynamic canva.
+       */
+      constructor(container) {
+        this.#cy = cytoscape({
+          container: container, 
+          minZoom: 1,
+          maxZoom: 10,
+          style: [
+            {
+              selector: "node",
+              style: {
+                "background-color": "#666",
+                "label": "TYPE INCONNU"
+              }
+            },
+            {
+              // Sous-réseau, parent de nœuds machines, affichage boîte
+              selector: "node[type = 'subnetwork']",
+              style: {
+                // Forme de la boîte
+                "shape": "round-rectangle",
+                "corner-radius": 4,
+                "padding": 4,
+
+                // Bordure de la boîte
+                "border-color": "data(color)",
+                "border-width": 2,
+                "border-style": "dashed",
+                "border-position": "outside",
+
+                // Background de la boîte
+                "background-color": "data(color)",
+                "background-opacity": 0.4,
+
+                // Label de la boîte
+                "label": "data(display)",
+                "text-halign": "center",
+                "text-valign": "bottom",
+                "text-background-padding": 3,
+                "text-background-color": "data(color)",
+                "text-background-opacity": 1,
+                "text-background-shape": "rectangle",
+                "text-wrap": "wrap"
+              }
+            },
+            {
+              // Machine de type Switch
+              selector: "node[type = 'switch']",
+              style: {
+                // Image
+                "width": 70,
+                "height": 52,
+                "shape": "rectangle",
+                "background-image": "url(/assets/images/filius-switch.png)",
+                "background-opacity": 0,
+                "border-width": 0,
+                "background-image-smoothing": "no",
+
+                // Label
+                "label": "data(display)",
+                "text-halign": "center",
+                "text-valign": "bottom"
+              }
+            },
+            {
+              // Machine de type Laptop
+              selector: "node[type = 'laptop']",
+              style: {
+                // Image
+                'width': 84,
+                'height': 80,
+                "shape": "rectangle",
+                'background-image': "url(/assets/images/filius-laptop.png)",
+                'background-opacity': 0,
+                'border-width': 0,
+                'background-image-smoothing': 'no',
+
+                // Label
+                "label": "data(display)",
+                "text-halign": "center",
+                "text-valign": "bottom",
+                "text-wrap": "wrap"
+              }
+            },
+            {
+              // Machine de type Server
+              selector: "node[type = 'server']",
+              style: {
+                // Image
+                'width': 64,
+                'height': 94,
+                "shape": "rectangle",
+                'background-image': "url(/assets/images/filius-server.png)",
+                'background-opacity': 0,
+                'border-width': 0,
+                'background-image-smoothing': 'no',
+
+                // Label
+                "label": "data(display)",
+                "text-halign": "center",
+                "text-valign": "bottom",
+                "text-wrap": "wrap"
+              }
+            },
+            {
+              // Machine de type Router
+              selector: "node[type = 'router']",
+              style: {
+                // Image
+                'width': 77,
+                'height': 58,
+                "shape": "rectangle",
+                'background-image': "url(/assets/images/filius-router.png)",
+                'background-opacity': 0,
+                'border-width': 0,
+                'background-image-smoothing': 'no',
+
+                // Label
+                "label": "data(display)",
+                "text-halign": "center",
+                "text-valign": "bottom"
+              }
+            },
+            {
+              // Connexion
+              selector: "edge",
+              style: {
+                // Ligne
+                "width": 1,
+                "line-color": "#000000",
+                "curve-style": "bezier",
+                "source-endpoint": "outside-to-node-or-label",
+                "target-endpoint": "outside-to-node-or-label",
+
+                // Labels
+                "font-size": "0.75em",
+                "font-weight": 450,
+                "source-label": "data(source_display)",
+                "source-text-offset": 25,
+                "target-label": "data(target_display)",
+                "target-text-offset": 25,
+                "text-background-color": "#FFFFFF",
+                "text-background-opacity": 1
+              }
+            }
+          ]
+        });
+        this.#subnetworks = {};
+        this.#routers = {};
+      }
+
+      /**
+       * Updates the canva using dynamic layout.
+       */
+      update_layout() {
+        this.#cy.center();
+        this.#cy.layout({
+          name: "cose",
+          animate: "end",
+          componentSpacing: 100
+        }).run();
+        this.#cy.center();
+      }
+
+      /**
+       * Checks if an ID is used by something within the entire network.
+       * @param {string} id - The ID to check.
+       * @throws Throws an error if ID is already used by something.
+       */
+      #test_id(id) {
+        if (id in this.#subnetworks) {
+          throw new Error(`ID ${id} is already used as subnetwork`);
+        } else if (id in this.#routers) {
+          throw new Error(`ID ${id} is already used as router`);
+        }
+
+        for (let subnetwork_id in this.#subnetworks) {
+          if (id in this.#subnetworks[subnetwork_id].devices) {
+            throw new Error(`ID ${id} is already used as ${this.#subnetworks[subnetwork_id].devices[id].get_type()} in subnetwork ${subnetwork_id}`);
+          }
+        }
+      }
+
+      /**
+       * Adds a subnetwork to the network.
+       * @param {string} id - ID of the subnetwork, must be unique.
+       * @param {string} name - Name of the subnetwork, empty string for no
+       * name.
+       * @param {Interface} interface_ - Interface of the subnetwork.
+       * @param {string} color - Color of the subnetwork on the canva.
+       * @throws Throws an error if the subnetwork cannot be added.
+       */
+      add_subnetwork(id, name, interface_, color = "#AAAAAA") {
+        this.#test_id(id);
+
+        for (subnetwork_id in this.#subnetworks) {
+          if (this.#subnetworks[subnetwork_id].interface_.get_subnetwork_address().equals(interface_.get_subnetwork_address())) {
+            throw new Error(`Cannot add subnetwork ${id} because its configuration is already used by subnetwork ${subnetwork_id}`);
+          }
+        }
+
+        // Instanciation
+        let subnetwork = new Subnetwork(id, name, interface_);
+        this.#subnetworks[id] = subnetwork;
+
+        // Affichage
+        let display = "";
+        if (name != "" && !interface_.hidden) {
+          display = `${name}\n${interface_.ip.as_decimal()}/${interface_.mask.as_cidr()}`;
+        } else if (name != "" && interface_.hidden) {
+          display = name;
+        } else if (name == "" && !interface_.hidden) {
+          display = `${interface_.ip.as_decimal()}/${interface_.mask.as_cidr()}`;
+        }
+
+        this.#cy.add({
+          group: "nodes",
+          data: {
+            id: id,
+            type: "subnetwork",
+            display: display,
+            color: color
+          }
+        });
+
+        // Log
+        console.log(`Created subnetwork ${id} (name: '${name}')`);
+      }
+
+      /**
+       * Adds a switch to the network.
+       * @param {string} subnetwork_id - ID of the subnetwork in which to add
+       * the switch.
+       * @param {string} id - ID of the switch, must be unique.
+       * @param {string} name - Name of the switch, empty string for no name.
+       * @throws Throws an error if the switch cannot be added.
+       */
+      add_switch(subnetwork_id, id, name) {
+        this.#test_id(id);
+
+        // Instanciation
+        let subnetwork = this.#subnetworks[subnetwork_id];
+        let switch_ = new Switch(id, name);
+        subnetwork.devices[id] = switch_;
+
+        // Affichage
+        this.#cy.add({
+          group: "nodes",
+          data: {
+            id: id,
+            type: "switch",
+            parent: subnetwork_id,
+            display: name
+          }
+        });
+
+        // Log
+        console.log(`Created switch ${id} (name: '${name}') in subnetwork ${subnetwork_id} (name: '${this.#subnetworks[subnetwork_id].name}')`);
+      }
+
+      /**
+       * Adds a PC to the network.
+       * @param {string} subnetwork_id - ID of the subnetwork in which to add
+       * the PC.
+       * @param {string} id - ID of the PC, must be unique.
+       * @param {string} name - Name of the PC, empty string for no name.
+       * @param {Interface} interface_ - Interface of the PC.
+       * @param {string} shape - Shape of the PC: "Laptop" or "Server".
+       * @throws Throws an error if the PC cannot be added.
+       */
+      #add_pc(subnetwork_id, id, name, interface_, shape) {
+        this.#test_id(id);
+
+        if (!this.#subnetworks[subnetwork_id].interface_.shares_subnet(interface_)) {
+          throw new Error(`Interface configuration of PC ${id} doesn't match its subnetwork's configuration`);
+        }
+
+        // Vérification de la forme
+        if (shape != "Laptop" && shape != "Server") {
+          throw new Error(`Unrecognized PC shape: '${shape}'`);
+        }
+
+        // Instanciation
+        let subnetwork = this.#subnetworks[subnetwork_id];
+        let pc = new Pc(id, name, interface_, shape);
+        subnetwork.devices[id] = pc;
+
+        // Affichage
+        this.#cy.add({
+          group: "nodes",
+          data: {
+            id: id,
+            type: shape.toLowerCase(),
+            parent: subnetwork_id,
+            display: interface_.hidden ? name : `${name}\n${interface_.ip.as_decimal()}/${interface_.mask.as_cidr()}`
+          }
+        });
+
+        // Log
+        console.log(`Created ${pc.get_type()} ${id} (name: '${name}') in subnetwork ${subnetwork_id} (name: '${this.#subnetworks[subnetwork_id].name}')`);
+      }
+
+      /**
+       * Adds a server to the network.
+       * @param {string} subnetwork_id - ID of the subnetwork in which to add
+       * the server.
+       * @param {string} id - ID of the server, must be unique.
+       * @param {string} name - Name of the server, empty string for no name.
+       * @param {Interface} interface_ - Interface of the server.
+       * @throws Throws an error if the server cannot be added.
+       */
+      add_server(subnetwork_id, id, name, interface_) {
+        this.#add_pc(subnetwork_id, id, name, interface_, "Server");
+      }
+
+      /**
+       * Adds a laptop to the network.
+       * @param {string} subnetwork_id - ID of the subnetwork in which to add
+       * the laptop.
+       * @param {string} id - ID of the laptop, must be unique.
+       * @param {string} name - Name of the laptop, empty string for no name.
+       * @param {Interface} interface_ - Interface of the laptop.
+       * @throws Throws an error if the laptop cannot be added.
+       */
+      add_laptop(subnetwork_id, id, name, interface_) {
+        this.#add_pc(subnetwork_id, id, name, interface_, "Laptop");
+      }
+
+      /**
+       * Adds a router to the network.
+       * @param {string} id - ID of the router, must be unique.
+       * @param {string} name - Name of the router, empty string for no name.
+       * @param {Interface[]} interfaces - Interfaces of the router.
+       * @throws Throws an error if the router cannot be added.
+       */
+      add_router(id, name, interfaces) {
+        this.#test_id(id);
+
+        // Instanciation
+        let router = new Router(id, name, interfaces);
+        this.#routers[id] = router;
+
+        // Affichage
+        this.#cy.add({
+          group: "nodes",
+          data: {
+            id: id,
+            type: "router",
+            display: name
+          }
+        });
+
+        // Log
+        console.log(`Created router ${id} (name: '${name}')`);
+      }
+
+      /**
+       * Connects the two devices (both will be connected to the other).
+       * @param {string} device_1_id - ID of the first device to connect.
+       * @param {string} device_2_id - ID of the second device to connect.
+       * @throws Throws an error if the devices cannot be connected.
+       */
+      connect(device_1_id, device_2_id) {
+        // Graphe non-orienté, on les traite dans un ordre déterministe
+        if (device_1_id > device_2_id) {
+          [device_1_id, device_2_id] = [device_2_id, device_1_id];
+        }
+
+        // 1. Trouver device_1
+        let device_1 = undefined;
+        let device_1_subnetwork = undefined;
+        let device_1_is_router = false;
+        if (device_1_id in this.#routers) {
+          device_1 = this.#routers[device_1_id];
+          device_1_is_router = true;
+        } else {
+          for (let subnetwork_id in this.#subnetworks) {
+            if (device_1_id in this.#subnetworks[subnetwork_id].devices) {
+              device_1 = this.#subnetworks[subnetwork_id].devices[device_1_id];
+              device_1_subnetwork = this.#subnetworks[subnetwork_id];
+            }
+          }
+        }
+        if (device_1 == undefined) {
+          throw new Error(`Nothing has ID ${device_1_id} in the network`);
+        }
+
+        // 2. Trouver device_2
+        let device_2 = undefined;
+        let device_2_subnetwork = undefined;
+        let device_2_is_router = false;
+        if (device_2_id in this.#routers) {
+          device_2 = this.#routers[device_2_id];
+          device_2_is_router = true;
+        } else {
+          for (let subnetwork_id in this.#subnetworks) {
+            if (device_2_id in this.#subnetworks[subnetwork_id].devices) {
+              device_2 = this.#subnetworks[subnetwork_id].devices[device_2_id];
+              device_2_subnetwork = this.#subnetworks[subnetwork_id];
+            }
+          }
+        }
+        if (device_2 == undefined) {
+          throw new Error(`Nothing has ID ${device_2_id} in the network`);
+        }
+
+        // 3. Connectivité
+        let keys = device_1.can_connect(device_2);
+        if (keys == null) {
+          throw new Error(`Unable to connect ${device_1.get_type()} ${device_1_id} and ${device_2.get_type()} ${device_2_id}`);
+        }
+
+        // 4. Connexion des interfaces
+        let device_1_key = keys.self_key;
+        let device_2_key = keys.target_key;
+        let device_1_interface = device_1.get_interfaces()[device_1_key];
+        let device_2_interface = device_2.get_interfaces()[device_2_key];
+        device_1.connect(device_2, device_1_key, device_2_key);
+        device_2.connect(device_1, device_2_key, device_1_key);
+
+        // 5. Mise à jour du réseau
+        // Trois cas de figure :
+        // A- Les 2 sont des routeurs -> Créer un ss-réseau commun
+        // B- Un dans un ss-réseau, l'autre est un routeur -> ajouter le routeur au ss-réseau
+        // C- Les 2 dans le même ss-réseau -> rien à faire
+        if (device_1_is_router && device_2_is_router) {
+          let new_subnetwork = new Subnetwork(`${device_1_id}_${device_2_id}`, "", new Interface(device_1_interface.subnet(), device_1_interface.mask, true));
+          this.#subnetworks[`${device_1_id}_${device_2_id}`] = new_subnetwork;
+        } else if (device_1_is_router && !device_2_is_router) {
+          for (let subnetwork_id in this.#subnetworks) {
+            if (device_2_id in this.#subnetworks[subnetwork_id].devices) {
+              this.#subnetworks[subnetwork_id].devices[device_1_id] = device_1;
+              break;
+            }
+          }
+        } else if (!device_1_is_router && device_2_is_router) {
+          for (let subnetwork_id in this.#subnetworks) {
+            if (device_1_id in this.#subnetworks[subnetwork_id].devices) {
+              this.#subnetworks[subnetwork_id].devices[device_2_id] = device_2;
+              break;
+            }
+          }
+        }
+
+        // 6. Affichage
+        this.#cy.add({
+          group: "edges",
+          data: {
+            id: `${device_1_id}_${device_2_id}`,
+            source: device_1_id,
+            source_display: device_1_is_router && !device_1_interface.hidden ? `${device_1_interface.ip.as_decimal()}/${device_1_interface.mask.as_cidr()}` : "",
+            target: device_2_id,
+            target_display: device_2_is_router && !device_2_interface.hidden ? `${device_2_interface.ip.as_decimal()}/${device_2_interface.mask.as_cidr()}` : ""
+          }
+        });
+
+        // Log
+        console.log(`Connected ${device_1.get_type()} ${device_1_id} (name: '${device_1.name}') to ${device_2.get_type()} ${device_2_id} (name: '${device_2.name}')`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const network_canva = new NetworkCanva(document.getElementById("canva"));
+      network_canva.add_subnetwork("A", "Site A", new Interface(new Ip([192, 168, 0, 0]), new Ip([255, 255, 0, 0])), "#ffbb00");
+      network_canva.add_switch("A", "Sw1", "");
+      network_canva.add_switch("A", "Sw2", "");
+      network_canva.connect("Sw1", "Sw2");
+      network_canva.add_laptop("A", "PC-A01", "PC-A01", new Interface(new Ip([192, 168, 0, 1]), new Ip([255, 255, 0, 0])));
+      network_canva.add_server("A", "PC-A02", "PC-A02", new Interface(new Ip([192, 168, 0, 2]), new Ip([255, 255, 0, 0])));
+      network_canva.add_router("R1", "R1", [new Interface(new Ip([192, 168, 0, 3]), new Ip([255, 255, 0, 0])), new Interface(new Ip([172, 16, 0, 2]), new Ip([255, 255, 0, 0]), false)]);
+      network_canva.add_router("R2", "R2", [new Interface(new Ip([172, 16, 0, 1]), new Ip([255, 255, 0, 0]), false)]);
+      network_canva.connect("Sw1", "PC-A02");
+      network_canva.connect("PC-A01", "Sw1");
+      network_canva.connect("R1", "Sw1");
+      network_canva.connect("R1", "R2");
+      network_canva.update_layout();
+    }, false);
+  </script>
+</head>
+
+<body>
+  <div id="canva" style="width: 100%; height: 100%; min-height: 1000px; border: 1px solid black;"></div>
+</body>
+
+</html>
