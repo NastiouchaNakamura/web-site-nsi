@@ -64,10 +64,23 @@
       static wildcard_interface = new Interface(
         new Ip([0, 0, 0, 0]),
         new Ip([0, 0, 0, 0]),
-        true
+        false
       );
 
-      constructor(ip, mask, hidden) {
+      static from(str_interface) {
+        let [str_ip, str_mask_cidr] = str_interface.split("/");
+        let ip = new Ip(str_ip.split("."));
+        let mask_binary = "1".repeat(str_mask_cidr) + "0".repeat(32 - str_mask_cidr);
+        let mask = new Ip([
+          parseInt(mask_binary.substring(0, 8), 2),
+          parseInt(mask_binary.substring(8, 16), 2),
+          parseInt(mask_binary.substring(16, 24), 2),
+          parseInt(mask_binary.substring(24, 32), 2)
+        ]);
+        return new Interface(ip, mask, false);
+      }
+
+      constructor(ip, mask, hidden = false) {
         this.ip = ip;
         this.mask = mask;
         this.hidden = hidden;
@@ -992,14 +1005,14 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const network_canva = new NetworkCanva(document.getElementById("canva"));
-      network_canva.add_subnetwork("A", "Site A", new Interface(new Ip([192, 168, 0, 0]), new Ip([255, 255, 0, 0])), "#ffbb00");
+      network_canva.add_subnetwork("A", "Site A", Interface.from("192.168.0.0/16"), "#ffbb00");
       network_canva.add_switch("A", "Sw1", "");
       network_canva.add_switch("A", "Sw2", "");
       network_canva.connect("Sw1", "Sw2");
-      network_canva.add_laptop("A", "PC-A01", "PC-A01", new Interface(new Ip([192, 168, 0, 1]), new Ip([255, 255, 0, 0])));
-      network_canva.add_server("A", "PC-A02", "PC-A02", new Interface(new Ip([192, 168, 0, 2]), new Ip([255, 255, 0, 0])));
-      network_canva.add_router("R1", "R1", [new Interface(new Ip([192, 168, 0, 3]), new Ip([255, 255, 0, 0])), new Interface(new Ip([172, 16, 0, 2]), new Ip([255, 255, 0, 0]), false)]);
-      network_canva.add_router("R2", "R2", [new Interface(new Ip([172, 16, 0, 1]), new Ip([255, 255, 0, 0]), false)]);
+      network_canva.add_laptop("A", "PC-A01", "PC-A01", Interface.from("192.168.0.1/16"));
+      network_canva.add_server("A", "PC-A02", "PC-A02", Interface.from("192.168.0.2/16"));
+      network_canva.add_router("R1", "R1", [Interface.from("192.168.0.3/16"), Interface.from("172.16.0.2/16")]);
+      network_canva.add_router("R2", "R2", [Interface.from("172.16.0.1/16")]);
       network_canva.connect("Sw1", "PC-A02");
       network_canva.connect("PC-A01", "Sw1");
       network_canva.connect("R1", "Sw1");
