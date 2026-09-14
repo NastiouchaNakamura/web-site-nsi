@@ -30,9 +30,13 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
     };
     const controles = [
         { id: "26-1NSI-01", niveau: 1, theme: 5, contenu: [
-            "Format CSV", "Sélections en tables", "Tri de tables",
-            "La fonction `open`", "La fonction `sorted`",
-            "Listes en compréhension", "Lambda-expressions"
+            "Format CSV",
+            "Sélections en tables",
+            "Tri de tables",
+            "La fonction `open`",
+            "La fonction `sorted`",
+            "Listes en compréhension",
+            "Lambda-expressions"
             ], pdf: [
                 { nom: "26-1NSI-01A", url: "https://files.nastioucha.fr/controle/26-1NSI-01A.pdf",
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-01A-c.pdf" },
@@ -43,7 +47,8 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
         },
         { id: "26-1NSI-02", niveau: 1, theme: 6, contenu: [
             "Historique des ordinateurs",
-            "Langage machine et langage assembleur", "Commandes Unix"
+            "Langage machine et langage assembleur",
+            "Commandes Unix"
             ], pdf: [
                 { nom: "26-1NSI-02A", url: "https://files.nastioucha.fr/controle/26-1NSI-02A.pdf",
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-02A-c.pdf" },
@@ -58,7 +63,8 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
         { id: "26-1NSI-03", niveau: 1, theme: 2, contenu: [
             "Représentation en bit de signe",
             "Représentation en complément à 2",
-            "Représentation ASCII;Représentation UTF-8"
+            "Représentation ASCII",
+            "Représentation UTF-8"
             ], pdf: [
                 { nom: "26-1NSI-03A", url: "https://files.nastioucha.fr/controle/26-1NSI-03A.pdf",
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-03A-c.pdf" },
@@ -82,6 +88,17 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-04C-c.pdf" },
                 { nom: "26-1NSI-04D", url: "https://files.nastioucha.fr/controle/26-1NSI-04D.pdf",
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-04D-c.pdf" }
+            ]
+        },
+        { id: "26-TNSI-04", niveau: 0, theme: 1, contenu: [
+            "Évaluation et typage simple",
+            "Comprendre un message d'erreur simple",
+            "Programmer une fonction simple",
+            "Type ancienne épreuve pratique du bac"
+            ], pdf: [
+                { nom: "26-TNSI-04A", url: "https://files.nastioucha.fr/controle/26-TNSI-04A.pdf" },
+                { nom: "26-TNSI-04B", url: "https://files.nastioucha.fr/controle/26-TNSI-04B.pdf" },
+                { nom: "26-TNSI-04C", url: "https://files.nastioucha.fr/controle/26-TNSI-04C.pdf" }
             ]
         }
     ];
