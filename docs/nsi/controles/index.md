@@ -90,6 +90,22 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
                 cor_url: "https://files.nastioucha.fr/controle/26-1NSI-04D-c.pdf" }
             ]
         },
+        { id: "26-1NSI-05", niveau: 1, theme: 1, contenu: [
+            "Briques élémentaires de Python",
+            "Validation d'expressions",
+            "Évaluation et typage simple",
+            "Fonctions natives communes",
+            "Comprendre un message d'erreur simple",
+            "Programmer une fonction simple"
+            ], pdf: [
+                { nom: "26-1NSI-05A", url: "https://files.nastioucha.fr/controle/26-1NSI-05A.pdf" },
+                { nom: "26-1NSI-054B", url: "https://files.nastioucha.fr/controle/26-1NSI-05B.pdf" },
+                { nom: "26-1NSI-05C", url: "https://files.nastioucha.fr/controle/26-1NSI-05C.pdf" },
+                { nom: "26-1NSI-05D", url: "https://files.nastioucha.fr/controle/26-1NSI-05D.pdf" },
+                { nom: "26-1NSI-05E", url: "https://files.nastioucha.fr/controle/26-1NSI-05E.pdf" },
+                { nom: "26-1NSI-05F", url: "https://files.nastioucha.fr/controle/26-1NSI-05F.pdf" }
+            ]
+        },
         { id: "26-TNSI-04", niveau: 0, theme: 1, contenu: [
             "Évaluation et typage simple",
             "Comprendre un message d'erreur simple",
