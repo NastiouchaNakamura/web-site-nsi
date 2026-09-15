@@ -70,7 +70,7 @@ jobs:
       #     #dangerous-clean-slate: true
       #     log-level: verbose
       - name: Upload to FTP server
-        uses: sand4rt/ftp-deployer@v1.8
+        uses: sand4rt/ftp-deployer@v1.10
         with:
           sftp: true
           host: ${{ secrets.ftp_host }}
