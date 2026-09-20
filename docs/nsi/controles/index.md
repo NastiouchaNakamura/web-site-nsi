@@ -29,7 +29,44 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
         9: "Th.9 - Sécurité des communications"
     };
     const controles = [
-        { id: "26-1NSI-01", niveau: 1, theme: 5, contenu: [
+        //
+        // Première
+        //
+        // 2025
+        { id: "25-1NSI-05", niveau: 1, theme: 1, contenu: [
+            "Briques élémentaires de Python",
+            "Validation d'expressions",
+            "Évaluation et typage simple",
+            "Fonctions natives communes",
+            "Comprendre un message d'erreur simple",
+            "Programmer une fonction simple"
+            ], pdf: [
+                { nom: "25-1NSI-05A", url: "https://files.nastioucha.fr/controle/25-1NSI-05A.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-1NSI-05A-c.pdf" },
+                { nom: "25-1NSI-05B", url: "https://files.nastioucha.fr/controle/25-1NSI-05B.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-1NSI-05B-c.pdf" },
+                { nom: "25-1NSI-05C", url: "https://files.nastioucha.fr/controle/25-1NSI-05C.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-1NSI-05C-c.pdf" },
+                { nom: "25-1NSI-05D", url: "https://files.nastioucha.fr/controle/25-1NSI-05D.pdf" },
+                { nom: "25-1NSI-05E", url: "https://files.nastioucha.fr/controle/25-1NSI-05E.pdf" },
+                { nom: "25-1NSI-05F", url: "https://files.nastioucha.fr/controle/25-1NSI-05F.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-1NSI-05F-c.pdf" }
+            ]
+        },
+        { id: "25-1NSI-07", niveau: 1, theme: 1, contenu: [
+            "Opérations sur les types séquentiels",
+            "Type `list`",
+            "Boucle `for`"
+            ], pdf: [
+                { nom: "25-1NSI-07A", url: "https://files.nastioucha.fr/controle/25-1NSI-07A.pdf" },
+                { nom: "25-1NSI-07B", url: "https://files.nastioucha.fr/controle/25-1NSI-07B.pdf" },
+                { nom: "25-1NSI-07C", url: "https://files.nastioucha.fr/controle/25-1NSI-07C.pdf" },
+                { nom: "25-1NSI-07D", url: "https://files.nastioucha.fr/controle/25-1NSI-07D.pdf" }
+            ]
+        },
+        //
+        // 2026
+        { id: "26-1NSI-01", niveau: 1, theme: 4, contenu: [
             "Format CSV",
             "Sélections en tables",
             "Tri de tables",
@@ -45,7 +82,7 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
                 { nom: "26-1NSI-01C", url: "https://files.nastioucha.fr/controle/26-1NSI-01C.pdf" }
             ]
         },
-        { id: "26-1NSI-02", niveau: 1, theme: 6, contenu: [
+        { id: "26-1NSI-02", niveau: 1, theme: 5, contenu: [
             "Historique des ordinateurs",
             "Langage machine et langage assembleur",
             "Commandes Unix"
@@ -106,6 +143,35 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
                 { nom: "26-1NSI-05F", url: "https://files.nastioucha.fr/controle/26-1NSI-05F.pdf" }
             ]
         },
+        //
+        // Terminale
+        //
+        // 2025
+        { id: "25-TNSI-01", niveau: 0, theme: 1, contenu: [
+            "Évaluation et typage simple",
+            "Comprendre un message d'erreur simple",
+            "Programmer une fonction simple",
+            "Type ancienne épreuve pratique du bac"
+            ], pdf: [
+                { nom: "25-TNSI-01A", url: "https://files.nastioucha.fr/controle/25-TNSI-01A.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-TNSI-01A-c.pdf" },
+                { nom: "25-TNSI-01B", url: "https://files.nastioucha.fr/controle/25-TNSI-01B.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-TNSI-01B-c.pdf" }
+            ]
+        },
+        { id: "25-TNSI-02", niveau: 0, theme: 1, contenu: [
+            "Objets, classes et instances en Python",
+            "Définir une classe",
+            "Vocabulaire de la programmation orientée objet",
+            "Programmer une fonction simple"
+            ], pdf: [
+                { nom: "25-TNSI-02A", url: "https://files.nastioucha.fr/controle/25-TNSI-02A.pdf",
+                cor_url: "https://files.nastioucha.fr/controle/25-TNSI-02A-c.pdf" },
+                { nom: "25-TNSI-02B", url: "https://files.nastioucha.fr/controle/25-TNSI-02B.pdf" }
+            ]
+        },
+        //
+        // 2026
         { id: "26-TNSI-04", niveau: 0, theme: 1, contenu: [
             "Évaluation et typage simple",
             "Comprendre un message d'erreur simple",
@@ -113,7 +179,8 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
             "Type ancienne épreuve pratique du bac"
             ], pdf: [
                 { nom: "26-TNSI-04A", url: "https://files.nastioucha.fr/controle/26-TNSI-04A.pdf" },
-                { nom: "26-TNSI-04B", url: "https://files.nastioucha.fr/controle/26-TNSI-04B.pdf" },
+                { nom: "26-TNSI-04B", url: "https://files.nastioucha.fr/controle/26-TNSI-04B.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-TNSI-04B-c.pdf" },
                 { nom: "26-TNSI-04C", url: "https://files.nastioucha.fr/controle/26-TNSI-04C.pdf" }
             ]
         }
