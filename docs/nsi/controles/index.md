@@ -144,12 +144,18 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
             "Comprendre un message d'erreur simple",
             "Programmer une fonction simple"
             ], pdf: [
-                { nom: "26-1NSI-05A", url: "https://files.nastioucha.fr/controle/26-1NSI-05A.pdf" },
-                { nom: "26-1NSI-05B", url: "https://files.nastioucha.fr/controle/26-1NSI-05B.pdf" },
-                { nom: "26-1NSI-05C", url: "https://files.nastioucha.fr/controle/26-1NSI-05C.pdf" },
-                { nom: "26-1NSI-05D", url: "https://files.nastioucha.fr/controle/26-1NSI-05D.pdf" },
-                { nom: "26-1NSI-05E", url: "https://files.nastioucha.fr/controle/26-1NSI-05E.pdf" },
-                { nom: "26-1NSI-05F", url: "https://files.nastioucha.fr/controle/26-1NSI-05F.pdf" }
+                { nom: "26-1NSI-05A", url: "https://files.nastioucha.fr/controle/26-1NSI-05A.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05A-c.pdf" },
+                { nom: "26-1NSI-05B", url: "https://files.nastioucha.fr/controle/26-1NSI-05B.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05B-c.pdf" },
+                { nom: "26-1NSI-05C", url: "https://files.nastioucha.fr/controle/26-1NSI-05C.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05C-c.pdf" },
+                { nom: "26-1NSI-05D", url: "https://files.nastioucha.fr/controle/26-1NSI-05D.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05D-c.pdf" },
+                { nom: "26-1NSI-05E", url: "https://files.nastioucha.fr/controle/26-1NSI-05E.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05E-c.pdf" },
+                { nom: "26-1NSI-05F", url: "https://files.nastioucha.fr/controle/26-1NSI-05F.pdf" ,
+                cor_url: "https://files.nastioucha.fr/controle/26-1NSI-05F-c.pdf" }
             ]
         },
         //
