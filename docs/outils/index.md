@@ -19,3 +19,9 @@ Les **exercices automatiques** sont des exercices dont les **énoncés** sont **
 - [Représentation du texte (norme UTF-8)](utf-8.md) (1<sup>ère</sup> | Thème 2 – Représentation des données)
 - [Représentation des nombres à virgule en virgule fixe (notation Q)](notation-q.md) (1<sup>ère</sup> | Thème 2 – Représentation des données)
 - [Représentation des nombres à virgule en virgule flottante (norme IEEE-754)](ieee-754.md) (1<sup>ère</sup> | Thème 2 – Représentation des données)
+
+### Corrections de contrôle à seed
+
+Les **contrôle à seed** sont des contrôles rédigés par le prof dans lesquels certains exercices sont **générés procéduralement** à partir d'un **seed**, qui est généralement l'identifiant du sujet.
+
+- [Conversions de bases](ctrl-conversion-bases.md) (1<sup>ère</sup> | Thème 2 – Représentation des données)
