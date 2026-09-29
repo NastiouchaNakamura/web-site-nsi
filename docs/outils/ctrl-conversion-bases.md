@@ -126,7 +126,7 @@ hide:
             on_all_elements(`ex2_${String.fromCharCode(97 + i)}_in`, e => e.innerText = number_to_string(n, bases[i]));
             on_all_elements(`ex2_${String.fromCharCode(97 + i)}_in_base`, e => e.innerText = bases[i]);
             on_all_elements(`ex2_${String.fromCharCode(97 + i)}_bin`, e => e.innerText = number_to_string(n, out_bases[i]));
-            on_all_elements(`ex2_${String.fromCharCode(97 + i)}_bytes`, e => e.innerText = number_to_string(n, out_bases[i]));
+            on_all_elements(`ex2_${String.fromCharCode(97 + i)}_bytes`, e => e.innerText = n % 8);
         }
     }
 
