@@ -396,38 +396,5 @@ hide:
         }
     }
 
-    function on_all_elements(name, fun) {
-        let elements = document.getElementsByName(name);
-        for (let i = 0; i < elements.length; i++)
-            fun(elements[i])
-    }
-
-    function elements_by_name(name) {
-        let elements = document.getElementsByName(name);
-        let elements_array = [];
-        for (let i = 0; i < elements.length; i++)
-            elements_array.push(elements[i]);
-        return elements_array;
-    }
-
-    function number_to_string(number, base = 10) {
-        if (base === 2)
-            return number.toString(base).replace(/\B(?=(\d{4})+(?!\d))/g, "\u00A0");
-        else if (base == 16)
-            return number.toString(base).replace(/\B(?=([\dA-Fa-f]{2})+(?![\dA-Fa-f]))/g, "\u00A0");
-        else
-            return number.toString(base).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
-    }
-
-    function separate_on_indexes(str, indexes) {
-        rep = "";
-        for (let i = 0; i < str.length; i++) {
-            if (indexes.includes(i))
-                rep += "\u00A0";
-            rep += str[i];
-        }
-        return rep;
-    }
-
     document.addEventListener("DOMContentLoaded", () => { base = 10; update(); });
 </script>
