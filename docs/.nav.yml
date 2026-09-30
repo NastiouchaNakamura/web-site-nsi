@@ -11,6 +11,8 @@ nav:
       - "outils/utf-8.md"
       - "outils/notation-q.md"
       - "outils/ieee-754.md"
+    - Corrections de contrôle à seed
+      - "outils/ctrl-conversion-bases.md"
   - Challenges:
     - "challenges/[0-9]_*"
     - Liste complète:
