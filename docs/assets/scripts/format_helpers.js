@@ -32,7 +32,7 @@ function number_to_string(number, base = 10, from_right = 0) {
         i++;
     }
     
-    return s.reverse().join("");
+    return s.reverse().join("").toUpperCase();
 }
 
 function separate_on_indexes(str, indexes) {
