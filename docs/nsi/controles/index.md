@@ -9,8 +9,6 @@ hide:
 
 Ici, vous trouverez les **annales de contrôle de NSI** des années précédentes, ainsi que pour chacune la **correction détaillée**.
 
-`test`
-
 <div style="text-align: center;">
     <select id="level_select" class="input-submit" onchange="format_table(controles.filter(c => this.value == 'all' || c.niveau == parseInt(this.value)));">
         <option value="all">Tous les niveaux</option>
