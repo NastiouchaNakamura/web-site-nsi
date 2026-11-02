@@ -1,14 +1,16 @@
 const themes = {
-    1: "Th.1 - Programmation",
-    2: "Th.2 - Représentation des données",
-    3: "Th.3 - Conception et analyse d'algorithmes",
-    4: "Th.4 - Données en tables et bases de données",
-    5: "Th.5 - Architecture des ordinateurs",
-    6: "Th.6 - Réseaux",
-    7: "Th.7 - Web",
-    8: "Th.8 - Structures de données",
-    9: "Th.9 - Sécurité des communications"
+    1: "Thème 1 - Programmation",
+    2: "Thème 2 - Représentation des données",
+    3: "Thème 3 - Conception et analyse d'algorithmes",
+    4: "Thème 4 - Données en tables et bases de données",
+    5: "Thème 5 - Architecture des ordinateurs",
+    6: "Thème 6 - Réseaux",
+    7: "Thème 7 - Web",
+    8: "Thème 8 - Structures de données",
+    9: "Thème 9 - Sécurité des communications"
 };
+
+const controles = []
 
 function fetch_controles() {
     fetch(`${API_URL}exam/`, {
@@ -17,12 +19,11 @@ function fetch_controles() {
     }).then(response => {
         if (response.status == 200) {
             response.json().then(json => {
-                let controles = [];
-
                 json.data.values.forEach(exam => {
                     controles.push({
                         id: exam.id,
-                        niveau: {"T": 0, "1": 1, "2": 2}[exam.id[0]],
+                        titre: exam.title,
+                        niveau: {"T": 0, "1": 1, "2": 2}[exam.id[3]],
                         theme: exam.theme,
                         contenu: exam.skills.values,
                         pdf: exam.subjects.values.map(
@@ -47,6 +48,7 @@ function format_table(controles) {
     tbody_element.innerHTML = "";
     for (let i = 0; i < controles.length; i++) {
         let tr_element = document.createElement("tr");
+        tr_element.classList = `th${controles[i].theme}`;
         tbody_element.appendChild(tr_element);
         let id_td_element = document.createElement("td");
         id_td_element.innerText = controles[i].id;
@@ -61,13 +63,17 @@ function format_table(controles) {
         }
         tr_element.appendChild(niveau_td_element);
         let theme_td_element = document.createElement("td");
-        theme_td_element.innerText = themes[controles[i].theme];
+        theme_td_element.innerHTML = themes[controles[i].theme].replace(" - ", "<br>");
         tr_element.appendChild(theme_td_element);
         let contenu_td_element = document.createElement("td");
+        let contenu_p_element = document.createElement("p");
+        contenu_p_element.innerText = controles[i].titre;
+        contenu_td_element.appendChild(contenu_p_element);
         let contenu_ul_element = document.createElement("ul");
         for (let j = 0; j < controles[i].contenu.length; j++) {
             let item_li_element = document.createElement("li");
-            item_li_element.innerText = controles[i].contenu[j];
+            let contenu_str = controles[i].contenu[j];
+            item_li_element.innerHTML = contenu_str.replace(/`([^`]*)`/g, "<code>$1</code>");
             contenu_ul_element.appendChild(item_li_element);
         }
         contenu_td_element.appendChild(contenu_ul_element);
