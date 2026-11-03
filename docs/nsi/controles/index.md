@@ -10,13 +10,13 @@ hide:
 Ici, vous trouverez les **annales de contrôle de NSI** des années précédentes, ainsi que pour chacune la **correction détaillée**.
 
 <div style="text-align: center;">
-    <select id="level_select" class="input-submit" onchange="format_table(controles.filter(c => this.value == 'all' || c.niveau == parseInt(this.value)));">
+    <select id="level_select" class="input-submit" onchange="filter_controles(controles)">
         <option value="all">Tous les niveaux</option>
         <option value="2">Seconde</option>
         <option value="1">Première</option>
         <option value="0">Terminale</option>
     </select>
-    <select id="theme_select" class="input-submit" onchange="format_table(controles.filter(c => this.value == 'all' || c.theme == parseInt(this.value)));">
+    <select id="theme_select" class="input-submit" onchange="filter_controles(controles)">
         <option value="all">Tous les thèmes</option>
         <option value="1">Th.1 - Programmation</option>
         <option value="2">Th.2 - Représentation des données</option>
