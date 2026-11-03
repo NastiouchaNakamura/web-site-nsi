@@ -34,7 +34,7 @@ function fetch_controles() {
                     });
                 });
 
-                format_table(controles);
+                filter_controles(controles);
             });
         } else {
             document.getElementById("table_details_icon").className = "icon-error icon-color-orange";
@@ -91,4 +91,18 @@ function format_table(controles) {
         sujet_td_element.appendChild(sujet_ul_element);
         tr_element.appendChild(sujet_td_element);
     }
+}
+
+function filter_controles(controles) {
+    let filtered_controles = [...controles];
+
+    let level_select_element = document.getElementById("level_select");
+    if (level_select_element != null)
+        filtered_controles = filtered_controles.filter(c => level_select_element.value == 'all' || c.niveau == parseInt(level_select_element.value));
+    
+    let theme_select_element = document.getElementById("theme_select");
+    if (level_select_element != null)
+        filtered_controles = filtered_controles.filter(c => theme_select_element.value == 'all' || c.theme == parseInt(theme_select_element.value));
+
+    format_table(filtered_controles);
 }
