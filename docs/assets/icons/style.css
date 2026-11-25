@@ -64,6 +64,13 @@
     mask-size: 100%;
 }
 
+.icon-html {
+    height: 1rem;
+    width: 1rem;
+    mask-image: url("/assets/icons/html.svg");
+    mask-size: 100%;
+}
+
 .icon-color-white {
     background-color: #ffffff;
 }
