@@ -38,7 +38,6 @@ Ici, vous trouverez les **annales de contrôle de NSI** des années précédente
 <sup>*</sup> Thème dominant, certains exercices peuvent traiter plusieurs thèmes.
 
 <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
-<script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
 <script>
     window.addEventListener("load", function() { make_table_challenges(); fetch_controles(); });
 </script>
